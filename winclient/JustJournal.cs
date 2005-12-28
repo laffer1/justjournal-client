@@ -18,15 +18,43 @@ namespace JustJournal
 	public class JustJournal
 	{
         private const string server = "www.justjournal.com";
-		private const string version = "JustJournal/1.0.4 Win";
+		private const string version = "JustJournal/1.1.0 Win";
 
 		private static bool loggedIn = false;
 		private static string userName;
 		private static string password;
+		
+        private static bool enableSpellCheck = false;
+		private static bool autoSpellCheck = false;
+
 		public static string debug;
 		public static ArrayList moods = new ArrayList(125);
 
         public static bool useSSL = true;
+
+		public static bool EnableSpellCheck
+		{
+			get
+			{
+				return enableSpellCheck;
+			}
+			set
+			{
+				enableSpellCheck = value;
+			}
+		}
+
+		public static bool AutoSpellCheck
+		{
+			get
+			{
+				return autoSpellCheck;
+			}
+			set
+			{
+				autoSpellCheck = value;
+			}
+		}
 
 		public static string Version
 		{

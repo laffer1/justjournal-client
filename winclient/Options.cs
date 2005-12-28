@@ -26,6 +26,10 @@ namespace JustJournal
 		private System.Windows.Forms.CheckBox chkUseSSL;
 		private System.Windows.Forms.CheckBox chkSavePassword;
 		private System.Windows.Forms.CheckBox chkAutoLogin;
+		private System.Windows.Forms.TabPage tabIntegration;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.CheckBox chkUseWord;
+		private System.Windows.Forms.CheckBox chkAutoSpell;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -48,6 +52,9 @@ namespace JustJournal
 			string pwd = (string)rk.GetValue( "password", "" );
 			string Format = (string)mk.GetValue( "Formatting", "Formatted" );
 
+            bool useWord = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+			bool autoSpell = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+
 			if (autoLog)
 				chkAutoLogin.Checked = true;
 			else
@@ -67,6 +74,16 @@ namespace JustJournal
 				postFormatted.Checked = true;
 			else
 				postRaw.Checked = true;
+
+			if (useWord)
+				chkUseWord.Checked = true;
+			else
+				chkUseWord.Checked = false;
+
+			if (autoSpell)
+				chkAutoSpell.Checked = true;
+			else 
+				chkAutoSpell.Checked = false;
 
 		}
 
@@ -105,19 +122,29 @@ namespace JustJournal
 			this.chkSavePassword = new System.Windows.Forms.CheckBox();
 			this.chkAutoLogin = new System.Windows.Forms.CheckBox();
 			this.btnClose = new System.Windows.Forms.Button();
+			this.tabIntegration = new System.Windows.Forms.TabPage();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.chkUseWord = new System.Windows.Forms.CheckBox();
+			this.chkAutoSpell = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabGeneral.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			this.tabIntegration.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabGeneral);
-			this.tabControl1.Location = new System.Drawing.Point(8, 8);
+			this.tabControl1.Controls.Add(this.tabIntegration);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.HotTrack = true;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Multiline = true;
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(464, 376);
+			this.tabControl1.Size = new System.Drawing.Size(432, 406);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabGeneral
@@ -126,7 +153,7 @@ namespace JustJournal
 			this.tabGeneral.Controls.Add(this.groupBox1);
 			this.tabGeneral.Location = new System.Drawing.Point(4, 22);
 			this.tabGeneral.Name = "tabGeneral";
-			this.tabGeneral.Size = new System.Drawing.Size(456, 350);
+			this.tabGeneral.Size = new System.Drawing.Size(424, 380);
 			this.tabGeneral.TabIndex = 0;
 			this.tabGeneral.Text = "General";
 			// 
@@ -134,9 +161,9 @@ namespace JustJournal
 			// 
 			this.groupBox2.Controls.Add(this.postRaw);
 			this.groupBox2.Controls.Add(this.postFormatted);
-			this.groupBox2.Location = new System.Drawing.Point(264, 24);
+			this.groupBox2.Location = new System.Drawing.Point(8, 152);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(144, 80);
+			this.groupBox2.Size = new System.Drawing.Size(408, 88);
 			this.groupBox2.TabIndex = 2;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Post Mode";
@@ -160,9 +187,9 @@ namespace JustJournal
 			this.groupBox1.Controls.Add(this.chkUseSSL);
 			this.groupBox1.Controls.Add(this.chkSavePassword);
 			this.groupBox1.Controls.Add(this.chkAutoLogin);
-			this.groupBox1.Location = new System.Drawing.Point(24, 24);
+			this.groupBox1.Location = new System.Drawing.Point(8, 16);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(216, 125);
+			this.groupBox1.Size = new System.Drawing.Size(408, 125);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Login";
@@ -192,24 +219,66 @@ namespace JustJournal
 			// 
 			// btnClose
 			// 
-			this.btnClose.Location = new System.Drawing.Point(392, 392);
+			this.btnClose.Location = new System.Drawing.Point(352, 376);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.TabIndex = 1;
 			this.btnClose.Text = "Close";
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 			// 
+			// tabIntegration
+			// 
+			this.tabIntegration.Controls.Add(this.groupBox3);
+			this.tabIntegration.Location = new System.Drawing.Point(4, 22);
+			this.tabIntegration.Name = "tabIntegration";
+			this.tabIntegration.Size = new System.Drawing.Size(424, 380);
+			this.tabIntegration.TabIndex = 1;
+			this.tabIntegration.Text = "Integration";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.chkAutoSpell);
+			this.groupBox3.Controls.Add(this.chkUseWord);
+			this.groupBox3.Location = new System.Drawing.Point(8, 16);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(408, 96);
+			this.groupBox3.TabIndex = 0;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Microsoft Office";
+			// 
+			// chkUseWord
+			// 
+			this.chkUseWord.Location = new System.Drawing.Point(24, 24);
+			this.chkUseWord.Name = "chkUseWord";
+			this.chkUseWord.Size = new System.Drawing.Size(240, 24);
+			this.chkUseWord.TabIndex = 0;
+			this.chkUseWord.Text = "Use Microsoft Word to spell check entries";
+			// 
+			// chkAutoSpell
+			// 
+			this.chkAutoSpell.Location = new System.Drawing.Point(24, 56);
+			this.chkAutoSpell.Name = "chkAutoSpell";
+			this.chkAutoSpell.Size = new System.Drawing.Size(256, 24);
+			this.chkAutoSpell.TabIndex = 1;
+			this.chkAutoSpell.Text = "Automatically check spelling before posting";
+			// 
 			// Options
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(480, 422);
+			this.ClientSize = new System.Drawing.Size(432, 406);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.tabControl1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Options";
 			this.Text = "Options";
+			this.TopMost = true;
 			this.tabControl1.ResumeLayout(false);
 			this.tabGeneral.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
+			this.tabIntegration.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -261,6 +330,28 @@ namespace JustJournal
 			    rk.SetValue( "autologin", "yes" );
 			else
 				rk.SetValue( "autologin", "no" );
+
+			if (chkUseWord.Checked)
+			{
+				JustJournal.EnableSpellCheck = true;
+				rk.SetValue( "useword", "yes" );
+			}
+			else
+			{
+				JustJournal.EnableSpellCheck = false;
+				rk.SetValue( "useword", "no" );
+			}
+
+			if (chkUseWord.Checked && chkAutoSpell.Checked)
+			{
+				JustJournal.AutoSpellCheck = true;
+				rk.SetValue( "autospell", "yes" );
+			}
+			else
+			{
+				JustJournal.AutoSpellCheck = false;
+				rk.SetValue( "autospell", "no" );
+			}
 
 			/*string old_lang = mk.GetValue( "Language", string.Empty ).ToString();
 			string lang = cbLanguage.SelectedItem.ToString();

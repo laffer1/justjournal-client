@@ -82,6 +82,8 @@ namespace JustJournal
 			string pwd = (string)rk.GetValue( "password", "" );
 			bool autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
 			bool ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
+			bool useWord = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+			bool autoSpell = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
 
 			txtUserName.Text = uname;
 			if( pwd.Equals("@") ) 
@@ -106,6 +108,13 @@ namespace JustJournal
 				this.Enabled = false;
 				autoLoginTimer.Start();
 			}
+ 
+			if ( useWord )
+				JustJournal.EnableSpellCheck = true;
+			
+			if ( autoSpell )
+				JustJournal.AutoSpellCheck = true;
+
 			rk.Close();
 		}
 

@@ -91,6 +91,8 @@ namespace JustJournal
 		private System.Windows.Forms.MenuItem menuItem27;
 		private System.Windows.Forms.MenuItem menuItem28;
 		private System.Windows.Forms.ColorDialog colorDlgBg;
+		private System.Windows.Forms.MenuItem menuItem30;
+		private System.Windows.Forms.MenuItem menuItem31;
 		private System.ComponentModel.IContainer components;
 
 		public PostForm()
@@ -103,6 +105,9 @@ namespace JustJournal
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
+
+			if (!JustJournal.EnableSpellCheck)
+				this.menuItem31.Enabled = false; // turn off spell check
 
 			RegistryKey reg = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal\\Post" );
             cboSecurity.SelectedIndex = (int)reg.GetValue("security",0);
@@ -122,6 +127,7 @@ namespace JustJournal
 
 			txtMusic.Text = detectMusic();
 		}
+
 
 		/// <summary>
 		/// Clean up any resources being used.
@@ -193,6 +199,8 @@ namespace JustJournal
 			this.menuItem12 = new System.Windows.Forms.MenuItem();
 			this.mnuFormattedText = new System.Windows.Forms.MenuItem();
 			this.mnuRawText = new System.Windows.Forms.MenuItem();
+			this.menuItem30 = new System.Windows.Forms.MenuItem();
+			this.menuItem31 = new System.Windows.Forms.MenuItem();
 			this.menuItem3 = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.btnPost = new System.Windows.Forms.Button();
@@ -469,7 +477,9 @@ namespace JustJournal
 																					  this.mEntryEmailComments,
 																					  this.menuItem12,
 																					  this.mnuFormattedText,
-																					  this.mnuRawText});
+																					  this.mnuRawText,
+																					  this.menuItem30,
+																					  this.menuItem31});
 			this.menuItem6.Text = "E&ntry";
 			// 
 			// mEntryAllowComments
@@ -505,6 +515,17 @@ namespace JustJournal
 			this.mnuRawText.RadioCheck = true;
 			this.mnuRawText.Text = "&Raw Text";
 			this.mnuRawText.Click += new System.EventHandler(this.mnuRawText_Click);
+			// 
+			// menuItem30
+			// 
+			this.menuItem30.Index = 5;
+			this.menuItem30.Text = "-";
+			// 
+			// menuItem31
+			// 
+			this.menuItem31.Index = 6;
+			this.menuItem31.Text = "&Check Spelling";
+			this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
 			// 
 			// menuItem3
 			// 
@@ -576,6 +597,7 @@ namespace JustJournal
 			this.txtSubject.Size = new System.Drawing.Size(256, 20);
 			this.txtSubject.TabIndex = 0;
 			this.txtSubject.Text = "";
+			this.txtSubject.TextChanged += new System.EventHandler(this.txtSubject_TextChanged);
 			// 
 			// label2
 			// 
@@ -722,11 +744,24 @@ namespace JustJournal
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Menu = this.mainMenu1;
 			this.Name = "PostForm";
-			this.Text = "JustJournal";
+			this.Text = "<no subject> - JustJournal";
 			this.ResumeLayout(false);
 
 		}
 		#endregion
+
+
+		private void txtSubject_TextChanged(object sender, System.EventArgs e)
+		{
+			if( txtSubject.Text.Length > 0 ) 
+			{
+				this.Text = txtSubject.Text + " - " + "JustJournal";
+			}
+			else
+			{
+				this.Text = "<" + "no subject" + "> - " + "JustJournal";
+			}
+		}
 
 		private void menuItem4_Click(object sender, System.EventArgs e)
 		{
@@ -736,6 +771,18 @@ namespace JustJournal
 
 		private void btnPost_Click(object sender, System.EventArgs e)
 		{
+			if (JustJournal.AutoSpellCheck)
+			{
+				if( spellingCheck() )
+				{
+					if( MessageBox.Show( this,  
+						"A spelling error was found.  Do you wish to post anyway?", "Spelling Error",MessageBoxButtons.YesNo ) == DialogResult.No )
+					{
+						return;
+					}
+				}
+			}
+
 			this.Enabled = false;
 			this.Cursor = Cursors.WaitCursor;
 
@@ -1350,6 +1397,56 @@ namespace JustJournal
 			{
 				rtbBody.BackColor = colorDlgBg.Color;
 			}
+		}
+
+		private bool spellingCheck()
+		{
+			bool errors = false;			
+			Object nul = null;
+			
+			try
+			{
+				Word.Application chk = new Word.ApplicationClass();
+
+				int cur = 0;
+				string word = "";
+				while( cur < rtbBody.Text.Length ) 
+				{
+					if( char.IsLetter( rtbBody.Text[cur] ) || rtbBody.Text[cur].Equals( '\'' ) )
+					{
+						word += rtbBody.Text[cur];
+					}
+					else
+					{
+						if( word.Length != 0 ) 
+						{		
+							if( !chk.CheckSpelling( word, ref nul, ref nul, ref nul, ref nul, ref nul,
+								ref nul, ref nul, ref nul, ref nul, ref nul, ref nul, ref nul ) )
+							{
+								rtbBody.Select( cur - word.Length, word.Length );
+								Font ft = new Font( rtbBody.SelectionFont.Name, rtbBody.SelectionFont.Size, FontStyle.Strikeout );
+								rtbBody.SelectionFont = ft;
+								errors = true;
+							}
+							word = "";
+						}
+					}
+					cur++;
+				}
+				rtbBody.Select( 0, 0 );
+				chk.Quit( ref nul, ref nul, ref nul );
+			}
+			catch( Exception x )
+			{
+				MessageBox.Show( x.Message );
+			}
+			
+			return errors;
+		}
+
+		private void menuItem31_Click(object sender, System.EventArgs e)
+		{
+			spellingCheck();
 		}
 	}
 }
