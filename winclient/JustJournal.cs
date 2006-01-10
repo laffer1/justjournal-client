@@ -18,7 +18,7 @@ namespace JustJournal
 	public class JustJournal
 	{
         private const string server = "www.justjournal.com";
-		private const string version = "JustJournal/1.1.0 Win";
+		private const string version = "JustJournal/1.2.2 Win";
 
 		private static bool loggedIn = false;
 		private static string userName;
@@ -26,11 +26,63 @@ namespace JustJournal
 		
         private static bool enableSpellCheck = false;
 		private static bool autoSpellCheck = false;
+		private static bool enableItunes = false;
+		private static bool detectMusic = false;
+		private static bool useSSL = true;
+		private static string debug;
+		private static ArrayList moods = new ArrayList(125);
+		private static bool winampPaused = false;
+		private static bool winampStopped = false;
+		private static bool outlook = false;
 
-		public static string debug;
-		public static ArrayList moods = new ArrayList(125);
+		/* Properties */
+		public static bool Outlook
+		{
+			get
+			{ 
+				return outlook;
+			}
+			set
+			{
+				outlook = value;
+			}
+		}
 
-        public static bool useSSL = true;
+		public static ArrayList Moods
+		{
+			get
+			{
+				return moods;
+			}
+			set
+			{
+				moods = value;
+			}
+		}
+
+		public static bool EnableSSL
+		{
+			get
+			{
+				return useSSL;
+			}
+			set
+			{
+				useSSL = value;
+			}
+		}
+
+		public static string Debug
+		{
+			get
+			{
+				return debug;
+			}
+			set
+			{
+				debug = value;
+			}
+		}
 
 		public static bool EnableSpellCheck
 		{
@@ -53,6 +105,30 @@ namespace JustJournal
 			set
 			{
 				autoSpellCheck = value;
+			}
+		}
+
+		public static bool DetectItunes
+		{
+			get
+			{
+				return enableItunes;
+			}
+			set
+			{
+				enableItunes = value;
+			}
+		}
+
+		public static bool EnableMusicDetection
+		{
+			get
+			{
+				return detectMusic;
+			}
+			set
+			{
+				detectMusic = value;
 			}
 		}
 
@@ -102,7 +178,33 @@ namespace JustJournal
 			}
 		}
 
-		public static bool Login()
+		public static bool WinampPaused
+		{
+			get
+			{
+				return winampPaused;
+			}
+			set
+			{
+				winampPaused = value;
+			}
+		}
+		
+		public static bool WinampStopped
+		{
+			get
+			{
+				return winampStopped;
+			}
+			set
+			{
+				winampStopped = value;
+			}
+		}
+
+			/* Methods */
+
+			public static bool Login()
 		{
 			string uriString;
 			WebClient client = new WebClient();	

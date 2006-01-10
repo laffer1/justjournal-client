@@ -113,6 +113,22 @@
                     Lcid = "0"
                     WrapperTool = "tlbimp"
                 />
+                <Reference
+                    Name = "iTunesLib"
+                    Guid = "{9E93C96F-CF0D-43F6-8BA8-B807A3370712}"
+                    VersionMajor = "1"
+                    VersionMinor = "6"
+                    Lcid = "0"
+                    WrapperTool = "tlbimp"
+                />
+                <Reference
+                    Name = "Outlook"
+                    Guid = "{00062FFF-0000-0000-C000-000000000046}"
+                    VersionMajor = "9"
+                    VersionMinor = "2"
+                    Lcid = "0"
+                    WrapperTool = "tlbimp"
+                />
             </References>
         </Build>
         <Files>
@@ -206,6 +222,11 @@
                 />
                 <File
                     RelPath = "RtfToHtml.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RtfToWeb.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

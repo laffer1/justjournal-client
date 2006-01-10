@@ -39,7 +39,6 @@ namespace JustJournal
 		private System.Windows.Forms.ComboBox cboLocation;
 		private System.Windows.Forms.ComboBox cboMood;
 		private System.Windows.Forms.RichTextBox rtbBody;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox txtMusic;
 		private System.Windows.Forms.MenuItem menuItem5;
 		private System.Windows.Forms.MenuItem menuItem6;
@@ -117,10 +116,10 @@ namespace JustJournal
 			lblCurrentUser.Text = JustJournal.UserName;
 
 			// If we need the moods, go get them.
-			if ( JustJournal.moods.Count == 0)
+			if ( JustJournal.Moods.Count == 0)
 				JustJournal.RetrieveMoods();
 
-			cboMood.DataSource = JustJournal.moods;
+			cboMood.DataSource = JustJournal.Moods;
 			cboMood.DisplayMember = "Name";
 			cboMood.ValueMember = "Id";
 			cboMood.SelectedIndex = cboMood.FindStringExact("Not Specified",0);
@@ -218,7 +217,6 @@ namespace JustJournal
 			this.menuItem26 = new System.Windows.Forms.MenuItem();
 			this.menuItem27 = new System.Windows.Forms.MenuItem();
 			this.txtMusic = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
 			this.btnMusicSense = new System.Windows.Forms.Button();
 			this.lblCurrentUser = new System.Windows.Forms.Label();
 			this.fontDlg = new System.Windows.Forms.FontDialog();
@@ -524,6 +522,7 @@ namespace JustJournal
 			// menuItem31
 			// 
 			this.menuItem31.Index = 6;
+			this.menuItem31.Shortcut = System.Windows.Forms.Shortcut.F7;
 			this.menuItem31.Text = "&Check Spelling";
 			this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
 			// 
@@ -674,29 +673,23 @@ namespace JustJournal
 			// 
 			this.txtMusic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtMusic.Location = new System.Drawing.Point(256, 72);
+			this.txtMusic.Location = new System.Drawing.Point(216, 72);
 			this.txtMusic.MaxLength = 100;
 			this.txtMusic.Name = "txtMusic";
-			this.txtMusic.Size = new System.Drawing.Size(192, 20);
+			this.txtMusic.Size = new System.Drawing.Size(232, 20);
 			this.txtMusic.TabIndex = 3;
 			this.txtMusic.Text = "";
-			// 
-			// label6
-			// 
-			this.label6.Location = new System.Drawing.Point(216, 72);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(40, 16);
-			this.label6.TabIndex = 14;
-			this.label6.Text = "music";
 			// 
 			// btnMusicSense
 			// 
 			this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
+			this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnMusicSense.Location = new System.Drawing.Point(456, 72);
 			this.btnMusicSense.Name = "btnMusicSense";
 			this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
 			this.btnMusicSense.TabIndex = 4;
-			this.btnMusicSense.Text = "Sense";
+			this.btnMusicSense.Text = "Music";
 			this.btnMusicSense.Click += new System.EventHandler(this.btnMusicSense_Click);
 			// 
 			// lblCurrentUser
@@ -727,10 +720,8 @@ namespace JustJournal
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(526, 343);
 			this.Controls.Add(this.lblCurrentUser);
-			this.Controls.Add(this.txtMusic);
 			this.Controls.Add(this.txtSubject);
-			this.Controls.Add(this.btnMusicSense);
-			this.Controls.Add(this.label6);
+			this.Controls.Add(this.txtMusic);
 			this.Controls.Add(this.rtbBody);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -740,6 +731,7 @@ namespace JustJournal
 			this.Controls.Add(this.cboSecurity);
 			this.Controls.Add(this.btnPost);
 			this.Controls.Add(this.toolBar1);
+			this.Controls.Add(this.btnMusicSense);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Menu = this.mainMenu1;
@@ -785,10 +777,28 @@ namespace JustJournal
 
 			this.Enabled = false;
 			this.Cursor = Cursors.WaitCursor;
+			
+			if (JustJournal.Outlook)
+			{
+				try 
+				{
+					Outlook.Application ol = new Outlook.ApplicationClass();
+					Outlook.JournalItem ja = (Outlook.JournalItem)ol.CreateItem( Outlook.OlItemType.olJournalItem );
+					ja.Subject = txtSubject.Text;
+					ja.Body = rtbBody.Text;
+					ja.Type = "Note";
+					ja.Categories = "Personal";
+					ja.Save();
+
+				} 
+				catch (Exception e1) 
+				{
+				}
+			}
 
 			WebClient client = new WebClient();
 			string uriString;
-            if (JustJournal.useSSL)
+            if (JustJournal.EnableSSL)
                 uriString = "https://";
 			else
 			    uriString = "http://";		 
@@ -1154,6 +1164,46 @@ namespace JustJournal
 
 		private string detectMusic()
 		{
+			// skip if we have it disabled.
+            if (!JustJournal.EnableMusicDetection)
+				return "";
+
+			if (JustJournal.DetectItunes)
+			{
+				// iTunes Detection
+				try 
+				{
+					string name = string.Empty;
+					iTunesLib.IiTunes iTunesApp;
+					iTunesApp = new iTunesLib.iTunesAppClass();
+
+					if (iTunesApp.CurrentTrack.Name != null )
+					{
+						name += iTunesApp.CurrentTrack.Name;
+
+						if (iTunesApp.CurrentTrack.Album != null)
+						{
+							name += " - ";
+							name += iTunesApp.CurrentTrack.Album;
+						}
+
+						if (iTunesApp.CurrentTrack.Artist != null)
+						{
+							name += " - ";
+							name += iTunesApp.CurrentTrack.Artist;
+						}
+					
+					}
+					return name;
+				} 
+				catch (Exception e) 
+				{
+					//MessageBox.Show("iTunes Error",e.Message,
+					//	MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+			}
+
+			// other clients
 			try
 			{
 			uint player = 0;
@@ -1234,27 +1284,27 @@ namespace JustJournal
 						size = name.Length - start - 9;
 						if( name.EndsWith( "[Paused]" ) )
 						{
-							//if( Logon.PrefWin.CheckPaused )
-							//{
-							//	size -= 9;
-							//	name = name.Substring( start, size );
-							//}
-							//else
-							//{
+							if( JustJournal.WinampPaused )
+							{
+								size -= 9;
+								name = name.Substring( start, size );
+							}
+							else
+							{
 								name = string.Empty;
-							//}
+							}
 						}
 						else if( name.EndsWith( "[Stopped]" ) )
 						{
-							//if( Logon.PrefWin.CheckStopped )
-							//{
-							//	size -= 10;
-							//	name = name.Substring( start, size );
-							//}
-							//else
-							//{
+							if( JustJournal.WinampStopped )
+							{
+								size -= 10;
+								name = name.Substring( start, size );
+							}
+							else
+							{
 								name = string.Empty;
-							//}
+							}
 						}
 						else
 						{
@@ -1284,7 +1334,6 @@ namespace JustJournal
 						if( size > 0 )
 						{
 							name = name.Substring( 0, size - 3 );
-							//musicEdit.Text = name;
 						}
 					}
 					break;
@@ -1322,7 +1371,7 @@ namespace JustJournal
 					RegistryKey rk = Registry.CurrentUser;
 					rk = rk.CreateSubKey( "Software\\Microsoft\\MediaPlayer\\CurrentMetadata" );
 					name = rk.GetValue( "Title", string.Empty ).ToString();
-					//name = rk2.GetValue("Title") + " - " + rk2.GetValue("Album") + " - " + rk2.GetValue("Author");
+					
 					if( name.Length > 0 )
 					{
 						if (rk.GetValue("Album", string.Empty).ToString().Length > 0 )

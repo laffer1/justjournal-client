@@ -8,7 +8,6 @@ using System.Threading;
 using System.Globalization;
 using System.Resources;
 
-
 namespace JustJournal
 {
 	/// <summary>
@@ -30,6 +29,14 @@ namespace JustJournal
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.CheckBox chkUseWord;
 		private System.Windows.Forms.CheckBox chkAutoSpell;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.CheckBox chkMusicDetect;
+		private System.Windows.Forms.CheckBox chkItunes;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.CheckBox chkPaused;
+		private System.Windows.Forms.CheckBox chkStopped;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.CheckBox chkOutlook;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -47,23 +54,21 @@ namespace JustJournal
 			//
 			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
 			RegistryKey mk = rk.CreateSubKey( "Preferences" );
-			bool autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
-			bool ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
+
+			chkAutoLogin.Checked = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
+			chkUseSSL.Checked = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
 			string pwd = (string)rk.GetValue( "password", "" );
 			string Format = (string)mk.GetValue( "Formatting", "Formatted" );
 
-            bool useWord = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-			bool autoSpell = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
-
-			if (autoLog)
-				chkAutoLogin.Checked = true;
-			else
-				chkAutoLogin.Checked = false;
-
-			if (ssl)
-				chkUseSSL.Checked = true;
-			else
-				chkUseSSL.Checked = false;
+            chkUseWord.Checked = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+			chkAutoSpell.Checked = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+			chkMusicDetect.Checked = ((string)rk.GetValue( "music", "no" )).Equals("yes");
+			chkItunes.Checked = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
+			chkPaused.Checked = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
+			chkStopped.Checked = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
+			chkOutlook.Checked = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
+			mk.Close();
+			rk.Close();
 
 			if( pwd.Equals("@") || pwd.Equals("") ) 
 				chkSavePassword.Checked = false;
@@ -74,17 +79,6 @@ namespace JustJournal
 				postFormatted.Checked = true;
 			else
 				postRaw.Checked = true;
-
-			if (useWord)
-				chkUseWord.Checked = true;
-			else
-				chkUseWord.Checked = false;
-
-			if (autoSpell)
-				chkAutoSpell.Checked = true;
-			else 
-				chkAutoSpell.Checked = false;
-
 		}
 
 		
@@ -112,6 +106,7 @@ namespace JustJournal
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Options));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabGeneral = new System.Windows.Forms.TabPage();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -121,16 +116,26 @@ namespace JustJournal
 			this.chkUseSSL = new System.Windows.Forms.CheckBox();
 			this.chkSavePassword = new System.Windows.Forms.CheckBox();
 			this.chkAutoLogin = new System.Windows.Forms.CheckBox();
-			this.btnClose = new System.Windows.Forms.Button();
 			this.tabIntegration = new System.Windows.Forms.TabPage();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.chkPaused = new System.Windows.Forms.CheckBox();
+			this.chkStopped = new System.Windows.Forms.CheckBox();
+			this.chkItunes = new System.Windows.Forms.CheckBox();
+			this.chkMusicDetect = new System.Windows.Forms.CheckBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.chkUseWord = new System.Windows.Forms.CheckBox();
 			this.chkAutoSpell = new System.Windows.Forms.CheckBox();
+			this.chkUseWord = new System.Windows.Forms.CheckBox();
+			this.btnClose = new System.Windows.Forms.Button();
+			this.chkOutlook = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabGeneral.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabIntegration.SuspendLayout();
+			this.groupBox4.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -208,25 +213,18 @@ namespace JustJournal
 			this.chkSavePassword.Name = "chkSavePassword";
 			this.chkSavePassword.Size = new System.Drawing.Size(184, 24);
 			this.chkSavePassword.TabIndex = 1;
-			this.chkSavePassword.Text = "Save Password";
+			this.chkSavePassword.Text = "Save password";
 			// 
 			// chkAutoLogin
 			// 
 			this.chkAutoLogin.Location = new System.Drawing.Point(24, 24);
 			this.chkAutoLogin.Name = "chkAutoLogin";
 			this.chkAutoLogin.TabIndex = 0;
-			this.chkAutoLogin.Text = "Auto Login";
-			// 
-			// btnClose
-			// 
-			this.btnClose.Location = new System.Drawing.Point(352, 376);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.TabIndex = 1;
-			this.btnClose.Text = "Close";
-			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			this.chkAutoLogin.Text = "Automatic login";
 			// 
 			// tabIntegration
 			// 
+			this.tabIntegration.Controls.Add(this.groupBox4);
 			this.tabIntegration.Controls.Add(this.groupBox3);
 			this.tabIntegration.Location = new System.Drawing.Point(4, 22);
 			this.tabIntegration.Name = "tabIntegration";
@@ -234,16 +232,91 @@ namespace JustJournal
 			this.tabIntegration.TabIndex = 1;
 			this.tabIntegration.Text = "Integration";
 			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.groupBox5);
+			this.groupBox4.Controls.Add(this.chkItunes);
+			this.groupBox4.Controls.Add(this.chkMusicDetect);
+			this.groupBox4.Controls.Add(this.pictureBox1);
+			this.groupBox4.Location = new System.Drawing.Point(8, 144);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(408, 200);
+			this.groupBox4.TabIndex = 1;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Music Player";
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.chkPaused);
+			this.groupBox5.Controls.Add(this.chkStopped);
+			this.groupBox5.Location = new System.Drawing.Point(24, 96);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(240, 88);
+			this.groupBox5.TabIndex = 5;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Check Winamp when music is";
+			// 
+			// chkPaused
+			// 
+			this.chkPaused.Location = new System.Drawing.Point(24, 24);
+			this.chkPaused.Name = "chkPaused";
+			this.chkPaused.Size = new System.Drawing.Size(72, 24);
+			this.chkPaused.TabIndex = 3;
+			this.chkPaused.Text = "Paused";
+			// 
+			// chkStopped
+			// 
+			this.chkStopped.Location = new System.Drawing.Point(24, 56);
+			this.chkStopped.Name = "chkStopped";
+			this.chkStopped.Size = new System.Drawing.Size(72, 24);
+			this.chkStopped.TabIndex = 4;
+			this.chkStopped.Text = "Stopped";
+			// 
+			// chkItunes
+			// 
+			this.chkItunes.Location = new System.Drawing.Point(24, 64);
+			this.chkItunes.Name = "chkItunes";
+			this.chkItunes.Size = new System.Drawing.Size(240, 24);
+			this.chkItunes.TabIndex = 1;
+			this.chkItunes.Text = "Enable Apple  iTunes integration";
+			// 
+			// chkMusicDetect
+			// 
+			this.chkMusicDetect.Location = new System.Drawing.Point(24, 32);
+			this.chkMusicDetect.Name = "chkMusicDetect";
+			this.chkMusicDetect.Size = new System.Drawing.Size(240, 24);
+			this.chkMusicDetect.TabIndex = 0;
+			this.chkMusicDetect.Text = "Detect music";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(288, 16);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(96, 168);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
+			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.chkOutlook);
 			this.groupBox3.Controls.Add(this.chkAutoSpell);
 			this.groupBox3.Controls.Add(this.chkUseWord);
 			this.groupBox3.Location = new System.Drawing.Point(8, 16);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(408, 96);
+			this.groupBox3.Size = new System.Drawing.Size(408, 120);
 			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Microsoft Office";
+			// 
+			// chkAutoSpell
+			// 
+			this.chkAutoSpell.Location = new System.Drawing.Point(24, 56);
+			this.chkAutoSpell.Name = "chkAutoSpell";
+			this.chkAutoSpell.Size = new System.Drawing.Size(256, 24);
+			this.chkAutoSpell.TabIndex = 1;
+			this.chkAutoSpell.Text = "Automatically check spelling before posting";
 			// 
 			// chkUseWord
 			// 
@@ -253,13 +326,21 @@ namespace JustJournal
 			this.chkUseWord.TabIndex = 0;
 			this.chkUseWord.Text = "Use Microsoft Word to spell check entries";
 			// 
-			// chkAutoSpell
+			// btnClose
 			// 
-			this.chkAutoSpell.Location = new System.Drawing.Point(24, 56);
-			this.chkAutoSpell.Name = "chkAutoSpell";
-			this.chkAutoSpell.Size = new System.Drawing.Size(256, 24);
-			this.chkAutoSpell.TabIndex = 1;
-			this.chkAutoSpell.Text = "Automatically check spelling before posting";
+			this.btnClose.Location = new System.Drawing.Point(352, 376);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.TabIndex = 1;
+			this.btnClose.Text = "Close";
+			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			// 
+			// chkOutlook
+			// 
+			this.chkOutlook.Location = new System.Drawing.Point(24, 88);
+			this.chkOutlook.Name = "chkOutlook";
+			this.chkOutlook.Size = new System.Drawing.Size(256, 24);
+			this.chkOutlook.TabIndex = 2;
+			this.chkOutlook.Text = "Copy entries to the outlook journal";
 			// 
 			// Options
 			// 
@@ -278,6 +359,8 @@ namespace JustJournal
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.tabIntegration.ResumeLayout(false);
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -309,17 +392,26 @@ namespace JustJournal
 			mk.SetValue( "PauseCheck", (CheckPaused ? "Yes" : "No") );
 			mk.SetValue( "QueuePost", (PostToQueue ? "Yes" : "No") );
 			mk.SetValue( "QueueSpeed", QueueSpeed.ToString() );
-			mk.SetValue( "Outlook", (PostToOutlook ? "Yes" : "No") );
-			mk.SetValue( "Word", (SpellCheck ? "Yes" : "No") );
-			mk.SetValue( "Spellcheck", (AlwaysCheck ? "Yes" : "No") );
+			
 			*/
-// TODO finish this
+            // TODO finish this
+			mk.SetValue( "outlook", (chkOutlook.Checked ? "yes" : "no") );
 			mk.SetValue( "Formatting", (postFormatted.Checked ? "Formatted" : "Raw") );
+			rk.SetValue( "iTunes", (chkItunes.Checked ? "yes" : "no"));
+			rk.SetValue( "music", (chkMusicDetect.Checked ? "yes" : "no"));
+			mk.SetValue( "winampPaused", (chkPaused.Checked ? "yes" : "no"));
+            mk.SetValue( "winampStopped", (chkStopped.Checked ? "yes" : "no"));
+			
+			JustJournal.DetectItunes = chkItunes.Checked;
+			JustJournal.EnableMusicDetection = chkMusicDetect.Checked;
+			JustJournal.WinampPaused = chkPaused.Checked;
+			JustJournal.WinampStopped = chkStopped.Checked;
+			JustJournal.Outlook = chkOutlook.Checked;
 
 			if (chkUseSSL.Checked)
 			    rk.SetValue( "usessl", "yes" );
 			else
-				rk.SetValue("usessl", "no" );
+				rk.SetValue( "usessl", "no" );
 
 			if ( chkSavePassword.Checked )
                 rk.SetValue( "password", JustJournal.Password );
@@ -361,6 +453,9 @@ namespace JustJournal
 				
 			if( !old_lang.Equals( mk.GetValue( "Language", string.Empty ).ToString() ) )
 				MessageBox.Show( rm.GetString( "message_change_lang" ) );*/
+
+			mk.Close();
+			rk.Close();
 		}
 	}
 

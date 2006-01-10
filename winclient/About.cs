@@ -96,7 +96,7 @@ namespace JustJournal
 			this.label1.Size = new System.Drawing.Size(312, 48);
 			this.label1.TabIndex = 9;
 			this.label1.Text = "This software allows you to post journal entries using the just journal website. " +
-				" Copyright 2005 Lucas Holt";
+				" Copyright 2005, 2006 Lucas Holt";
 			// 
 			// linkLabel1
 			// 

@@ -20,6 +20,40 @@ namespace JustJournal
 		/// </summary>
 		private RtfToHtml() {}
 
+		public static string ToCssFontSize( int size )
+		{
+			switch( size )
+			{
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					return "xx-small";
+				case 6:
+				case 7:
+					return "x-small";
+				case 8:
+				case 9:
+				case 10:
+					return "small";
+				case 11:
+				case 12:
+					return "medium";
+				case 13:
+				case 14:
+					return "large";
+				case 15:
+				case 16:
+				case 17:
+				case 18:
+					return "x-large";
+				default:
+					return "xx-large";
+				
+			}
+		}
+
 		public static string ToHtmlFontSize( int size )
 		{
 			try
@@ -73,21 +107,12 @@ namespace JustJournal
 				+ System.Convert.ToString( blue, 16 ).PadLeft( 2, '0' );
 		}
 
-		/// <summary>
-		/// Converts RTF text to HTML acceptable for the LJ Server.
-		///    IMPORTANT NOTE:
-		///	     This does NOT do a pure HTML conversion - many of the RTF codes
-		///	     that are inappropriate for LJ are ignored, and the HTML that is
-		///	     output assumes that the LJ server will be performing formatting.
-		/// </summary>
-		/// <param name="rtf">The RTF string to convert.</param>
-		/// <returns>A string containing the HTML equivalent of the RTF.</returns>
 		public static string Convert( string rtf, string bgcolor )
 		{
 			try
 			{
 				#region write RTF string to file on desktop
-                //StreamWriter sw = File.CreateText( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) + "\\debug.txt" );
+				//StreamWriter sw = File.CreateText( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) + "\\debug.txt" );
 				//sw.Write( rtf );
 				//sw.Close();
 				#endregion
@@ -395,11 +420,15 @@ namespace JustJournal
 		}
 	}
 
+
 	internal class TagCounts
 	{
 		private static uint _font = 0;
 		private static uint _span = 0;
+
+		// static class
 		private TagCounts(){}
+
 		public static bool Font
 		{
 			get

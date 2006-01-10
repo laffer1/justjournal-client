@@ -47,6 +47,7 @@ namespace JustJournal
 		private System.Windows.Forms.MenuItem menuItem16;
 		private System.Windows.Forms.MenuItem menuItem17;
 		private System.Windows.Forms.MenuItem menuItem18;
+		private System.Windows.Forms.MenuItem menuItem19;
 		private ResourceManager rm;
 
 		public Login()
@@ -78,12 +79,20 @@ namespace JustJournal
 		private void Login_Load(object sender, System.EventArgs e)
 		{
 			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
+			RegistryKey mk = rk.CreateSubKey( "Preferences" );
 			string uname = (string)rk.GetValue( "username", "" );
 			string pwd = (string)rk.GetValue( "password", "" );
 			bool autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
 			bool ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
-			bool useWord = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-			bool autoSpell = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+			JustJournal.EnableSpellCheck = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+			JustJournal.AutoSpellCheck = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+			JustJournal.EnableMusicDetection = ((string)rk.GetValue( "music", "no" )).Equals("yes");
+			JustJournal.DetectItunes = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
+			JustJournal.WinampPaused = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
+			JustJournal.WinampStopped = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
+			JustJournal.Outlook = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
+			mk.Close();
+			rk.Close();
 
 			txtUserName.Text = uname;
 			if( pwd.Equals("@") ) 
@@ -97,10 +106,8 @@ namespace JustJournal
 				menuItem4.Checked = true;
 			}
 
-			if ( ssl )
-			{
-				mnuUseSSL.Checked = true;
-			}
+			mnuUseSSL.Checked = ssl;
+			JustJournal.EnableSSL = ssl;
 
 			if( autoLog ) 
 			{
@@ -108,14 +115,6 @@ namespace JustJournal
 				this.Enabled = false;
 				autoLoginTimer.Start();
 			}
- 
-			if ( useWord )
-				JustJournal.EnableSpellCheck = true;
-			
-			if ( autoSpell )
-				JustJournal.AutoSpellCheck = true;
-
-			rk.Close();
 		}
 
 		private void autologinTimer_Tick(object sender, System.EventArgs e)
@@ -184,13 +183,14 @@ namespace JustJournal
 			this.menuItem9 = new System.Windows.Forms.MenuItem();
 			this.menuItem10 = new System.Windows.Forms.MenuItem();
 			this.menuItem13 = new System.Windows.Forms.MenuItem();
-			this.menuItem12 = new System.Windows.Forms.MenuItem();
-			this.menuItem11 = new System.Windows.Forms.MenuItem();
-			this.menuItem14 = new System.Windows.Forms.MenuItem();
+			this.menuItem18 = new System.Windows.Forms.MenuItem();
 			this.menuItem15 = new System.Windows.Forms.MenuItem();
 			this.menuItem16 = new System.Windows.Forms.MenuItem();
 			this.menuItem17 = new System.Windows.Forms.MenuItem();
-			this.menuItem18 = new System.Windows.Forms.MenuItem();
+			this.menuItem14 = new System.Windows.Forms.MenuItem();
+			this.menuItem12 = new System.Windows.Forms.MenuItem();
+			this.menuItem11 = new System.Windows.Forms.MenuItem();
+			this.menuItem19 = new System.Windows.Forms.MenuItem();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -479,6 +479,7 @@ namespace JustJournal
 																					   this.menuItem15,
 																					   this.menuItem16,
 																					   this.menuItem17,
+																					   this.menuItem19,
 																					   this.menuItem14,
 																					   this.menuItem12,
 																					   this.menuItem11});
@@ -523,34 +524,14 @@ namespace JustJournal
 			this.menuItem13.Visible = ((bool)(resources.GetObject("menuItem13.Visible")));
 			this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
 			// 
-			// menuItem12
+			// menuItem18
 			// 
-			this.menuItem12.Enabled = ((bool)(resources.GetObject("menuItem12.Enabled")));
-			this.menuItem12.Index = 9;
-			this.menuItem12.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem12.Shortcut")));
-			this.menuItem12.ShowShortcut = ((bool)(resources.GetObject("menuItem12.ShowShortcut")));
-			this.menuItem12.Text = resources.GetString("menuItem12.Text");
-			this.menuItem12.Visible = ((bool)(resources.GetObject("menuItem12.Visible")));
-			// 
-			// menuItem11
-			// 
-			this.menuItem11.Enabled = ((bool)(resources.GetObject("menuItem11.Enabled")));
-			this.menuItem11.Index = 10;
-			this.menuItem11.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem11.Shortcut")));
-			this.menuItem11.ShowShortcut = ((bool)(resources.GetObject("menuItem11.ShowShortcut")));
-			this.menuItem11.Text = resources.GetString("menuItem11.Text");
-			this.menuItem11.Visible = ((bool)(resources.GetObject("menuItem11.Visible")));
-			this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
-			// 
-			// menuItem14
-			// 
-			this.menuItem14.Enabled = ((bool)(resources.GetObject("menuItem14.Enabled")));
-			this.menuItem14.Index = 8;
-			this.menuItem14.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem14.Shortcut")));
-			this.menuItem14.ShowShortcut = ((bool)(resources.GetObject("menuItem14.ShowShortcut")));
-			this.menuItem14.Text = resources.GetString("menuItem14.Text");
-			this.menuItem14.Visible = ((bool)(resources.GetObject("menuItem14.Visible")));
-			this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
+			this.menuItem18.Enabled = ((bool)(resources.GetObject("menuItem18.Enabled")));
+			this.menuItem18.Index = 4;
+			this.menuItem18.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem18.Shortcut")));
+			this.menuItem18.ShowShortcut = ((bool)(resources.GetObject("menuItem18.ShowShortcut")));
+			this.menuItem18.Text = resources.GetString("menuItem18.Text");
+			this.menuItem18.Visible = ((bool)(resources.GetObject("menuItem18.Visible")));
 			// 
 			// menuItem15
 			// 
@@ -582,14 +563,44 @@ namespace JustJournal
 			this.menuItem17.Visible = ((bool)(resources.GetObject("menuItem17.Visible")));
 			this.menuItem17.Click += new System.EventHandler(this.menuItem17_Click);
 			// 
-			// menuItem18
+			// menuItem14
 			// 
-			this.menuItem18.Enabled = ((bool)(resources.GetObject("menuItem18.Enabled")));
-			this.menuItem18.Index = 4;
-			this.menuItem18.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem18.Shortcut")));
-			this.menuItem18.ShowShortcut = ((bool)(resources.GetObject("menuItem18.ShowShortcut")));
-			this.menuItem18.Text = resources.GetString("menuItem18.Text");
-			this.menuItem18.Visible = ((bool)(resources.GetObject("menuItem18.Visible")));
+			this.menuItem14.Enabled = ((bool)(resources.GetObject("menuItem14.Enabled")));
+			this.menuItem14.Index = 9;
+			this.menuItem14.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem14.Shortcut")));
+			this.menuItem14.ShowShortcut = ((bool)(resources.GetObject("menuItem14.ShowShortcut")));
+			this.menuItem14.Text = resources.GetString("menuItem14.Text");
+			this.menuItem14.Visible = ((bool)(resources.GetObject("menuItem14.Visible")));
+			this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
+			// 
+			// menuItem12
+			// 
+			this.menuItem12.Enabled = ((bool)(resources.GetObject("menuItem12.Enabled")));
+			this.menuItem12.Index = 10;
+			this.menuItem12.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem12.Shortcut")));
+			this.menuItem12.ShowShortcut = ((bool)(resources.GetObject("menuItem12.ShowShortcut")));
+			this.menuItem12.Text = resources.GetString("menuItem12.Text");
+			this.menuItem12.Visible = ((bool)(resources.GetObject("menuItem12.Visible")));
+			// 
+			// menuItem11
+			// 
+			this.menuItem11.Enabled = ((bool)(resources.GetObject("menuItem11.Enabled")));
+			this.menuItem11.Index = 11;
+			this.menuItem11.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem11.Shortcut")));
+			this.menuItem11.ShowShortcut = ((bool)(resources.GetObject("menuItem11.ShowShortcut")));
+			this.menuItem11.Text = resources.GetString("menuItem11.Text");
+			this.menuItem11.Visible = ((bool)(resources.GetObject("menuItem11.Visible")));
+			this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
+			// 
+			// menuItem19
+			// 
+			this.menuItem19.Enabled = ((bool)(resources.GetObject("menuItem19.Enabled")));
+			this.menuItem19.Index = 8;
+			this.menuItem19.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("menuItem19.Shortcut")));
+			this.menuItem19.ShowShortcut = ((bool)(resources.GetObject("menuItem19.ShowShortcut")));
+			this.menuItem19.Text = resources.GetString("menuItem19.Text");
+			this.menuItem19.Visible = ((bool)(resources.GetObject("menuItem19.Visible")));
+			this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
 			// 
 			// Login
 			// 
@@ -637,13 +648,13 @@ namespace JustJournal
 
 			if (mnuUseSSL.Checked)
 			{
-				JustJournal.useSSL = true;
+				JustJournal.EnableSSL = true;
 				RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
 				rk.SetValue( "usessl", "yes" );
 			}
 			else 
 			{
-				JustJournal.useSSL = false;
+				JustJournal.EnableSSL = false;
 			    RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
 			    rk.SetValue( "usessl", "no" );
 		    }
@@ -789,6 +800,11 @@ namespace JustJournal
 		private void menuItem14_Click(object sender, System.EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/");
+		}
+
+		private void menuItem19_Click(object sender, System.EventArgs e)
+		{
+			System.Diagnostics.Process.Start("http://www.justjournal.com/profile.jsp?user=" + JustJournal.UserName);
 		}
 
 	}
