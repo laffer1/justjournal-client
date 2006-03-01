@@ -1,27 +1,27 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustJournal", "JustJournal.csproj", "{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JustJournalSetup", "..\JustJournalSetup\JustJournalSetup.vdproj", "{14086CF4-ACC5-449F-A28C-23D79B2EC10C}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JustJournalSetupX64", "..\JustJournalSetupX64\JustJournalSetupX64.vdproj", "{504E02C9-2C9A-4906-9C5F-05B1EF01A19A}"
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Debug.ActiveCfg = Debug|.NET
-		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Debug.Build.0 = Debug|.NET
-		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release.ActiveCfg = Release|.NET
-		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release.Build.0 = Release|.NET
-		{14086CF4-ACC5-449F-A28C-23D79B2EC10C}.Debug.ActiveCfg = Debug
-		{14086CF4-ACC5-449F-A28C-23D79B2EC10C}.Release.ActiveCfg = Release
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14086CF4-ACC5-449F-A28C-23D79B2EC10C}.Debug|Any CPU.ActiveCfg = Debug
+		{14086CF4-ACC5-449F-A28C-23D79B2EC10C}.Release|Any CPU.ActiveCfg = Release
+		{504E02C9-2C9A-4906-9C5F-05B1EF01A19A}.Debug|Any CPU.ActiveCfg = Debug
+		{504E02C9-2C9A-4906-9C5F-05B1EF01A19A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

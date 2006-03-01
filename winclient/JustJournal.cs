@@ -18,7 +18,7 @@ namespace JustJournal
 	public class JustJournal
 	{
         private const string server = "www.justjournal.com";
-		private const string version = "JustJournal/1.2.2 Win";
+		private const string version = "JustJournal/1.3.1 Win";
 
 		private static bool loggedIn = false;
 		private static string userName;

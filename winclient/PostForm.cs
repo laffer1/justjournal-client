@@ -23,9 +23,7 @@ namespace JustJournal
 		private static extern uint FindWindow(string _ClassName, string _WindowName);
 
 		[DllImport("user32.dll")]
-		private static extern uint GetWindowText ( uint hWnd, StringBuilder lpString, uint nMaxCount );
-
-		private System.Windows.Forms.ToolBar toolBar1;
+        private static extern uint GetWindowText(uint hWnd, StringBuilder lpString, uint nMaxCount);
 		private System.Windows.Forms.MainMenu mainMenu1;
 		private System.Windows.Forms.MenuItem menuItem1;
 		private System.Windows.Forms.MenuItem menuItem2;
@@ -50,14 +48,7 @@ namespace JustJournal
 		private System.Windows.Forms.MenuItem menuItem10;
 		private System.Windows.Forms.MenuItem menuItem11;
 		private System.Windows.Forms.Button btnMusicSense;
-		private System.Windows.Forms.Label lblCurrentUser;
-		private System.Windows.Forms.ToolBarButton tbNormal;
-		private System.Windows.Forms.ToolBarButton sep1;
-		private System.Windows.Forms.ToolBarButton tbFont;
-		private System.Windows.Forms.ToolBarButton sep2;
-		private System.Windows.Forms.ToolBarButton tbBold;
-		private System.Windows.Forms.ToolBarButton tbItalic;
-		private System.Windows.Forms.ToolBarButton tbUnderline;
+        private System.Windows.Forms.Label lblCurrentUser;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.MenuItem menuItem12;
 		private System.Windows.Forms.MenuItem mnuFormattedText;
@@ -92,6 +83,18 @@ namespace JustJournal
 		private System.Windows.Forms.ColorDialog colorDlgBg;
 		private System.Windows.Forms.MenuItem menuItem30;
 		private System.Windows.Forms.MenuItem menuItem31;
+        private ToolStrip toolStrip1;
+        private ToolStripButton toolStripButton1;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton toolStripButton2;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton toolStripButton3;
+        private ToolStripButton toolStripButton4;
+        private ToolStripButton toolStripButton5;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripButton toolStripButton6;
+        private ToolStripButton toolStripButton7;
+        private PictureBox pictureBox1;
 		private System.ComponentModel.IContainer components;
 
 		public PostForm()
@@ -155,589 +158,669 @@ namespace JustJournal
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(PostForm));
-			this.toolBar1 = new System.Windows.Forms.ToolBar();
-			this.tbNormal = new System.Windows.Forms.ToolBarButton();
-			this.sep1 = new System.Windows.Forms.ToolBarButton();
-			this.tbFont = new System.Windows.Forms.ToolBarButton();
-			this.sep2 = new System.Windows.Forms.ToolBarButton();
-			this.tbBold = new System.Windows.Forms.ToolBarButton();
-			this.tbItalic = new System.Windows.Forms.ToolBarButton();
-			this.tbUnderline = new System.Windows.Forms.ToolBarButton();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.mainMenu1 = new System.Windows.Forms.MainMenu();
-			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.menuItem14 = new System.Windows.Forms.MenuItem();
-			this.menuItem18 = new System.Windows.Forms.MenuItem();
-			this.menuItem16 = new System.Windows.Forms.MenuItem();
-			this.menuItem17 = new System.Windows.Forms.MenuItem();
-			this.menuItem8 = new System.Windows.Forms.MenuItem();
-			this.menuItem7 = new System.Windows.Forms.MenuItem();
-			this.menuItem2 = new System.Windows.Forms.MenuItem();
-			this.menuItem20 = new System.Windows.Forms.MenuItem();
-			this.menuItem21 = new System.Windows.Forms.MenuItem();
-			this.menuItem22 = new System.Windows.Forms.MenuItem();
-			this.menuItem9 = new System.Windows.Forms.MenuItem();
-			this.menuItem10 = new System.Windows.Forms.MenuItem();
-			this.menuItem11 = new System.Windows.Forms.MenuItem();
-			this.menuItem23 = new System.Windows.Forms.MenuItem();
-			this.menuItem19 = new System.Windows.Forms.MenuItem();
-			this.menuItem13 = new System.Windows.Forms.MenuItem();
-			this.menuItem4 = new System.Windows.Forms.MenuItem();
-			this.menuItem28 = new System.Windows.Forms.MenuItem();
-			this.mnuFont = new System.Windows.Forms.MenuItem();
-			this.menuItem15 = new System.Windows.Forms.MenuItem();
-			this.mnuNormal = new System.Windows.Forms.MenuItem();
-			this.mnuBold = new System.Windows.Forms.MenuItem();
-			this.mnuItalic = new System.Windows.Forms.MenuItem();
-			this.mnuUnderline = new System.Windows.Forms.MenuItem();
-			this.menuItem6 = new System.Windows.Forms.MenuItem();
-			this.mEntryAllowComments = new System.Windows.Forms.MenuItem();
-			this.mEntryEmailComments = new System.Windows.Forms.MenuItem();
-			this.menuItem12 = new System.Windows.Forms.MenuItem();
-			this.mnuFormattedText = new System.Windows.Forms.MenuItem();
-			this.mnuRawText = new System.Windows.Forms.MenuItem();
-			this.menuItem30 = new System.Windows.Forms.MenuItem();
-			this.menuItem31 = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
-			this.menuItem5 = new System.Windows.Forms.MenuItem();
-			this.btnPost = new System.Windows.Forms.Button();
-			this.cboSecurity = new System.Windows.Forms.ComboBox();
-			this.cboLocation = new System.Windows.Forms.ComboBox();
-			this.cboMood = new System.Windows.Forms.ComboBox();
-			this.txtSubject = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.rtbBody = new System.Windows.Forms.RichTextBox();
-			this.editBoxMenu = new System.Windows.Forms.ContextMenu();
-			this.menuItem24 = new System.Windows.Forms.MenuItem();
-			this.menuItem25 = new System.Windows.Forms.MenuItem();
-			this.menuItem26 = new System.Windows.Forms.MenuItem();
-			this.menuItem27 = new System.Windows.Forms.MenuItem();
-			this.txtMusic = new System.Windows.Forms.TextBox();
-			this.btnMusicSense = new System.Windows.Forms.Button();
-			this.lblCurrentUser = new System.Windows.Forms.Label();
-			this.fontDlg = new System.Windows.Forms.FontDialog();
-			this.colorDlg = new System.Windows.Forms.ColorDialog();
-			this.openDlg = new System.Windows.Forms.OpenFileDialog();
-			this.saveDlg = new System.Windows.Forms.SaveFileDialog();
-			this.colorDlgBg = new System.Windows.Forms.ColorDialog();
-			this.SuspendLayout();
-			// 
-			// toolBar1
-			// 
-			this.toolBar1.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-			this.toolBar1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-																						this.tbNormal,
-																						this.sep1,
-																						this.tbFont,
-																						this.sep2,
-																						this.tbBold,
-																						this.tbItalic,
-																						this.tbUnderline});
-			this.toolBar1.DropDownArrows = true;
-			this.toolBar1.ImageList = this.imageList1;
-			this.toolBar1.Location = new System.Drawing.Point(0, 0);
-			this.toolBar1.Name = "toolBar1";
-			this.toolBar1.ShowToolTips = true;
-			this.toolBar1.Size = new System.Drawing.Size(526, 28);
-			this.toolBar1.TabIndex = 0;
-			this.toolBar1.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
-			this.toolBar1.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.toolBar1_ButtonClick);
-			// 
-			// tbNormal
-			// 
-			this.tbNormal.ImageIndex = 3;
-			this.tbNormal.ToolTipText = "Normal Format";
-			// 
-			// sep1
-			// 
-			this.sep1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			// 
-			// tbFont
-			// 
-			this.tbFont.ImageIndex = 1;
-			this.tbFont.ToolTipText = "Font";
-			// 
-			// sep2
-			// 
-			this.sep2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			// 
-			// tbBold
-			// 
-			this.tbBold.ImageIndex = 0;
-			this.tbBold.ToolTipText = "Bold";
-			// 
-			// tbItalic
-			// 
-			this.tbItalic.ImageIndex = 2;
-			this.tbItalic.ToolTipText = "Italic";
-			// 
-			// tbUnderline
-			// 
-			this.tbUnderline.ImageIndex = 4;
-			this.tbUnderline.ToolTipText = "Underline";
-			// 
-			// imageList1
-			// 
-			this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
-			this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			// 
-			// mainMenu1
-			// 
-			this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuItem1,
-																					  this.menuItem2,
-																					  this.menuItem13,
-																					  this.menuItem6,
-																					  this.menuItem3});
-			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 0;
-			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuItem14,
-																					  this.menuItem18,
-																					  this.menuItem16,
-																					  this.menuItem17,
-																					  this.menuItem8,
-																					  this.menuItem7});
-			this.menuItem1.Text = "&File";
-			// 
-			// menuItem14
-			// 
-			this.menuItem14.Index = 0;
-			this.menuItem14.Text = "&Post";
-			this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
-			// 
-			// menuItem18
-			// 
-			this.menuItem18.Index = 1;
-			this.menuItem18.Text = "-";
-			// 
-			// menuItem16
-			// 
-			this.menuItem16.Index = 2;
-			this.menuItem16.Text = "&Load Draft...";
-			this.menuItem16.Click += new System.EventHandler(this.menuItem16_Click);
-			// 
-			// menuItem17
-			// 
-			this.menuItem17.Index = 3;
-			this.menuItem17.Text = "&Save Draft...";
-			this.menuItem17.Click += new System.EventHandler(this.menuItem17_Click);
-			// 
-			// menuItem8
-			// 
-			this.menuItem8.Index = 4;
-			this.menuItem8.Text = "-";
-			// 
-			// menuItem7
-			// 
-			this.menuItem7.Index = 5;
-			this.menuItem7.Text = "&Close";
-			this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
-			// 
-			// menuItem2
-			// 
-			this.menuItem2.Index = 1;
-			this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuItem20,
-																					  this.menuItem21,
-																					  this.menuItem22,
-																					  this.menuItem9,
-																					  this.menuItem10,
-																					  this.menuItem11,
-																					  this.menuItem23,
-																					  this.menuItem19});
-			this.menuItem2.Text = "&Edit";
-			// 
-			// menuItem20
-			// 
-			this.menuItem20.Index = 0;
-			this.menuItem20.Text = "Undo";
-			this.menuItem20.Click += new System.EventHandler(this.menuItem20_Click);
-			// 
-			// menuItem21
-			// 
-			this.menuItem21.Index = 1;
-			this.menuItem21.Text = "Redo";
-			this.menuItem21.Click += new System.EventHandler(this.menuItem21_Click);
-			// 
-			// menuItem22
-			// 
-			this.menuItem22.Index = 2;
-			this.menuItem22.Text = "-";
-			// 
-			// menuItem9
-			// 
-			this.menuItem9.Index = 3;
-			this.menuItem9.Text = "Cu&t";
-			this.menuItem9.Click += new System.EventHandler(this.menuItem9_Click);
-			// 
-			// menuItem10
-			// 
-			this.menuItem10.Index = 4;
-			this.menuItem10.Text = "&Copy";
-			this.menuItem10.Click += new System.EventHandler(this.menuItem10_Click);
-			// 
-			// menuItem11
-			// 
-			this.menuItem11.Index = 5;
-			this.menuItem11.Text = "&Paste";
-			this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
-			// 
-			// menuItem23
-			// 
-			this.menuItem23.Index = 6;
-			this.menuItem23.Text = "-";
-			// 
-			// menuItem19
-			// 
-			this.menuItem19.Index = 7;
-			this.menuItem19.Text = "Select All";
-			this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
-			// 
-			// menuItem13
-			// 
-			this.menuItem13.Index = 2;
-			this.menuItem13.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					   this.menuItem4,
-																					   this.menuItem28,
-																					   this.mnuFont,
-																					   this.menuItem15,
-																					   this.mnuNormal,
-																					   this.mnuBold,
-																					   this.mnuItalic,
-																					   this.mnuUnderline});
-			this.menuItem13.Text = "F&ormat";
-			// 
-			// menuItem4
-			// 
-			this.menuItem4.Index = 0;
-			this.menuItem4.Text = "&Color...";
-			this.menuItem4.Click += new System.EventHandler(this.menuItem4_Click_1);
-			// 
-			// menuItem28
-			// 
-			this.menuItem28.Index = 1;
-			this.menuItem28.Text = "&Background Color";
-			this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
-			// 
-			// mnuFont
-			// 
-			this.mnuFont.Index = 2;
-			this.mnuFont.Text = "&Font...";
-			this.mnuFont.Click += new System.EventHandler(this.mnuFont_Click);
-			// 
-			// menuItem15
-			// 
-			this.menuItem15.Index = 3;
-			this.menuItem15.Text = "-";
-			// 
-			// mnuNormal
-			// 
-			this.mnuNormal.Index = 4;
-			this.mnuNormal.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
-			this.mnuNormal.Text = "&Normal";
-			this.mnuNormal.Click += new System.EventHandler(this.mnuNormal_Click);
-			// 
-			// mnuBold
-			// 
-			this.mnuBold.Index = 5;
-			this.mnuBold.Shortcut = System.Windows.Forms.Shortcut.CtrlB;
-			this.mnuBold.Text = "&Bold";
-			this.mnuBold.Click += new System.EventHandler(this.mnuBold_Click);
-			// 
-			// mnuItalic
-			// 
-			this.mnuItalic.Index = 6;
-			this.mnuItalic.Shortcut = System.Windows.Forms.Shortcut.CtrlI;
-			this.mnuItalic.Text = "&Italic";
-			this.mnuItalic.Click += new System.EventHandler(this.mnuItalic_Click);
-			// 
-			// mnuUnderline
-			// 
-			this.mnuUnderline.Index = 7;
-			this.mnuUnderline.Shortcut = System.Windows.Forms.Shortcut.CtrlU;
-			this.mnuUnderline.Text = "&Underline";
-			this.mnuUnderline.Click += new System.EventHandler(this.mnuUnderline_Click);
-			// 
-			// menuItem6
-			// 
-			this.menuItem6.Index = 3;
-			this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.mEntryAllowComments,
-																					  this.mEntryEmailComments,
-																					  this.menuItem12,
-																					  this.mnuFormattedText,
-																					  this.mnuRawText,
-																					  this.menuItem30,
-																					  this.menuItem31});
-			this.menuItem6.Text = "E&ntry";
-			// 
-			// mEntryAllowComments
-			// 
-			this.mEntryAllowComments.Checked = true;
-			this.mEntryAllowComments.Index = 0;
-			this.mEntryAllowComments.Text = "&Allow Comments";
-			this.mEntryAllowComments.Click += new System.EventHandler(this.mEntryAllowComments_Click);
-			// 
-			// mEntryEmailComments
-			// 
-			this.mEntryEmailComments.Checked = true;
-			this.mEntryEmailComments.Index = 1;
-			this.mEntryEmailComments.Text = "&E-mail Comments";
-			this.mEntryEmailComments.Click += new System.EventHandler(this.mEntryEmailComments_Click);
-			// 
-			// menuItem12
-			// 
-			this.menuItem12.Index = 2;
-			this.menuItem12.Text = "-";
-			// 
-			// mnuFormattedText
-			// 
-			this.mnuFormattedText.Checked = true;
-			this.mnuFormattedText.Index = 3;
-			this.mnuFormattedText.RadioCheck = true;
-			this.mnuFormattedText.Text = "&Formatted Text";
-			this.mnuFormattedText.Click += new System.EventHandler(this.mnuFormattedText_Click);
-			// 
-			// mnuRawText
-			// 
-			this.mnuRawText.Index = 4;
-			this.mnuRawText.RadioCheck = true;
-			this.mnuRawText.Text = "&Raw Text";
-			this.mnuRawText.Click += new System.EventHandler(this.mnuRawText_Click);
-			// 
-			// menuItem30
-			// 
-			this.menuItem30.Index = 5;
-			this.menuItem30.Text = "-";
-			// 
-			// menuItem31
-			// 
-			this.menuItem31.Index = 6;
-			this.menuItem31.Shortcut = System.Windows.Forms.Shortcut.F7;
-			this.menuItem31.Text = "&Check Spelling";
-			this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
-			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = 4;
-			this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuItem5});
-			this.menuItem3.Text = "&Help";
-			// 
-			// menuItem5
-			// 
-			this.menuItem5.Index = 0;
-			this.menuItem5.Text = "&About";
-			this.menuItem5.Click += new System.EventHandler(this.menuItem5_Click);
-			// 
-			// btnPost
-			// 
-			this.btnPost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnPost.BackColor = System.Drawing.Color.MidnightBlue;
-			this.btnPost.ForeColor = System.Drawing.Color.White;
-			this.btnPost.Location = new System.Drawing.Point(440, 312);
-			this.btnPost.Name = "btnPost";
-			this.btnPost.Size = new System.Drawing.Size(80, 24);
-			this.btnPost.TabIndex = 7;
-			this.btnPost.Text = "Post";
-			this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
-			// 
-			// cboSecurity
-			// 
-			this.cboSecurity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cboSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboSecurity.Items.AddRange(new object[] {
-															 "public",
-															 "friends",
-															 "private"});
-			this.cboSecurity.Location = new System.Drawing.Point(264, 312);
-			this.cboSecurity.Name = "cboSecurity";
-			this.cboSecurity.Size = new System.Drawing.Size(144, 21);
-			this.cboSecurity.TabIndex = 6;
-			// 
-			// cboLocation
-			// 
-			this.cboLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.cboLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboLocation.Items.AddRange(new object[] {
-															 "Not Specified",
-															 "Home",
-															 "Other",
-															 "School",
-															 "Work"});
-			this.cboLocation.Location = new System.Drawing.Point(376, 40);
-			this.cboLocation.Name = "cboLocation";
-			this.cboLocation.Size = new System.Drawing.Size(144, 21);
-			this.cboLocation.TabIndex = 1;
-			// 
-			// cboMood
-			// 
-			this.cboMood.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboMood.Location = new System.Drawing.Point(56, 72);
-			this.cboMood.Name = "cboMood";
-			this.cboMood.Size = new System.Drawing.Size(144, 21);
-			this.cboMood.TabIndex = 2;
-			// 
-			// txtSubject
-			// 
-			this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtSubject.Location = new System.Drawing.Point(56, 40);
-			this.txtSubject.Name = "txtSubject";
-			this.txtSubject.Size = new System.Drawing.Size(256, 20);
-			this.txtSubject.TabIndex = 0;
-			this.txtSubject.Text = "";
-			this.txtSubject.TextChanged += new System.EventHandler(this.txtSubject_TextChanged);
-			// 
-			// label2
-			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.Location = new System.Drawing.Point(328, 40);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(48, 24);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "location";
-			// 
-			// label3
-			// 
-			this.label3.Location = new System.Drawing.Point(16, 72);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(40, 16);
-			this.label3.TabIndex = 8;
-			this.label3.Text = "mood";
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(8, 40);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(48, 16);
-			this.label4.TabIndex = 9;
-			this.label4.Text = "subject";
-			// 
-			// rtbBody
-			// 
-			this.rtbBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.rtbBody.AutoSize = true;
-			this.rtbBody.ContextMenu = this.editBoxMenu;
-			this.rtbBody.Location = new System.Drawing.Point(0, 104);
-			this.rtbBody.Name = "rtbBody";
-			this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-			this.rtbBody.Size = new System.Drawing.Size(528, 200);
-			this.rtbBody.TabIndex = 5;
-			this.rtbBody.Text = "";
-			// 
-			// editBoxMenu
-			// 
-			this.editBoxMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																						this.menuItem24,
-																						this.menuItem25,
-																						this.menuItem26,
-																						this.menuItem27});
-			// 
-			// menuItem24
-			// 
-			this.menuItem24.Index = 0;
-			this.menuItem24.Text = "C&ut";
-			this.menuItem24.Click += new System.EventHandler(this.menuItem24_Click);
-			// 
-			// menuItem25
-			// 
-			this.menuItem25.Index = 1;
-			this.menuItem25.Text = "&Copy";
-			this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
-			// 
-			// menuItem26
-			// 
-			this.menuItem26.Index = 2;
-			this.menuItem26.Text = "&Paste";
-			this.menuItem26.Click += new System.EventHandler(this.menuItem26_Click);
-			// 
-			// menuItem27
-			// 
-			this.menuItem27.Index = 3;
-			this.menuItem27.Text = "&Delete";
-			this.menuItem27.Click += new System.EventHandler(this.menuItem27_Click);
-			// 
-			// txtMusic
-			// 
-			this.txtMusic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtMusic.Location = new System.Drawing.Point(216, 72);
-			this.txtMusic.MaxLength = 100;
-			this.txtMusic.Name = "txtMusic";
-			this.txtMusic.Size = new System.Drawing.Size(232, 20);
-			this.txtMusic.TabIndex = 3;
-			this.txtMusic.Text = "";
-			// 
-			// btnMusicSense
-			// 
-			this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
-			this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnMusicSense.Location = new System.Drawing.Point(456, 72);
-			this.btnMusicSense.Name = "btnMusicSense";
-			this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
-			this.btnMusicSense.TabIndex = 4;
-			this.btnMusicSense.Text = "Music";
-			this.btnMusicSense.Click += new System.EventHandler(this.btnMusicSense_Click);
-			// 
-			// lblCurrentUser
-			// 
-			this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.lblCurrentUser.AutoSize = true;
-			this.lblCurrentUser.Location = new System.Drawing.Point(16, 320);
-			this.lblCurrentUser.Name = "lblCurrentUser";
-			this.lblCurrentUser.Size = new System.Drawing.Size(69, 16);
-			this.lblCurrentUser.TabIndex = 16;
-			this.lblCurrentUser.Text = "Current User";
-			// 
-			// openDlg
-			// 
-			this.openDlg.DefaultExt = "rtf";
-			this.openDlg.Filter = "RTF Files (*.rtf)|*.rtf|Text Files(*.txt)|*.txt|All Files(*.*)|*.*";
-			this.openDlg.Title = "Load Draft";
-			// 
-			// saveDlg
-			// 
-			this.saveDlg.DefaultExt = "rtf";
-			this.saveDlg.Filter = "RTF Files (*.rtf)|*.rtf|Text Files(*.txt)|*.txt|All Files(*.*)|*.*";
-			this.saveDlg.Title = "Save Draft";
-			// 
-			// PostForm
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(526, 343);
-			this.Controls.Add(this.lblCurrentUser);
-			this.Controls.Add(this.txtSubject);
-			this.Controls.Add(this.txtMusic);
-			this.Controls.Add(this.rtbBody);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.cboMood);
-			this.Controls.Add(this.cboLocation);
-			this.Controls.Add(this.cboSecurity);
-			this.Controls.Add(this.btnPost);
-			this.Controls.Add(this.toolBar1);
-			this.Controls.Add(this.btnMusicSense);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Menu = this.mainMenu1;
-			this.Name = "PostForm";
-			this.Text = "<no subject> - JustJournal";
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostForm));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem14 = new System.Windows.Forms.MenuItem();
+            this.menuItem18 = new System.Windows.Forms.MenuItem();
+            this.menuItem16 = new System.Windows.Forms.MenuItem();
+            this.menuItem17 = new System.Windows.Forms.MenuItem();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
+            this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItem20 = new System.Windows.Forms.MenuItem();
+            this.menuItem21 = new System.Windows.Forms.MenuItem();
+            this.menuItem22 = new System.Windows.Forms.MenuItem();
+            this.menuItem9 = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
+            this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.menuItem23 = new System.Windows.Forms.MenuItem();
+            this.menuItem19 = new System.Windows.Forms.MenuItem();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
+            this.menuItem28 = new System.Windows.Forms.MenuItem();
+            this.mnuFont = new System.Windows.Forms.MenuItem();
+            this.menuItem15 = new System.Windows.Forms.MenuItem();
+            this.mnuNormal = new System.Windows.Forms.MenuItem();
+            this.mnuBold = new System.Windows.Forms.MenuItem();
+            this.mnuItalic = new System.Windows.Forms.MenuItem();
+            this.mnuUnderline = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.mEntryAllowComments = new System.Windows.Forms.MenuItem();
+            this.mEntryEmailComments = new System.Windows.Forms.MenuItem();
+            this.menuItem12 = new System.Windows.Forms.MenuItem();
+            this.mnuFormattedText = new System.Windows.Forms.MenuItem();
+            this.mnuRawText = new System.Windows.Forms.MenuItem();
+            this.menuItem30 = new System.Windows.Forms.MenuItem();
+            this.menuItem31 = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.btnPost = new System.Windows.Forms.Button();
+            this.cboSecurity = new System.Windows.Forms.ComboBox();
+            this.cboLocation = new System.Windows.Forms.ComboBox();
+            this.cboMood = new System.Windows.Forms.ComboBox();
+            this.txtSubject = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rtbBody = new System.Windows.Forms.RichTextBox();
+            this.editBoxMenu = new System.Windows.Forms.ContextMenu();
+            this.menuItem24 = new System.Windows.Forms.MenuItem();
+            this.menuItem25 = new System.Windows.Forms.MenuItem();
+            this.menuItem26 = new System.Windows.Forms.MenuItem();
+            this.menuItem27 = new System.Windows.Forms.MenuItem();
+            this.txtMusic = new System.Windows.Forms.TextBox();
+            this.btnMusicSense = new System.Windows.Forms.Button();
+            this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.fontDlg = new System.Windows.Forms.FontDialog();
+            this.colorDlg = new System.Windows.Forms.ColorDialog();
+            this.openDlg = new System.Windows.Forms.OpenFileDialog();
+            this.saveDlg = new System.Windows.Forms.SaveFileDialog();
+            this.colorDlgBg = new System.Windows.Forms.ColorDialog();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            this.imageList1.Images.SetKeyName(2, "");
+            this.imageList1.Images.SetKeyName(3, "");
+            this.imageList1.Images.SetKeyName(4, "");
+            // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem2,
+            this.menuItem13,
+            this.menuItem6,
+            this.menuItem3});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem14,
+            this.menuItem18,
+            this.menuItem16,
+            this.menuItem17,
+            this.menuItem8,
+            this.menuItem7});
+            this.menuItem1.Text = "&File";
+            // 
+            // menuItem14
+            // 
+            this.menuItem14.Index = 0;
+            this.menuItem14.Text = "&Post";
+            this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
+            // 
+            // menuItem18
+            // 
+            this.menuItem18.Index = 1;
+            this.menuItem18.Text = "-";
+            // 
+            // menuItem16
+            // 
+            this.menuItem16.Index = 2;
+            this.menuItem16.Text = "&Load Draft...";
+            this.menuItem16.Click += new System.EventHandler(this.menuItem16_Click);
+            // 
+            // menuItem17
+            // 
+            this.menuItem17.Index = 3;
+            this.menuItem17.Text = "&Save Draft...";
+            this.menuItem17.Click += new System.EventHandler(this.menuItem17_Click);
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 4;
+            this.menuItem8.Text = "-";
+            // 
+            // menuItem7
+            // 
+            this.menuItem7.Index = 5;
+            this.menuItem7.Text = "&Close";
+            this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 1;
+            this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem20,
+            this.menuItem21,
+            this.menuItem22,
+            this.menuItem9,
+            this.menuItem10,
+            this.menuItem11,
+            this.menuItem23,
+            this.menuItem19});
+            this.menuItem2.Text = "&Edit";
+            // 
+            // menuItem20
+            // 
+            this.menuItem20.Index = 0;
+            this.menuItem20.Text = "Undo";
+            this.menuItem20.Click += new System.EventHandler(this.menuItem20_Click);
+            // 
+            // menuItem21
+            // 
+            this.menuItem21.Index = 1;
+            this.menuItem21.Text = "Redo";
+            this.menuItem21.Click += new System.EventHandler(this.menuItem21_Click);
+            // 
+            // menuItem22
+            // 
+            this.menuItem22.Index = 2;
+            this.menuItem22.Text = "-";
+            // 
+            // menuItem9
+            // 
+            this.menuItem9.Index = 3;
+            this.menuItem9.Text = "Cu&t";
+            this.menuItem9.Click += new System.EventHandler(this.menuItem9_Click);
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 4;
+            this.menuItem10.Text = "&Copy";
+            this.menuItem10.Click += new System.EventHandler(this.menuItem10_Click);
+            // 
+            // menuItem11
+            // 
+            this.menuItem11.Index = 5;
+            this.menuItem11.Text = "&Paste";
+            this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
+            // 
+            // menuItem23
+            // 
+            this.menuItem23.Index = 6;
+            this.menuItem23.Text = "-";
+            // 
+            // menuItem19
+            // 
+            this.menuItem19.Index = 7;
+            this.menuItem19.Text = "Select All";
+            this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 2;
+            this.menuItem13.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem4,
+            this.menuItem28,
+            this.mnuFont,
+            this.menuItem15,
+            this.mnuNormal,
+            this.mnuBold,
+            this.mnuItalic,
+            this.mnuUnderline});
+            this.menuItem13.Text = "F&ormat";
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 0;
+            this.menuItem4.Text = "&Color...";
+            this.menuItem4.Click += new System.EventHandler(this.menuItem4_Click_1);
+            // 
+            // menuItem28
+            // 
+            this.menuItem28.Index = 1;
+            this.menuItem28.Text = "&Background Color";
+            this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
+            // 
+            // mnuFont
+            // 
+            this.mnuFont.Index = 2;
+            this.mnuFont.Text = "&Font...";
+            this.mnuFont.Click += new System.EventHandler(this.mnuFont_Click);
+            // 
+            // menuItem15
+            // 
+            this.menuItem15.Index = 3;
+            this.menuItem15.Text = "-";
+            // 
+            // mnuNormal
+            // 
+            this.mnuNormal.Index = 4;
+            this.mnuNormal.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
+            this.mnuNormal.Text = "&Normal";
+            this.mnuNormal.Click += new System.EventHandler(this.mnuNormal_Click);
+            // 
+            // mnuBold
+            // 
+            this.mnuBold.Index = 5;
+            this.mnuBold.Shortcut = System.Windows.Forms.Shortcut.CtrlB;
+            this.mnuBold.Text = "&Bold";
+            this.mnuBold.Click += new System.EventHandler(this.mnuBold_Click);
+            // 
+            // mnuItalic
+            // 
+            this.mnuItalic.Index = 6;
+            this.mnuItalic.Shortcut = System.Windows.Forms.Shortcut.CtrlI;
+            this.mnuItalic.Text = "&Italic";
+            this.mnuItalic.Click += new System.EventHandler(this.mnuItalic_Click);
+            // 
+            // mnuUnderline
+            // 
+            this.mnuUnderline.Index = 7;
+            this.mnuUnderline.Shortcut = System.Windows.Forms.Shortcut.CtrlU;
+            this.mnuUnderline.Text = "&Underline";
+            this.mnuUnderline.Click += new System.EventHandler(this.mnuUnderline_Click);
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 3;
+            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mEntryAllowComments,
+            this.mEntryEmailComments,
+            this.menuItem12,
+            this.mnuFormattedText,
+            this.mnuRawText,
+            this.menuItem30,
+            this.menuItem31});
+            this.menuItem6.Text = "E&ntry";
+            // 
+            // mEntryAllowComments
+            // 
+            this.mEntryAllowComments.Checked = true;
+            this.mEntryAllowComments.Index = 0;
+            this.mEntryAllowComments.Text = "&Allow Comments";
+            this.mEntryAllowComments.Click += new System.EventHandler(this.mEntryAllowComments_Click);
+            // 
+            // mEntryEmailComments
+            // 
+            this.mEntryEmailComments.Checked = true;
+            this.mEntryEmailComments.Index = 1;
+            this.mEntryEmailComments.Text = "&E-mail Comments";
+            this.mEntryEmailComments.Click += new System.EventHandler(this.mEntryEmailComments_Click);
+            // 
+            // menuItem12
+            // 
+            this.menuItem12.Index = 2;
+            this.menuItem12.Text = "-";
+            // 
+            // mnuFormattedText
+            // 
+            this.mnuFormattedText.Checked = true;
+            this.mnuFormattedText.Index = 3;
+            this.mnuFormattedText.RadioCheck = true;
+            this.mnuFormattedText.Text = "&Formatted Text";
+            this.mnuFormattedText.Click += new System.EventHandler(this.mnuFormattedText_Click);
+            // 
+            // mnuRawText
+            // 
+            this.mnuRawText.Index = 4;
+            this.mnuRawText.RadioCheck = true;
+            this.mnuRawText.Text = "&Raw Text";
+            this.mnuRawText.Click += new System.EventHandler(this.mnuRawText_Click);
+            // 
+            // menuItem30
+            // 
+            this.menuItem30.Index = 5;
+            this.menuItem30.Text = "-";
+            // 
+            // menuItem31
+            // 
+            this.menuItem31.Index = 6;
+            this.menuItem31.Shortcut = System.Windows.Forms.Shortcut.F7;
+            this.menuItem31.Text = "&Check Spelling";
+            this.menuItem31.Click += new System.EventHandler(this.menuItem31_Click);
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 4;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem5});
+            this.menuItem3.Text = "&Help";
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 0;
+            this.menuItem5.Text = "&About";
+            this.menuItem5.Click += new System.EventHandler(this.menuItem5_Click);
+            // 
+            // btnPost
+            // 
+            this.btnPost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPost.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnPost.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPost.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPost.ForeColor = System.Drawing.Color.White;
+            this.btnPost.Location = new System.Drawing.Point(440, 312);
+            this.btnPost.Name = "btnPost";
+            this.btnPost.Size = new System.Drawing.Size(80, 24);
+            this.btnPost.TabIndex = 7;
+            this.btnPost.Text = "Post";
+            this.btnPost.UseVisualStyleBackColor = false;
+            this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
+            // 
+            // cboSecurity
+            // 
+            this.cboSecurity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSecurity.Items.AddRange(new object[] {
+            "public",
+            "friends",
+            "private"});
+            this.cboSecurity.Location = new System.Drawing.Point(264, 312);
+            this.cboSecurity.Name = "cboSecurity";
+            this.cboSecurity.Size = new System.Drawing.Size(144, 21);
+            this.cboSecurity.TabIndex = 6;
+            // 
+            // cboLocation
+            // 
+            this.cboLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLocation.Items.AddRange(new object[] {
+            "Not Specified",
+            "Home",
+            "Other",
+            "School",
+            "Work"});
+            this.cboLocation.Location = new System.Drawing.Point(376, 40);
+            this.cboLocation.Name = "cboLocation";
+            this.cboLocation.Size = new System.Drawing.Size(144, 21);
+            this.cboLocation.TabIndex = 1;
+            // 
+            // cboMood
+            // 
+            this.cboMood.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMood.Location = new System.Drawing.Point(56, 72);
+            this.cboMood.Name = "cboMood";
+            this.cboMood.Size = new System.Drawing.Size(144, 21);
+            this.cboMood.TabIndex = 2;
+            // 
+            // txtSubject
+            // 
+            this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubject.Location = new System.Drawing.Point(56, 40);
+            this.txtSubject.Name = "txtSubject";
+            this.txtSubject.Size = new System.Drawing.Size(256, 20);
+            this.txtSubject.TabIndex = 0;
+            this.txtSubject.TextChanged += new System.EventHandler(this.txtSubject_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Location = new System.Drawing.Point(328, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 24);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "location";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(16, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "mood";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(8, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 16);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "subject";
+            // 
+            // rtbBody
+            // 
+            this.rtbBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbBody.AutoSize = true;
+            this.rtbBody.ContextMenu = this.editBoxMenu;
+            this.rtbBody.Location = new System.Drawing.Point(0, 104);
+            this.rtbBody.Name = "rtbBody";
+            this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbBody.Size = new System.Drawing.Size(528, 200);
+            this.rtbBody.TabIndex = 5;
+            this.rtbBody.Text = "";
+            // 
+            // editBoxMenu
+            // 
+            this.editBoxMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem24,
+            this.menuItem25,
+            this.menuItem26,
+            this.menuItem27});
+            // 
+            // menuItem24
+            // 
+            this.menuItem24.Index = 0;
+            this.menuItem24.Text = "C&ut";
+            this.menuItem24.Click += new System.EventHandler(this.menuItem24_Click);
+            // 
+            // menuItem25
+            // 
+            this.menuItem25.Index = 1;
+            this.menuItem25.Text = "&Copy";
+            this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
+            // 
+            // menuItem26
+            // 
+            this.menuItem26.Index = 2;
+            this.menuItem26.Text = "&Paste";
+            this.menuItem26.Click += new System.EventHandler(this.menuItem26_Click);
+            // 
+            // menuItem27
+            // 
+            this.menuItem27.Index = 3;
+            this.menuItem27.Text = "&Delete";
+            this.menuItem27.Click += new System.EventHandler(this.menuItem27_Click);
+            // 
+            // txtMusic
+            // 
+            this.txtMusic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMusic.Location = new System.Drawing.Point(216, 72);
+            this.txtMusic.MaxLength = 100;
+            this.txtMusic.Name = "txtMusic";
+            this.txtMusic.Size = new System.Drawing.Size(232, 20);
+            this.txtMusic.TabIndex = 3;
+            // 
+            // btnMusicSense
+            // 
+            this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMusicSense.Location = new System.Drawing.Point(456, 72);
+            this.btnMusicSense.Name = "btnMusicSense";
+            this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
+            this.btnMusicSense.TabIndex = 4;
+            this.btnMusicSense.Text = "Music";
+            this.btnMusicSense.UseVisualStyleBackColor = false;
+            this.btnMusicSense.Click += new System.EventHandler(this.btnMusicSense_Click);
+            // 
+            // lblCurrentUser
+            // 
+            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCurrentUser.AutoSize = true;
+            this.lblCurrentUser.Location = new System.Drawing.Point(34, 321);
+            this.lblCurrentUser.Name = "lblCurrentUser";
+            this.lblCurrentUser.Size = new System.Drawing.Size(66, 13);
+            this.lblCurrentUser.TabIndex = 16;
+            this.lblCurrentUser.Text = "Current User";
+            // 
+            // openDlg
+            // 
+            this.openDlg.DefaultExt = "rtf";
+            this.openDlg.Filter = "RTF Files (*.rtf)|*.rtf|Text Files(*.txt)|*.txt|All Files(*.*)|*.*";
+            this.openDlg.Title = "Load Draft";
+            // 
+            // saveDlg
+            // 
+            this.saveDlg.DefaultExt = "rtf";
+            this.saveDlg.Filter = "RTF Files (*.rtf)|*.rtf|Text Files(*.txt)|*.txt|All Files(*.*)|*.*";
+            this.saveDlg.Title = "Save Draft";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AllowItemReorder = true;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator1,
+            this.toolStripButton2,
+            this.toolStripSeparator2,
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripSeparator3,
+            this.toolStripButton6,
+            this.toolStripButton7});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(526, 25);
+            this.toolStrip1.TabIndex = 17;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Normal";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Font";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.CheckOnClick = true;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Bold";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.CheckOnClick = true;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Italic";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.CheckOnClick = true;
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "Underline";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(36, 22);
+            this.toolStripButton6.Text = "Color";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(67, 22);
+            this.toolStripButton7.Text = "Background";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 317);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 25);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
+            // PostForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(526, 343);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.lblCurrentUser);
+            this.Controls.Add(this.txtSubject);
+            this.Controls.Add(this.txtMusic);
+            this.Controls.Add(this.rtbBody);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboMood);
+            this.Controls.Add(this.cboLocation);
+            this.Controls.Add(this.cboSecurity);
+            this.Controls.Add(this.btnPost);
+            this.Controls.Add(this.btnMusicSense);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Menu = this.mainMenu1;
+            this.Name = "PostForm";
+            this.Text = "<no subject> - JustJournal";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -782,8 +865,8 @@ namespace JustJournal
 			{
 				try 
 				{
-					Outlook.Application ol = new Outlook.ApplicationClass();
-					Outlook.JournalItem ja = (Outlook.JournalItem)ol.CreateItem( Outlook.OlItemType.olJournalItem );
+                    Microsoft.Office.Interop.Outlook.Application ol = new Microsoft.Office.Interop.Outlook.ApplicationClass();
+                    Microsoft.Office.Interop.Outlook.JournalItem ja = (Microsoft.Office.Interop.Outlook.JournalItem)ol.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olJournalItem);
 					ja.Subject = txtSubject.Text;
 					ja.Body = rtbBody.Text;
 					ja.Type = "Note";
@@ -961,20 +1044,6 @@ namespace JustJournal
 		    } 
 		}
 
-		private void toolBar1_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
-		{
-			if ( e.Button == tbNormal )
-			    mnuNormal_Click( sender, e );
-			else if ( e.Button == tbFont )
-		        mnuFont_Click( sender, e );
-		    else if ( e.Button == tbBold )
-                mnuBold_Click( sender, e );
-		    else if ( e.Button == tbItalic )
-                mnuItalic_Click( sender, e );
-			else if ( e.Button == tbUnderline )
-                mnuUnderline_Click( sender, e );
-		}
-
 		private void mnuFont_Click(object sender, System.EventArgs e)
 		{
 			fontDlg.Font = rtbBody.SelectionFont;
@@ -988,9 +1057,10 @@ namespace JustJournal
 		{
 			Font ft = rtbBody.SelectionFont;
 			rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, FontStyle.Regular );
-			tbBold.Pushed = false;
-			tbItalic.Pushed = false;
-			tbUnderline.Pushed = false;
+            // bold, italic, underline off
+            toolStripButton3.Checked = false;
+            toolStripButton4.Checked = false;
+            toolStripButton5.Checked = false;
 		}
 
 		private void mnuBold_Click(object sender, System.EventArgs e)
@@ -1009,8 +1079,8 @@ namespace JustJournal
 			{
 				Font ft = rtbBody.SelectionFont;
 				FontStyle fs = ( ft.Style ^ FontStyle.Bold );
-				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );			   
-				tbBold.Pushed = !tbBold.Pushed; // swap button
+				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );
+                //toolStripButton3.Pressed = !toolStripButton3.Pressed; // swap button
 			}
 		}
 
@@ -1030,8 +1100,8 @@ namespace JustJournal
 			{
 				Font ft = rtbBody.SelectionFont;
 				FontStyle fs = ( ft.Style ^ FontStyle.Italic );
-				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );	
-				tbItalic.Pushed = !tbItalic.Pushed;
+				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );
+                //toolStripButton4.Pressed = !toolStripButton4.Pressed;
 			}
 		}
 
@@ -1051,8 +1121,8 @@ namespace JustJournal
 			{
 				Font ft = rtbBody.SelectionFont;
 				FontStyle fs = ( ft.Style ^ FontStyle.Underline );
-				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );	
-				tbUnderline.Pushed = !tbUnderline.Pushed;
+				rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, fs );
+                //toolStripButton5.Pressed = !toolStripButton5.Pressed;
 			}
 		}
 
@@ -1455,8 +1525,7 @@ namespace JustJournal
 			
 			try
 			{
-				Word.Application chk = new Word.ApplicationClass();
-
+                Microsoft.Office.Interop.Word.Application chk = new Microsoft.Office.Interop.Word.ApplicationClass();
 				int cur = 0;
 				string word = "";
 				while( cur < rtbBody.Text.Length ) 
@@ -1483,7 +1552,7 @@ namespace JustJournal
 					cur++;
 				}
 				rtbBody.Select( 0, 0 );
-				chk.Quit( ref nul, ref nul, ref nul );
+				chk.Quit(ref nul, ref nul, ref nul);
 			}
 			catch( Exception x )
 			{
@@ -1497,5 +1566,46 @@ namespace JustJournal
 		{
 			spellingCheck();
 		}
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {    
+            mnuNormal_Click(sender, e);      
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            mnuFont_Click(sender, e);
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            mnuBold_Click(sender, e);
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            mnuItalic_Click(sender, e);
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            mnuUnderline_Click(sender, e);
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            if (colorDlg.ShowDialog(this).Equals(DialogResult.OK))
+            {
+                rtbBody.ForeColor = colorDlg.Color;
+            }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            if (colorDlgBg.ShowDialog(this).Equals(DialogResult.OK))
+            {
+                rtbBody.BackColor = colorDlgBg.Color;
+            }
+        }
 	}
 }
