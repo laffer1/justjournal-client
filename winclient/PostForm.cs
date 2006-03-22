@@ -85,9 +85,7 @@ namespace JustJournal
 		private System.Windows.Forms.MenuItem menuItem31;
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton2;
-        private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton toolStripButton3;
         private ToolStripButton toolStripButton4;
         private ToolStripButton toolStripButton5;
@@ -95,6 +93,19 @@ namespace JustJournal
         private ToolStripButton toolStripButton6;
         private ToolStripButton toolStripButton7;
         private PictureBox pictureBox1;
+        private ToolStripContainer toolStripContainer1;
+        private ToolStrip toolStrip2;
+        private ToolStripButton toolStripButton8;
+        private ToolStrip toolStrip3;
+        private ToolStripButton toolStripButton9;
+        private ToolStripButton toolStripButton10;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton toolStripButton11;
+        private ToolStripButton toolStripButton12;
+        private ToolStripButton toolStripButton13;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton toolStripButton14;
+        private ToolStripButton toolStripButton15;
 		private System.ComponentModel.IContainer components;
 
 		public PostForm()
@@ -127,7 +138,13 @@ namespace JustJournal
 			cboMood.ValueMember = "Id";
 			cboMood.SelectedIndex = cboMood.FindStringExact("Not Specified",0);
 
-			txtMusic.Text = detectMusic();
+            if (JustJournal.EnableMusicDetection)
+                txtMusic.Text = detectMusic();
+            else
+            {
+                txtMusic.Enabled = false;
+                btnMusicSense.Enabled = false;
+            }
 		}
 
 
@@ -220,19 +237,34 @@ namespace JustJournal
             this.saveDlg = new System.Windows.Forms.SaveFileDialog();
             this.colorDlgBg = new System.Windows.Forms.ColorDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
+            this.toolStrip3.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -504,7 +536,7 @@ namespace JustJournal
             this.btnPost.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnPost.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPost.ForeColor = System.Drawing.Color.White;
-            this.btnPost.Location = new System.Drawing.Point(440, 312);
+            this.btnPost.Location = new System.Drawing.Point(440, 362);
             this.btnPost.Name = "btnPost";
             this.btnPost.Size = new System.Drawing.Size(80, 24);
             this.btnPost.TabIndex = 7;
@@ -520,7 +552,7 @@ namespace JustJournal
             "public",
             "friends",
             "private"});
-            this.cboSecurity.Location = new System.Drawing.Point(264, 312);
+            this.cboSecurity.Location = new System.Drawing.Point(264, 362);
             this.cboSecurity.Name = "cboSecurity";
             this.cboSecurity.Size = new System.Drawing.Size(144, 21);
             this.cboSecurity.TabIndex = 6;
@@ -535,7 +567,7 @@ namespace JustJournal
             "Other",
             "School",
             "Work"});
-            this.cboLocation.Location = new System.Drawing.Point(376, 40);
+            this.cboLocation.Location = new System.Drawing.Point(377, 67);
             this.cboLocation.Name = "cboLocation";
             this.cboLocation.Size = new System.Drawing.Size(144, 21);
             this.cboLocation.TabIndex = 1;
@@ -543,7 +575,7 @@ namespace JustJournal
             // cboMood
             // 
             this.cboMood.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMood.Location = new System.Drawing.Point(56, 72);
+            this.cboMood.Location = new System.Drawing.Point(57, 98);
             this.cboMood.Name = "cboMood";
             this.cboMood.Size = new System.Drawing.Size(144, 21);
             this.cboMood.TabIndex = 2;
@@ -552,7 +584,7 @@ namespace JustJournal
             // 
             this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubject.Location = new System.Drawing.Point(56, 40);
+            this.txtSubject.Location = new System.Drawing.Point(57, 67);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(256, 20);
             this.txtSubject.TabIndex = 0;
@@ -561,27 +593,27 @@ namespace JustJournal
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(328, 40);
+            this.label2.Location = new System.Drawing.Point(321, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 24);
+            this.label2.Size = new System.Drawing.Size(52, 18);
             this.label2.TabIndex = 7;
-            this.label2.Text = "location";
+            this.label2.Text = "Location:";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(16, 72);
+            this.label3.Location = new System.Drawing.Point(17, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 8;
-            this.label3.Text = "mood";
+            this.label3.Text = "Mood:";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(8, 40);
+            this.label4.Location = new System.Drawing.Point(9, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 16);
             this.label4.TabIndex = 9;
-            this.label4.Text = "subject";
+            this.label4.Text = "Subject:";
             // 
             // rtbBody
             // 
@@ -590,10 +622,10 @@ namespace JustJournal
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbBody.AutoSize = true;
             this.rtbBody.ContextMenu = this.editBoxMenu;
-            this.rtbBody.Location = new System.Drawing.Point(0, 104);
+            this.rtbBody.Location = new System.Drawing.Point(0, 128);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbBody.Size = new System.Drawing.Size(528, 200);
+            this.rtbBody.Size = new System.Drawing.Size(528, 226);
             this.rtbBody.TabIndex = 5;
             this.rtbBody.Text = "";
             // 
@@ -633,7 +665,7 @@ namespace JustJournal
             // 
             this.txtMusic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMusic.Location = new System.Drawing.Point(216, 72);
+            this.txtMusic.Location = new System.Drawing.Point(217, 98);
             this.txtMusic.MaxLength = 100;
             this.txtMusic.Name = "txtMusic";
             this.txtMusic.Size = new System.Drawing.Size(232, 20);
@@ -644,7 +676,7 @@ namespace JustJournal
             this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
             this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMusicSense.Location = new System.Drawing.Point(456, 72);
+            this.btnMusicSense.Location = new System.Drawing.Point(457, 98);
             this.btnMusicSense.Name = "btnMusicSense";
             this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
             this.btnMusicSense.TabIndex = 4;
@@ -656,7 +688,7 @@ namespace JustJournal
             // 
             this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.Location = new System.Drawing.Point(34, 321);
+            this.lblCurrentUser.Location = new System.Drawing.Point(39, 373);
             this.lblCurrentUser.Name = "lblCurrentUser";
             this.lblCurrentUser.Size = new System.Drawing.Size(66, 13);
             this.lblCurrentUser.TabIndex = 16;
@@ -677,53 +709,21 @@ namespace JustJournal
             // toolStrip1
             // 
             this.toolStrip1.AllowItemReorder = true;
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSeparator1,
-            this.toolStripButton2,
-            this.toolStripSeparator2,
             this.toolStripButton3,
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripSeparator3,
+            this.toolStripButton1,
+            this.toolStripButton2,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(526, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(268, 25);
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Normal";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Font";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton3
             // 
@@ -763,42 +763,201 @@ namespace JustJournal
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Normal";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Font";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripButton6
             // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(36, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(52, 22);
             this.toolStripButton6.Text = "Color";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton7
             // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(67, 22);
+            this.toolStripButton7.Size = new System.Drawing.Size(83, 22);
             this.toolStripButton7.Text = "Background";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 317);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 361);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 25);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(526, 0);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.MaximumSize = new System.Drawing.Size(0, 50);
+            this.toolStripContainer1.MinimumSize = new System.Drawing.Size(0, 25);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(526, 50);
+            this.toolStripContainer1.TabIndex = 19;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton9,
+            this.toolStripButton10,
+            this.toolStripSeparator1,
+            this.toolStripButton11,
+            this.toolStripButton12,
+            this.toolStripButton13,
+            this.toolStripSeparator2,
+            this.toolStripButton14,
+            this.toolStripButton15});
+            this.toolStrip3.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(185, 25);
+            this.toolStrip3.TabIndex = 19;
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton9.Text = "Open";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
+            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton10.Text = "Save";
+            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton11
+            // 
+            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
+            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton11.Name = "toolStripButton11";
+            this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton11.Text = "Cut";
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
+            // 
+            // toolStripButton12
+            // 
+            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
+            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton12.Name = "toolStripButton12";
+            this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton12.Text = "Copy";
+            this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
+            // 
+            // toolStripButton13
+            // 
+            this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
+            this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton13.Name = "toolStripButton13";
+            this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton13.Text = "Paste";
+            this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton14
+            // 
+            this.toolStripButton14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton14.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton14.Image")));
+            this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton14.Name = "toolStripButton14";
+            this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton14.Text = "Undo";
+            this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
+            // 
+            // toolStripButton15
+            // 
+            this.toolStripButton15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
+            this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton15.Name = "toolStripButton15";
+            this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton15.Text = "Redo";
+            this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton8});
+            this.toolStrip2.Location = new System.Drawing.Point(188, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip2.TabIndex = 18;
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton8.Text = "About";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click_1);
             // 
             // PostForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(526, 343);
+            this.ClientSize = new System.Drawing.Size(526, 393);
+            this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblCurrentUser);
             this.Controls.Add(this.txtSubject);
             this.Controls.Add(this.txtMusic);
@@ -819,6 +978,14 @@ namespace JustJournal
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -967,13 +1134,16 @@ namespace JustJournal
 			this.Enabled = true;
 
 			string resp = Encoding.ASCII.GetString(responseArray);
-			if ( resp.Length > 0 && resp.IndexOf("JJ.LOGIN.OK") == -1 ) 
-				this.Close();  // OK
-			else 
-			{          
-				MessageBox.Show (Encoding.ASCII.GetString(responseArray), "Just Journal", 
-					MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-			}
+            if (resp.Length > 0 && resp.IndexOf("JJ.LOGIN.OK") == -1)
+            {
+                new Alert("Message \"" + txtSubject.Text + "\" Posted.", "");
+                this.Close();  // OK
+            }
+            else
+            {
+                MessageBox.Show(Encoding.ASCII.GetString(responseArray), "Just Journal",
+                    MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
 		}
 
 		private void menuItem5_Click(object sender, System.EventArgs e)
@@ -1606,6 +1776,87 @@ namespace JustJournal
             {
                 rtbBody.BackColor = colorDlgBg.Color;
             }
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            new AboutForm().Show();
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            rtbBody.Cut();
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            rtbBody.Copy();
+        }
+
+        private void toolStripButton13_Click(object sender, EventArgs e)
+        {
+            rtbBody.Paste();
+        }
+
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            rtbBody.Undo();
+        }
+
+        private void toolStripButton15_Click(object sender, EventArgs e)
+        {
+            rtbBody.Redo();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (saveDlg.ShowDialog(this).Equals(DialogResult.OK))
+                {
+                    if (Path.GetExtension(saveDlg.FileName).ToLower().Equals(".rtf"))
+                    {
+                        rtbBody.SaveFile(saveDlg.FileName, RichTextBoxStreamType.RichText);
+                    }
+                    else
+                    {
+                        rtbBody.SaveFile(saveDlg.FileName, RichTextBoxStreamType.PlainText);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Could not save file", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (openDlg.ShowDialog(this).Equals(DialogResult.OK))
+                {
+                    if (Path.GetExtension(openDlg.FileName).ToLower().Equals(".rtf"))
+                    {
+                        rtbBody.LoadFile(openDlg.FileName, RichTextBoxStreamType.RichText);
+                    }
+                    else
+                    {
+                        rtbBody.LoadFile(openDlg.FileName, RichTextBoxStreamType.PlainText);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Could not open file", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void toolStripButton8_Click_1(object sender, EventArgs e)
+        {
+            new AboutForm().Show();
         }
 	}
 }

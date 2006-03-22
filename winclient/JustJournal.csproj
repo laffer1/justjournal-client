@@ -149,6 +149,12 @@
     <Compile Include="About.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Alert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alert.Designer.cs">
+      <DependentUpon>Alert.cs</DependentUpon>
+    </Compile>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -182,6 +188,10 @@
       <DependentUpon>About.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Alert.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Alert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -199,15 +209,90 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="bold.gif" />
-    <Content Include="font1.gif" />
+    <Content Include="images\font1.gif" />
     <Content Include="GPL.txt" />
-    <Content Include="Italics.gif" />
+    <Content Include="images\about.gif" />
+    <Content Include="images\anchor.gif" />
+    <Content Include="images\bgcolor.gif" />
+    <Content Include="images\bold.gif" />
+    <Content Include="images\bulletedlist.gif" />
+    <Content Include="images\button.gif" />
+    <Content Include="images\checkbox.gif" />
+    <Content Include="images\copy.gif" />
+    <Content Include="images\cut.gif" />
+    <Content Include="images\docprops.gif" />
+    <Content Include="images\find.gif" />
+    <Content Include="images\flash.gif" />
+    <Content Include="images\fontstyleadv.gif" />
+    <Content Include="images\form.gif" />
+    <Content Include="images\hidden.gif" />
+    <Content Include="images\hiddenfield.gif" />
+    <Content Include="images\image.gif" />
+    <Content Include="images\imagebutton.gif" />
+    <Content Include="images\indent.gif" />
+    <Content Include="images\input.gif" />
+    <Content Include="images\inserthorizontalrule.gif" />
+    <Content Include="images\insertorderedlist.gif" />
+    <Content Include="images\insertunorderedlist.gif" />
+    <Content Include="images\italic.gif" />
+    <Content Include="images\justifycenter.gif" />
+    <Content Include="images\justifyfull.gif" />
+    <Content Include="images\justifyleft.gif" />
+    <Content Include="images\justifyright.gif" />
+    <Content Include="images\link.gif" />
+    <Content Include="images\mail.gif" />
+    <Content Include="images\new.gif" />
+    <Content Include="images\newpage.gif" />
+    <Content Include="images\numberedlist.gif" />
+    <Content Include="images\open.gif" />
+    <Content Include="images\outdent.gif" />
+    <Content Include="images\pagebreak.gif" />
+    <Content Include="images\paste.gif" />
+    <Content Include="images\pastetext.gif" />
+    <Content Include="images\pasteword.gif" />
+    <Content Include="images\preview.gif" />
+    <Content Include="images\print.gif" />
+    <Content Include="images\radio.gif" />
+    <Content Include="images\redo.gif" />
+    <Content Include="images\removeformat.gif" />
+    <Content Include="images\replace.gif" />
+    <Content Include="images\save.gif" />
+    <Content Include="images\select.gif" />
+    <Content Include="images\selectall.gif" />
+    <Content Include="images\showdetails.gif" />
+    <Content Include="images\showtableborders.gif" />
+    <Content Include="images\smiley.gif" />
+    <Content Include="images\source.gif" />
+    <Content Include="images\specialchar.gif" />
+    <Content Include="images\spellcheck.gif" />
+    <Content Include="images\strikethrough.gif" />
+    <Content Include="images\subscript.gif" />
+    <Content Include="images\superscript.gif" />
+    <Content Include="images\table.gif" />
+    <Content Include="images\tablecell.gif" />
+    <Content Include="images\tabledeletecells.gif" />
+    <Content Include="images\tabledeletecolumns.gif" />
+    <Content Include="images\tabledeleterows.gif" />
+    <Content Include="images\tableinsertcell.gif" />
+    <Content Include="images\tableinsertcolumn.gif" />
+    <Content Include="images\tableinsertrow.gif" />
+    <Content Include="images\tablemergecells.gif" />
+    <Content Include="images\tablesplitcell.gif" />
+    <Content Include="images\templates.gif" />
+    <Content Include="images\textarea.gif" />
+    <Content Include="images\textcolor.gif" />
+    <Content Include="images\textfield.gif" />
+    <Content Include="images\underline.gif" />
+    <Content Include="images\undo.gif" />
+    <Content Include="images\universalkey.gif" />
+    <Content Include="images\unlink.gif" />
+    <Content Include="images\unorderedlist.gif" />
     <Content Include="jj.ico" />
     <Content Include="jj2.ico" />
-    <Content Include="normal.gif" />
-    <Content Include="underline.gif" />
+    <Content Include="images\normal.gif" />
+    <Content Include="images\Treble_clef.png" />
     <None Include="gpl.rtf" />
+    <None Include="images\Thumbs.db" />
     <BaseApplicationManifest Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace JustJournal
 {
@@ -18,7 +19,6 @@ namespace JustJournal
 	public class JustJournal
 	{
         private const string server = "www.justjournal.com";
-		private const string version = "JustJournal/1.3.1 Win";
 
 		private static bool loggedIn = false;
 		private static string userName;
@@ -136,7 +136,7 @@ namespace JustJournal
 		{
 			get
 			{
-                return version;
+                return "JustJournal/" + AssemblyVersion() + " Win";
 			}
 		}
 
@@ -220,7 +220,7 @@ namespace JustJournal
 
 			// Add a user agent header in case the 
 			// requested URI contains a query.
-			client.Headers.Add("User-Agent", version);
+			client.Headers.Add("User-Agent", Version);
 
 			myNameValueCollection.Add("username", userName);            
 			myNameValueCollection.Add("password", password);
@@ -242,7 +242,7 @@ namespace JustJournal
 			WebClient client = new WebClient();
 			string uriString = "http://" + server + "/moodlist.h";
 
-		    client.Headers.Add("User-Agent", version);
+		    client.Headers.Add("User-Agent", Version);
 			byte[] responseArray = client.DownloadData(uriString);
 			string resp = Encoding.UTF8.GetString(responseArray);
 			System.Xml.XmlDocument xdoc = new System.Xml.XmlDocument();
@@ -262,6 +262,23 @@ namespace JustJournal
 		{
 			
 		}
+
+        private static String AssemblyVersion()
+        {
+            Assembly assembly = Assembly.GetCallingAssembly();
+            // name, description and more
+            //object[] attributes = assembly.GetCustomAttributes(true); 
+            //foreach (object attribute in attributes)
+            //{
+            //    if (attribute is AssemblyTitleAttribute)
+            //        labelTitle.Text = ((AssemblyTitleAttribute)attribute).Title;
+            //}
+            // version
+            AssemblyName assemblyname = assembly.GetName();
+            Version assemblyver = assemblyname.Version;
+            return assemblyver.ToString();
+        }
+
 
 	}
 }
