@@ -95,7 +95,6 @@ namespace JustJournal
         private PictureBox pictureBox1;
         private ToolStripContainer toolStripContainer1;
         private ToolStrip toolStrip2;
-        private ToolStripButton toolStripButton8;
         private ToolStrip toolStrip3;
         private ToolStripButton toolStripButton9;
         private ToolStripButton toolStripButton10;
@@ -106,6 +105,8 @@ namespace JustJournal
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton toolStripButton14;
         private ToolStripButton toolStripButton15;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripButton tsbAbout;
 		private System.ComponentModel.IContainer components;
 
 		public PostForm()
@@ -258,13 +259,13 @@ namespace JustJournal
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip3.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -567,7 +568,7 @@ namespace JustJournal
             "Other",
             "School",
             "Work"});
-            this.cboLocation.Location = new System.Drawing.Point(377, 67);
+            this.cboLocation.Location = new System.Drawing.Point(377, 57);
             this.cboLocation.Name = "cboLocation";
             this.cboLocation.Size = new System.Drawing.Size(144, 21);
             this.cboLocation.TabIndex = 1;
@@ -575,7 +576,7 @@ namespace JustJournal
             // cboMood
             // 
             this.cboMood.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMood.Location = new System.Drawing.Point(57, 98);
+            this.cboMood.Location = new System.Drawing.Point(57, 88);
             this.cboMood.Name = "cboMood";
             this.cboMood.Size = new System.Drawing.Size(144, 21);
             this.cboMood.TabIndex = 2;
@@ -584,7 +585,7 @@ namespace JustJournal
             // 
             this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubject.Location = new System.Drawing.Point(57, 67);
+            this.txtSubject.Location = new System.Drawing.Point(57, 57);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(256, 20);
             this.txtSubject.TabIndex = 0;
@@ -593,7 +594,7 @@ namespace JustJournal
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(321, 70);
+            this.label2.Location = new System.Drawing.Point(321, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 18);
             this.label2.TabIndex = 7;
@@ -601,7 +602,7 @@ namespace JustJournal
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(17, 101);
+            this.label3.Location = new System.Drawing.Point(17, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 8;
@@ -609,7 +610,7 @@ namespace JustJournal
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(9, 69);
+            this.label4.Location = new System.Drawing.Point(9, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 16);
             this.label4.TabIndex = 9;
@@ -622,10 +623,10 @@ namespace JustJournal
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbBody.AutoSize = true;
             this.rtbBody.ContextMenu = this.editBoxMenu;
-            this.rtbBody.Location = new System.Drawing.Point(0, 128);
+            this.rtbBody.Location = new System.Drawing.Point(0, 117);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbBody.Size = new System.Drawing.Size(528, 226);
+            this.rtbBody.Size = new System.Drawing.Size(528, 237);
             this.rtbBody.TabIndex = 5;
             this.rtbBody.Text = "";
             // 
@@ -665,7 +666,7 @@ namespace JustJournal
             // 
             this.txtMusic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMusic.Location = new System.Drawing.Point(217, 98);
+            this.txtMusic.Location = new System.Drawing.Point(217, 88);
             this.txtMusic.MaxLength = 100;
             this.txtMusic.Name = "txtMusic";
             this.txtMusic.Size = new System.Drawing.Size(232, 20);
@@ -676,7 +677,7 @@ namespace JustJournal
             this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
             this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMusicSense.Location = new System.Drawing.Point(457, 98);
+            this.btnMusicSense.Location = new System.Drawing.Point(457, 88);
             this.btnMusicSense.Name = "btnMusicSense";
             this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
             this.btnMusicSense.TabIndex = 4;
@@ -719,9 +720,11 @@ namespace JustJournal
             this.toolStripButton2,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 25);
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 23);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(268, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(526, 23);
+            this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -732,7 +735,7 @@ namespace JustJournal
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton3.Text = "Bold";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -743,7 +746,7 @@ namespace JustJournal
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton4.Text = "Italic";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -754,14 +757,14 @@ namespace JustJournal
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton5.Text = "Underline";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButton1
             // 
@@ -769,7 +772,7 @@ namespace JustJournal
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton1.Text = "Normal";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -779,7 +782,7 @@ namespace JustJournal
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton2.Text = "Font";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -788,7 +791,7 @@ namespace JustJournal
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(52, 20);
             this.toolStripButton6.Text = "Color";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -797,7 +800,7 @@ namespace JustJournal
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(83, 22);
+            this.toolStripButton7.Size = new System.Drawing.Size(83, 20);
             this.toolStripButton7.Text = "Background";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
@@ -829,9 +832,9 @@ namespace JustJournal
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             // 
             // toolStrip3
             // 
@@ -845,10 +848,14 @@ namespace JustJournal
             this.toolStripButton13,
             this.toolStripSeparator2,
             this.toolStripButton14,
-            this.toolStripButton15});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 0);
+            this.toolStripButton15,
+            this.toolStripSeparator4,
+            this.tsbAbout});
+            this.toolStrip3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(185, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(525, 23);
+            this.toolStrip3.Stretch = true;
             this.toolStrip3.TabIndex = 19;
             // 
             // toolStripButton9
@@ -857,7 +864,7 @@ namespace JustJournal
             this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
             this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton9.Text = "Open";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
@@ -867,14 +874,14 @@ namespace JustJournal
             this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
             this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton10.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton10.Text = "Save";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButton11
             // 
@@ -882,7 +889,7 @@ namespace JustJournal
             this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
             this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton11.Name = "toolStripButton11";
-            this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton11.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton11.Text = "Cut";
             this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
@@ -892,7 +899,7 @@ namespace JustJournal
             this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton12.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton12.Text = "Copy";
             this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
             // 
@@ -902,14 +909,14 @@ namespace JustJournal
             this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
             this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton13.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton13.Text = "Paste";
             this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButton14
             // 
@@ -917,7 +924,7 @@ namespace JustJournal
             this.toolStripButton14.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton14.Image")));
             this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton14.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton14.Text = "Undo";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
@@ -927,29 +934,33 @@ namespace JustJournal
             this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton15.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton15.Text = "Redo";
             this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
             // 
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton8});
-            this.toolStrip2.Location = new System.Drawing.Point(188, 0);
+            this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip2.Location = new System.Drawing.Point(525, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(1, 0);
             this.toolStrip2.TabIndex = 18;
             // 
-            // toolStripButton8
+            // toolStripSeparator4
             // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton8.Text = "About";
-            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click_1);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
+            // 
+            // tsbAbout
+            // 
+            this.tsbAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAbout.Image = ((System.Drawing.Image)(resources.GetObject("tsbAbout.Image")));
+            this.tsbAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAbout.Name = "tsbAbout";
+            this.tsbAbout.Size = new System.Drawing.Size(23, 20);
+            this.tsbAbout.Text = "About";
+            this.tsbAbout.Click += new System.EventHandler(this.tsbAbout_Click);
             // 
             // PostForm
             // 
@@ -984,8 +995,6 @@ namespace JustJournal
             this.toolStripContainer1.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1854,9 +1863,10 @@ namespace JustJournal
             }
         }
 
-        private void toolStripButton8_Click_1(object sender, EventArgs e)
+        private void tsbAbout_Click(object sender, EventArgs e)
         {
             new AboutForm().Show();
         }
+       
 	}
 }

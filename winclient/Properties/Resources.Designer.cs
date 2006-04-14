@@ -59,5 +59,12 @@ namespace JustJournal.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap body_bg {
+            get {
+                object obj = ResourceManager.GetObject("body_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -79,7 +79,16 @@ namespace JustJournal
 				postFormatted.Checked = true;
 			else
 				postRaw.Checked = true;
+
+            if (!chkMusicDetect.Checked)
+            {
+                chkItunes.Enabled = false;
+                chkPaused.Enabled = false;
+                chkStopped.Enabled = false;
+            }
 		}
+
+
 
 		
 		/// <summary>
@@ -106,263 +115,270 @@ namespace JustJournal
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Options));
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabGeneral = new System.Windows.Forms.TabPage();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.postRaw = new System.Windows.Forms.RadioButton();
-			this.postFormatted = new System.Windows.Forms.RadioButton();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.chkUseSSL = new System.Windows.Forms.CheckBox();
-			this.chkSavePassword = new System.Windows.Forms.CheckBox();
-			this.chkAutoLogin = new System.Windows.Forms.CheckBox();
-			this.tabIntegration = new System.Windows.Forms.TabPage();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.chkPaused = new System.Windows.Forms.CheckBox();
-			this.chkStopped = new System.Windows.Forms.CheckBox();
-			this.chkItunes = new System.Windows.Forms.CheckBox();
-			this.chkMusicDetect = new System.Windows.Forms.CheckBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.chkAutoSpell = new System.Windows.Forms.CheckBox();
-			this.chkUseWord = new System.Windows.Forms.CheckBox();
-			this.btnClose = new System.Windows.Forms.Button();
-			this.chkOutlook = new System.Windows.Forms.CheckBox();
-			this.tabControl1.SuspendLayout();
-			this.tabGeneral.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.tabIntegration.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			this.groupBox5.SuspendLayout();
-			this.groupBox3.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tabGeneral);
-			this.tabControl1.Controls.Add(this.tabIntegration);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.HotTrack = true;
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
-			this.tabControl1.Multiline = true;
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(432, 406);
-			this.tabControl1.TabIndex = 0;
-			// 
-			// tabGeneral
-			// 
-			this.tabGeneral.Controls.Add(this.groupBox2);
-			this.tabGeneral.Controls.Add(this.groupBox1);
-			this.tabGeneral.Location = new System.Drawing.Point(4, 22);
-			this.tabGeneral.Name = "tabGeneral";
-			this.tabGeneral.Size = new System.Drawing.Size(424, 380);
-			this.tabGeneral.TabIndex = 0;
-			this.tabGeneral.Text = "General";
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.postRaw);
-			this.groupBox2.Controls.Add(this.postFormatted);
-			this.groupBox2.Location = new System.Drawing.Point(8, 152);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(408, 88);
-			this.groupBox2.TabIndex = 2;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Post Mode";
-			// 
-			// postRaw
-			// 
-			this.postRaw.Location = new System.Drawing.Point(24, 48);
-			this.postRaw.Name = "postRaw";
-			this.postRaw.TabIndex = 1;
-			this.postRaw.Text = "Raw Text";
-			// 
-			// postFormatted
-			// 
-			this.postFormatted.Location = new System.Drawing.Point(24, 24);
-			this.postFormatted.Name = "postFormatted";
-			this.postFormatted.TabIndex = 0;
-			this.postFormatted.Text = "Formatted Text";
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.chkUseSSL);
-			this.groupBox1.Controls.Add(this.chkSavePassword);
-			this.groupBox1.Controls.Add(this.chkAutoLogin);
-			this.groupBox1.Location = new System.Drawing.Point(8, 16);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(408, 125);
-			this.groupBox1.TabIndex = 1;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Login";
-			// 
-			// chkUseSSL
-			// 
-			this.chkUseSSL.Location = new System.Drawing.Point(24, 88);
-			this.chkUseSSL.Name = "chkUseSSL";
-			this.chkUseSSL.Size = new System.Drawing.Size(184, 24);
-			this.chkUseSSL.TabIndex = 2;
-			this.chkUseSSL.Text = "Use secure connection (SSL)";
-			// 
-			// chkSavePassword
-			// 
-			this.chkSavePassword.Location = new System.Drawing.Point(24, 56);
-			this.chkSavePassword.Name = "chkSavePassword";
-			this.chkSavePassword.Size = new System.Drawing.Size(184, 24);
-			this.chkSavePassword.TabIndex = 1;
-			this.chkSavePassword.Text = "Save password";
-			// 
-			// chkAutoLogin
-			// 
-			this.chkAutoLogin.Location = new System.Drawing.Point(24, 24);
-			this.chkAutoLogin.Name = "chkAutoLogin";
-			this.chkAutoLogin.TabIndex = 0;
-			this.chkAutoLogin.Text = "Automatic login";
-			// 
-			// tabIntegration
-			// 
-			this.tabIntegration.Controls.Add(this.groupBox4);
-			this.tabIntegration.Controls.Add(this.groupBox3);
-			this.tabIntegration.Location = new System.Drawing.Point(4, 22);
-			this.tabIntegration.Name = "tabIntegration";
-			this.tabIntegration.Size = new System.Drawing.Size(424, 380);
-			this.tabIntegration.TabIndex = 1;
-			this.tabIntegration.Text = "Integration";
-			// 
-			// groupBox4
-			// 
-			this.groupBox4.Controls.Add(this.groupBox5);
-			this.groupBox4.Controls.Add(this.chkItunes);
-			this.groupBox4.Controls.Add(this.chkMusicDetect);
-			this.groupBox4.Controls.Add(this.pictureBox1);
-			this.groupBox4.Location = new System.Drawing.Point(8, 144);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(408, 200);
-			this.groupBox4.TabIndex = 1;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Music Player";
-			// 
-			// groupBox5
-			// 
-			this.groupBox5.Controls.Add(this.chkPaused);
-			this.groupBox5.Controls.Add(this.chkStopped);
-			this.groupBox5.Location = new System.Drawing.Point(24, 96);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(240, 88);
-			this.groupBox5.TabIndex = 5;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Check Winamp when music is";
-			// 
-			// chkPaused
-			// 
-			this.chkPaused.Location = new System.Drawing.Point(24, 24);
-			this.chkPaused.Name = "chkPaused";
-			this.chkPaused.Size = new System.Drawing.Size(72, 24);
-			this.chkPaused.TabIndex = 3;
-			this.chkPaused.Text = "Paused";
-			// 
-			// chkStopped
-			// 
-			this.chkStopped.Location = new System.Drawing.Point(24, 56);
-			this.chkStopped.Name = "chkStopped";
-			this.chkStopped.Size = new System.Drawing.Size(72, 24);
-			this.chkStopped.TabIndex = 4;
-			this.chkStopped.Text = "Stopped";
-			// 
-			// chkItunes
-			// 
-			this.chkItunes.Location = new System.Drawing.Point(24, 64);
-			this.chkItunes.Name = "chkItunes";
-			this.chkItunes.Size = new System.Drawing.Size(240, 24);
-			this.chkItunes.TabIndex = 1;
-			this.chkItunes.Text = "Enable Apple  iTunes integration";
-			// 
-			// chkMusicDetect
-			// 
-			this.chkMusicDetect.Location = new System.Drawing.Point(24, 32);
-			this.chkMusicDetect.Name = "chkMusicDetect";
-			this.chkMusicDetect.Size = new System.Drawing.Size(240, 24);
-			this.chkMusicDetect.TabIndex = 0;
-			this.chkMusicDetect.Text = "Detect music";
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(288, 16);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(96, 168);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 2;
-			this.pictureBox1.TabStop = false;
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.chkOutlook);
-			this.groupBox3.Controls.Add(this.chkAutoSpell);
-			this.groupBox3.Controls.Add(this.chkUseWord);
-			this.groupBox3.Location = new System.Drawing.Point(8, 16);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(408, 120);
-			this.groupBox3.TabIndex = 0;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Microsoft Office";
-			// 
-			// chkAutoSpell
-			// 
-			this.chkAutoSpell.Location = new System.Drawing.Point(24, 56);
-			this.chkAutoSpell.Name = "chkAutoSpell";
-			this.chkAutoSpell.Size = new System.Drawing.Size(256, 24);
-			this.chkAutoSpell.TabIndex = 1;
-			this.chkAutoSpell.Text = "Automatically check spelling before posting";
-			// 
-			// chkUseWord
-			// 
-			this.chkUseWord.Location = new System.Drawing.Point(24, 24);
-			this.chkUseWord.Name = "chkUseWord";
-			this.chkUseWord.Size = new System.Drawing.Size(240, 24);
-			this.chkUseWord.TabIndex = 0;
-			this.chkUseWord.Text = "Use Microsoft Word to spell check entries";
-			// 
-			// btnClose
-			// 
-			this.btnClose.Location = new System.Drawing.Point(352, 376);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.TabIndex = 1;
-			this.btnClose.Text = "Close";
-			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-			// 
-			// chkOutlook
-			// 
-			this.chkOutlook.Location = new System.Drawing.Point(24, 88);
-			this.chkOutlook.Name = "chkOutlook";
-			this.chkOutlook.Size = new System.Drawing.Size(256, 24);
-			this.chkOutlook.TabIndex = 2;
-			this.chkOutlook.Text = "Copy entries to the outlook journal";
-			// 
-			// Options
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(432, 406);
-			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.tabControl1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "Options";
-			this.Text = "Options";
-			this.TopMost = true;
-			this.tabControl1.ResumeLayout(false);
-			this.tabGeneral.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox1.ResumeLayout(false);
-			this.tabIntegration.ResumeLayout(false);
-			this.groupBox4.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox3.ResumeLayout(false);
-			this.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.postRaw = new System.Windows.Forms.RadioButton();
+            this.postFormatted = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkUseSSL = new System.Windows.Forms.CheckBox();
+            this.chkSavePassword = new System.Windows.Forms.CheckBox();
+            this.chkAutoLogin = new System.Windows.Forms.CheckBox();
+            this.tabIntegration = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chkPaused = new System.Windows.Forms.CheckBox();
+            this.chkStopped = new System.Windows.Forms.CheckBox();
+            this.chkItunes = new System.Windows.Forms.CheckBox();
+            this.chkMusicDetect = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkOutlook = new System.Windows.Forms.CheckBox();
+            this.chkAutoSpell = new System.Windows.Forms.CheckBox();
+            this.chkUseWord = new System.Windows.Forms.CheckBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.tabControl1.SuspendLayout();
+            this.tabGeneral.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabIntegration.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabGeneral);
+            this.tabControl1.Controls.Add(this.tabIntegration);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.HotTrack = true;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Multiline = true;
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(432, 406);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabGeneral
+            // 
+            this.tabGeneral.Controls.Add(this.groupBox2);
+            this.tabGeneral.Controls.Add(this.groupBox1);
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Size = new System.Drawing.Size(424, 380);
+            this.tabGeneral.TabIndex = 0;
+            this.tabGeneral.Text = "General";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.postRaw);
+            this.groupBox2.Controls.Add(this.postFormatted);
+            this.groupBox2.Location = new System.Drawing.Point(8, 152);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(408, 88);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Post Mode";
+            // 
+            // postRaw
+            // 
+            this.postRaw.Location = new System.Drawing.Point(24, 48);
+            this.postRaw.Name = "postRaw";
+            this.postRaw.Size = new System.Drawing.Size(104, 24);
+            this.postRaw.TabIndex = 1;
+            this.postRaw.Text = "Raw Text";
+            // 
+            // postFormatted
+            // 
+            this.postFormatted.Location = new System.Drawing.Point(24, 24);
+            this.postFormatted.Name = "postFormatted";
+            this.postFormatted.Size = new System.Drawing.Size(104, 24);
+            this.postFormatted.TabIndex = 0;
+            this.postFormatted.Text = "Formatted Text";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkUseSSL);
+            this.groupBox1.Controls.Add(this.chkSavePassword);
+            this.groupBox1.Controls.Add(this.chkAutoLogin);
+            this.groupBox1.Location = new System.Drawing.Point(8, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(408, 125);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Login";
+            // 
+            // chkUseSSL
+            // 
+            this.chkUseSSL.Location = new System.Drawing.Point(24, 88);
+            this.chkUseSSL.Name = "chkUseSSL";
+            this.chkUseSSL.Size = new System.Drawing.Size(184, 24);
+            this.chkUseSSL.TabIndex = 2;
+            this.chkUseSSL.Text = "Use secure connection (SSL)";
+            // 
+            // chkSavePassword
+            // 
+            this.chkSavePassword.Location = new System.Drawing.Point(24, 56);
+            this.chkSavePassword.Name = "chkSavePassword";
+            this.chkSavePassword.Size = new System.Drawing.Size(184, 24);
+            this.chkSavePassword.TabIndex = 1;
+            this.chkSavePassword.Text = "Save password";
+            // 
+            // chkAutoLogin
+            // 
+            this.chkAutoLogin.Location = new System.Drawing.Point(24, 24);
+            this.chkAutoLogin.Name = "chkAutoLogin";
+            this.chkAutoLogin.Size = new System.Drawing.Size(104, 24);
+            this.chkAutoLogin.TabIndex = 0;
+            this.chkAutoLogin.Text = "Automatic login";
+            // 
+            // tabIntegration
+            // 
+            this.tabIntegration.Controls.Add(this.groupBox4);
+            this.tabIntegration.Controls.Add(this.groupBox3);
+            this.tabIntegration.Location = new System.Drawing.Point(4, 22);
+            this.tabIntegration.Name = "tabIntegration";
+            this.tabIntegration.Size = new System.Drawing.Size(424, 380);
+            this.tabIntegration.TabIndex = 1;
+            this.tabIntegration.Text = "Integration";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.groupBox5);
+            this.groupBox4.Controls.Add(this.chkItunes);
+            this.groupBox4.Controls.Add(this.chkMusicDetect);
+            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Location = new System.Drawing.Point(8, 144);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(408, 200);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Music Player";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.chkPaused);
+            this.groupBox5.Controls.Add(this.chkStopped);
+            this.groupBox5.Location = new System.Drawing.Point(24, 96);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(240, 88);
+            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Check Winamp when music is";
+            // 
+            // chkPaused
+            // 
+            this.chkPaused.Location = new System.Drawing.Point(24, 24);
+            this.chkPaused.Name = "chkPaused";
+            this.chkPaused.Size = new System.Drawing.Size(72, 24);
+            this.chkPaused.TabIndex = 3;
+            this.chkPaused.Text = "Paused";
+            // 
+            // chkStopped
+            // 
+            this.chkStopped.Location = new System.Drawing.Point(24, 56);
+            this.chkStopped.Name = "chkStopped";
+            this.chkStopped.Size = new System.Drawing.Size(72, 24);
+            this.chkStopped.TabIndex = 4;
+            this.chkStopped.Text = "Stopped";
+            // 
+            // chkItunes
+            // 
+            this.chkItunes.Location = new System.Drawing.Point(24, 64);
+            this.chkItunes.Name = "chkItunes";
+            this.chkItunes.Size = new System.Drawing.Size(240, 24);
+            this.chkItunes.TabIndex = 1;
+            this.chkItunes.Text = "Enable Apple  iTunes integration";
+            // 
+            // chkMusicDetect
+            // 
+            this.chkMusicDetect.Location = new System.Drawing.Point(24, 32);
+            this.chkMusicDetect.Name = "chkMusicDetect";
+            this.chkMusicDetect.Size = new System.Drawing.Size(240, 24);
+            this.chkMusicDetect.TabIndex = 0;
+            this.chkMusicDetect.Text = "Detect music";
+            this.chkMusicDetect.CheckedChanged += new System.EventHandler(this.chkMusicDetect_CheckedChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(288, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(96, 168);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.chkOutlook);
+            this.groupBox3.Controls.Add(this.chkAutoSpell);
+            this.groupBox3.Controls.Add(this.chkUseWord);
+            this.groupBox3.Location = new System.Drawing.Point(8, 16);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(408, 120);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Microsoft Office";
+            // 
+            // chkOutlook
+            // 
+            this.chkOutlook.Location = new System.Drawing.Point(24, 88);
+            this.chkOutlook.Name = "chkOutlook";
+            this.chkOutlook.Size = new System.Drawing.Size(256, 24);
+            this.chkOutlook.TabIndex = 2;
+            this.chkOutlook.Text = "Copy entries to the outlook journal";
+            // 
+            // chkAutoSpell
+            // 
+            this.chkAutoSpell.Location = new System.Drawing.Point(24, 56);
+            this.chkAutoSpell.Name = "chkAutoSpell";
+            this.chkAutoSpell.Size = new System.Drawing.Size(256, 24);
+            this.chkAutoSpell.TabIndex = 1;
+            this.chkAutoSpell.Text = "Automatically check spelling before posting";
+            // 
+            // chkUseWord
+            // 
+            this.chkUseWord.Location = new System.Drawing.Point(24, 24);
+            this.chkUseWord.Name = "chkUseWord";
+            this.chkUseWord.Size = new System.Drawing.Size(240, 24);
+            this.chkUseWord.TabIndex = 0;
+            this.chkUseWord.Text = "Use Microsoft Word to spell check entries";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(352, 376);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // Options
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(432, 406);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Options";
+            this.Text = "Options";
+            this.TopMost = true;
+            this.tabControl1.ResumeLayout(false);
+            this.tabGeneral.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tabIntegration.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -457,6 +473,22 @@ namespace JustJournal
 			mk.Close();
 			rk.Close();
 		}
+
+        private void chkMusicDetect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkMusicDetect.Checked)
+            {
+                chkItunes.Enabled = false;
+                chkPaused.Enabled = false;
+                chkStopped.Enabled = false;
+            }
+            else
+            {
+                chkItunes.Enabled = true;
+                chkPaused.Enabled = true;
+                chkStopped.Enabled = true;
+            }
+        }
 	}
 
 }

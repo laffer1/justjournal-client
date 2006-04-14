@@ -291,6 +291,7 @@
     <Content Include="jj2.ico" />
     <Content Include="images\normal.gif" />
     <Content Include="images\Treble_clef.png" />
+    <None Include="Resources\body_bg.gif" />
     <None Include="gpl.rtf" />
     <None Include="images\Thumbs.db" />
     <BaseApplicationManifest Include="Properties\app.manifest" />
