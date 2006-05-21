@@ -23,7 +23,7 @@ namespace JustJournal
 		private static extern uint FindWindow(string _ClassName, string _WindowName);
 
 		[DllImport("user32.dll")]
-        private static extern uint GetWindowText(uint hWnd, StringBuilder lpString, uint nMaxCount);
+        private static extern uint GetWindowText(System.UInt64 hWnd, StringBuilder lpString, uint nMaxCount);
 		private System.Windows.Forms.MainMenu mainMenu1;
 		private System.Windows.Forms.MenuItem menuItem1;
 		private System.Windows.Forms.MenuItem menuItem2;
@@ -120,7 +120,7 @@ namespace JustJournal
 			// TODO: Add any constructor code after InitializeComponent call
 			//
 
-			if (!JustJournal.EnableSpellCheck)
+			if (!JustJournalCore.EnableSpellCheck)
 				this.menuItem31.Enabled = false; // turn off spell check
 
 			RegistryKey reg = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal\\Post" );
@@ -128,18 +128,18 @@ namespace JustJournal
             cboLocation.SelectedIndex = (int)reg.GetValue("location",0);
 			reg.Close();
 
-			lblCurrentUser.Text = JustJournal.UserName;
+			lblCurrentUser.Text = JustJournalCore.UserName;
 
 			// If we need the moods, go get them.
-			if ( JustJournal.Moods.Count == 0)
-				JustJournal.RetrieveMoods();
+			if ( JustJournalCore.Moods.Count == 0)
+				JustJournalCore.RetrieveMoods();
 
-			cboMood.DataSource = JustJournal.Moods;
+			cboMood.DataSource = JustJournalCore.Moods;
 			cboMood.DisplayMember = "Name";
 			cboMood.ValueMember = "Id";
 			cboMood.SelectedIndex = cboMood.FindStringExact("Not Specified",0);
 
-            if (JustJournal.EnableMusicDetection)
+            if (JustJournalCore.EnableMusicDetection)
                 txtMusic.Text = detectMusic();
             else
             {
@@ -1022,7 +1022,7 @@ namespace JustJournal
 
 		private void btnPost_Click(object sender, System.EventArgs e)
 		{
-			if (JustJournal.AutoSpellCheck)
+			if (JustJournalCore.AutoSpellCheck)
 			{
 				if( spellingCheck() )
 				{
@@ -1037,7 +1037,7 @@ namespace JustJournal
 			this.Enabled = false;
 			this.Cursor = Cursors.WaitCursor;
 			
-			if (JustJournal.Outlook)
+			if (JustJournalCore.Outlook)
 			{
 				try 
 				{
@@ -1057,7 +1057,7 @@ namespace JustJournal
 
 			WebClient client = new WebClient();
 			string uriString;
-            if (JustJournal.EnableSSL)
+            if (JustJournalCore.EnableSsl)
                 uriString = "https://";
 			else
 			    uriString = "http://";		 
@@ -1068,22 +1068,22 @@ namespace JustJournal
 
 			// Add a user agent header in case the 
 			// requested URI contains a query.
-			client.Headers.Add("User-Agent", JustJournal.Version);
+			client.Headers.Add("User-Agent", JustJournalCore.Version);
 
 			// Add necessary parameter/value pairs to the name/value container.
 			
-			myNameValueCollection.Add("user", JustJournal.UserName);            
-			myNameValueCollection.Add("pass", JustJournal.Password);
+			myNameValueCollection.Add("user", JustJournalCore.UserName);            
+			myNameValueCollection.Add("pass", JustJournalCore.Password);
 			myNameValueCollection.Add("keeplogin", "NO");
 			DateTime d1 = DateTime.Now;
             //myNameValueCollection.Add("date", "2005-09-30 16:18:26");
 			myNameValueCollection.Add("date", d1.Year + "-" + d1.Month + "-" + d1.Day + " " + d1.Hour + ":" + d1.Minute + ":" + d1.Second);
 			myNameValueCollection.Add("subject", txtSubject.Text);
-			
+   
 			if (mnuFormattedText.Checked)
-					myNameValueCollection.Add("body",RtfToHtml.Convert(rtbBody.Rtf,
-						RtfToHtml.ToHexColor(rtbBody.BackColor.R,rtbBody.BackColor.G,
-						    rtbBody.BackColor.B)));
+                myNameValueCollection.Add("body", RtfToHtml.Convert(rtbBody.Rtf,
+                    RtfToHtml.ToHexColor(rtbBody.BackColor.R, rtbBody.BackColor.G,
+                        rtbBody.BackColor.B)));
 			else
 			    myNameValueCollection.Add("body", rtbBody.Text);
 
@@ -1328,7 +1328,8 @@ namespace JustJournal
 			{
 				if( openDlg.ShowDialog( this ).Equals( DialogResult.OK ) )
 				{
-					if( Path.GetExtension( openDlg.FileName ).ToLower().Equals( ".rtf" ) )
+
+                    if (String.Compare(Path.GetExtension(openDlg.FileName), ".rtf",true) == 0)
 					{
 						rtbBody.LoadFile( openDlg.FileName, RichTextBoxStreamType.RichText );
 					} 
@@ -1411,13 +1412,13 @@ namespace JustJournal
 		    rtbBody.SelectedRtf = string.Empty;
 		}
 
-		private string detectMusic()
+		private static string detectMusic()
 		{
 			// skip if we have it disabled.
-            if (!JustJournal.EnableMusicDetection)
+            if (!JustJournalCore.EnableMusicDetection)
 				return "";
 
-			if (JustJournal.DetectItunes)
+			if (JustJournalCore.DetectItunes)
 			{
 				// iTunes Detection
 				try 
@@ -1533,7 +1534,7 @@ namespace JustJournal
 						size = name.Length - start - 9;
 						if( name.EndsWith( "[Paused]" ) )
 						{
-							if( JustJournal.WinampPaused )
+							if( JustJournalCore.WinampPaused )
 							{
 								size -= 9;
 								name = name.Substring( start, size );
@@ -1545,7 +1546,7 @@ namespace JustJournal
 						}
 						else if( name.EndsWith( "[Stopped]" ) )
 						{
-							if( JustJournal.WinampStopped )
+							if( JustJournalCore.WinampStopped )
 							{
 								size -= 10;
 								name = name.Substring( start, size );
@@ -1706,18 +1707,18 @@ namespace JustJournal
 			{
                 Microsoft.Office.Interop.Word.Application chk = new Microsoft.Office.Interop.Word.ApplicationClass();
 				int cur = 0;
-				string word = "";
+                StringBuilder word = new StringBuilder();
 				while( cur < rtbBody.Text.Length ) 
 				{
 					if( char.IsLetter( rtbBody.Text[cur] ) || rtbBody.Text[cur].Equals( '\'' ) )
 					{
-						word += rtbBody.Text[cur];
+						word.Append( rtbBody.Text[cur] );
 					}
 					else
 					{
 						if( word.Length != 0 ) 
 						{		
-							if( !chk.CheckSpelling( word, ref nul, ref nul, ref nul, ref nul, ref nul,
+							if( !chk.CheckSpelling( word.ToString(), ref nul, ref nul, ref nul, ref nul, ref nul,
 								ref nul, ref nul, ref nul, ref nul, ref nul, ref nul, ref nul ) )
 							{
 								rtbBody.Select( cur - word.Length, word.Length );
@@ -1725,7 +1726,7 @@ namespace JustJournal
 								rtbBody.SelectionFont = ft;
 								errors = true;
 							}
-							word = "";
+                            word.Remove(0, word.Length); // reset
 						}
 					}
 					cur++;
@@ -1846,7 +1847,7 @@ namespace JustJournal
             {
                 if (openDlg.ShowDialog(this).Equals(DialogResult.OK))
                 {
-                    if (Path.GetExtension(openDlg.FileName).ToLower().Equals(".rtf"))
+                    if (String.Compare(Path.GetExtension(openDlg.FileName), ".rtf", false) ==0)
                     {
                         rtbBody.LoadFile(openDlg.FileName, RichTextBoxStreamType.RichText);
                     }

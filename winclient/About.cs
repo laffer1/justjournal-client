@@ -33,7 +33,7 @@ namespace JustJournal
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
-            lblVersion.Text = JustJournal.Version;
+            lblVersion.Text = JustJournalCore.Version;
 		}
 
 		/// <summary>

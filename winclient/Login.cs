@@ -7,6 +7,10 @@ using Microsoft.Win32;
 using System.Threading;
 using System.Globalization;
 using System.Resources;
+using System.Security.Permissions;
+
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
+[assembly: CLSCompliant(true)]
 
 namespace JustJournal
 {
@@ -19,7 +23,7 @@ namespace JustJournal
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.GroupBox groupBox1;
 		protected System.Windows.Forms.TextBox txtPassword;
-		public System.Windows.Forms.TextBox txtUserName;
+		protected System.Windows.Forms.TextBox txtUserName;
 		private System.Windows.Forms.Button btnLogin;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.ComponentModel.IContainer components;
@@ -84,13 +88,13 @@ namespace JustJournal
 			string pwd = (string)rk.GetValue( "password", "" );
 			bool autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
 			bool ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
-			JustJournal.EnableSpellCheck = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-			JustJournal.AutoSpellCheck = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
-			JustJournal.EnableMusicDetection = ((string)rk.GetValue( "music", "no" )).Equals("yes");
-			JustJournal.DetectItunes = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
-			JustJournal.WinampPaused = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
-			JustJournal.WinampStopped = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
-			JustJournal.Outlook = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
+			JustJournalCore.EnableSpellCheck = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+			JustJournalCore.AutoSpellCheck = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+			JustJournalCore.EnableMusicDetection = ((string)rk.GetValue( "music", "no" )).Equals("yes");
+			JustJournalCore.DetectItunes = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
+			JustJournalCore.WinampPaused = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
+			JustJournalCore.WinampStopped = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
+			JustJournalCore.Outlook = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
 			mk.Close();
 			rk.Close();
 
@@ -107,7 +111,7 @@ namespace JustJournal
 			}
 
 			mnuUseSSL.Checked = ssl;
-			JustJournal.EnableSSL = ssl;
+			JustJournalCore.EnableSsl = ssl;
 
 			if( autoLog ) 
 			{
@@ -643,25 +647,25 @@ namespace JustJournal
 		{	
 			this.Enabled = false;
 			this.Cursor = Cursors.WaitCursor;
-			JustJournal.UserName = txtUserName.Text.Trim();
-			JustJournal.Password = txtPassword.Text.Trim();
+			JustJournalCore.UserName = txtUserName.Text.Trim();
+			JustJournalCore.Password = txtPassword.Text.Trim();
 
 			if (mnuUseSSL.Checked)
 			{
-				JustJournal.EnableSSL = true;
+				JustJournalCore.EnableSsl = true;
 				RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
 				rk.SetValue( "usessl", "yes" );
 			}
 			else 
 			{
-				JustJournal.EnableSSL = false;
+				JustJournalCore.EnableSsl = false;
 			    RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
 			    rk.SetValue( "usessl", "no" );
 		    }
 
 			try 
 			{
-				if ( JustJournal.Login() )
+				if ( JustJournalCore.Login() )
 				{
 					this.Enabled = true;
 					this.Cursor = Cursors.Default;
@@ -784,17 +788,17 @@ namespace JustJournal
 
 		private void menuItem15_Click(object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournal.UserName);
+			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName);
 		}
 
 		private void menuItem16_Click(object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournal.UserName + "/friends");
+			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName + "/friends");
 		}
 
 		private void menuItem17_Click(object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournal.UserName + "/calendar");
+			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName + "/calendar");
 		}
 
 		private void menuItem14_Click(object sender, System.EventArgs e)
@@ -804,7 +808,7 @@ namespace JustJournal
 
 		private void menuItem19_Click(object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://www.justjournal.com/profile.jsp?user=" + JustJournal.UserName);
+			System.Diagnostics.Process.Start("http://www.justjournal.com/profile.jsp?user=" + JustJournalCore.UserName);
 		}
 
 	}

@@ -70,7 +70,7 @@ namespace JustJournal
 			mk.Close();
 			rk.Close();
 
-			if( pwd.Equals("@") || pwd.Equals("") ) 
+			if( pwd.Equals("@") || String.IsNullOrEmpty(pwd) ) 
 				chkSavePassword.Checked = false;
 			else
 				chkSavePassword.Checked = true;
@@ -418,11 +418,11 @@ namespace JustJournal
 			mk.SetValue( "winampPaused", (chkPaused.Checked ? "yes" : "no"));
             mk.SetValue( "winampStopped", (chkStopped.Checked ? "yes" : "no"));
 			
-			JustJournal.DetectItunes = chkItunes.Checked;
-			JustJournal.EnableMusicDetection = chkMusicDetect.Checked;
-			JustJournal.WinampPaused = chkPaused.Checked;
-			JustJournal.WinampStopped = chkStopped.Checked;
-			JustJournal.Outlook = chkOutlook.Checked;
+			JustJournalCore.DetectItunes = chkItunes.Checked;
+			JustJournalCore.EnableMusicDetection = chkMusicDetect.Checked;
+			JustJournalCore.WinampPaused = chkPaused.Checked;
+			JustJournalCore.WinampStopped = chkStopped.Checked;
+			JustJournalCore.Outlook = chkOutlook.Checked;
 
 			if (chkUseSSL.Checked)
 			    rk.SetValue( "usessl", "yes" );
@@ -430,7 +430,7 @@ namespace JustJournal
 				rk.SetValue( "usessl", "no" );
 
 			if ( chkSavePassword.Checked )
-                rk.SetValue( "password", JustJournal.Password );
+                rk.SetValue( "password", JustJournalCore.Password );
 			else
 			    rk.SetValue( "password", "@" );
 
@@ -441,23 +441,23 @@ namespace JustJournal
 
 			if (chkUseWord.Checked)
 			{
-				JustJournal.EnableSpellCheck = true;
+				JustJournalCore.EnableSpellCheck = true;
 				rk.SetValue( "useword", "yes" );
 			}
 			else
 			{
-				JustJournal.EnableSpellCheck = false;
+				JustJournalCore.EnableSpellCheck = false;
 				rk.SetValue( "useword", "no" );
 			}
 
 			if (chkUseWord.Checked && chkAutoSpell.Checked)
 			{
-				JustJournal.AutoSpellCheck = true;
+				JustJournalCore.AutoSpellCheck = true;
 				rk.SetValue( "autospell", "yes" );
 			}
 			else
 			{
-				JustJournal.AutoSpellCheck = false;
+				JustJournalCore.AutoSpellCheck = false;
 				rk.SetValue( "autospell", "no" );
 			}
 

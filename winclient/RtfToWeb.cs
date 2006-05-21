@@ -13,7 +13,7 @@ namespace JustJournal
 	/// <summary>
 	/// Summary description for RtfToWeb.
 	/// </summary>
-	public class RtfToWeb
+	public sealed class RtfToWeb
 	{
 		private bool css = true;
 		private bool xhtml = true;

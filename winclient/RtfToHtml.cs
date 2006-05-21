@@ -13,7 +13,7 @@ namespace JustJournal
 	/// <summary>
 	/// Summary description for RtfToHtml.
 	/// </summary>
-	public class RtfToHtml
+	public sealed class RtfToHtml
 	{
 		/// <summary>
 		/// This is a static class.
@@ -129,7 +129,7 @@ namespace JustJournal
 				string deffont = string.Empty;
 				bool rdcolor = false;
 				//					bool utext = false;
-				ArrayList al = new ArrayList();
+				
 
 				int cur = 0;
 

@@ -116,7 +116,7 @@
       <VersionMinor>3</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
-      <Private>True</Private>
+      <Private>False</Private>
     </COMReference>
     <COMReference Include="Outlook">
       <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
