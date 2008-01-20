@@ -14,8 +14,18 @@ body {
     bottom: 18px;
     width: 13px;
     height: 13px;
-    top: 304px;
+    top: 324px;
     left: 245px;
+}
+
+#status {
+    color: black;
+    position: absolute;
+    top: 301px;
+    left: 100px;
+    width: 148px;
+    font: 10px Helvetica, sans-serif;
+    background: silver;
 }
 
 #back {
@@ -36,17 +46,17 @@ body {
 #done {
     position: absolute;
     right: 21px;
-    bottom: 21px;
+    bottom: 31px;
     margin-left: auto;
     margin-top: auto;
 }
 
 #frontImg {
     position: absolute;
-    width: 345px;
-    height: 423px;
-    top: -43px;
-    left: -35px;
+    width: 300px;
+    height: 400px;
+    left: -10px;
+    top: -2px;
 }
 
 #text {
@@ -59,8 +69,9 @@ body {
     color: rgb(255, 255, 255);
     font-family: HelveticaNeue-Light;
     font-size: 9pt;
-    top: 30px;
-    left: 88px;
+    top: 75px;
+    left: 80px;
+    color: black;
 }
 
 #text1 {
@@ -102,11 +113,11 @@ body {
     position: absolute;
     color: black;
     font-family: HelveticaNeue;
-    font-size: 10pt;
+    font-size: 12px;
     height: 18px;
-    top: 53px;
-    width: 178px;
-    left: 78px;
+    top: 90px;
+    width: 150px;
+    left: 92px;
 }
 
 #txtBody {
@@ -114,16 +125,16 @@ body {
     color: black;
     font-family: HelveticaNeue;
     font-size: 10pt;
-    top: 88px;
-    width: 178px;
-    left: 78px;
-    height: 180px;
+    top: 118px;
+    width: 230px;
+    left: 15px;
+    height: 170px;
 }
 
 #btnPost {
     position: absolute;
-    top: 281px;
-    left: 78px;
+    top: 301px;
+    left: 20px;
 }
 
 #txtUsername {
@@ -131,9 +142,9 @@ body {
     color: black;
     font-family: HelveticaNeue;
     font-size: 10pt;
-    height: 19px;
-    width: 137px;
-    top: 37px;
+    height: 18px;
+    width: 135px;
+    top: 35px;
     left: 105px;
 }
 

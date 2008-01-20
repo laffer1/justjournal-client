@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>JustJournal</title>
     <style type="text/css" title="AppleStyle">
         @import "JustJournal.css";
     </style>
@@ -19,19 +20,16 @@
 </head>
 <body onload="load();">
     <div id="front">
-        <img src="Images/front.png" alt="" id="frontImg">
-        
-        <div id="info"></div>
-        
-    <textarea id="txtBody"></textarea>
-    <textarea id="txtSubject"></textarea>
-    <div id="btnPost"></div>
-    <div apple-text-overflow="ellipsis" id="text"></div>
-    
+        <img src="Images/front.png" alt="" id="frontImg">                     
+        <div apple-text-overflow="ellipsis" id="text"></div>
+        <input type="text" id="txtSubject" tabindex="1"></textarea>
+        <textarea id="txtBody" tabindex="2"></textarea>   
+        <div id="btnPost" tabindex="3"></div>
+        <div id="status"></div>
+        <div id="info"></div>       
     </div>
     <div id="back">
-       <img id="backImg" src="Images/back.png" alt="">
-        
+        <img id="backImg" src="Images/back.png" alt="">        
         <div id="done"></div>
     	<input type="text" id="txtUsername">
     	<input type="password" id="txtPassword">
@@ -41,6 +39,5 @@
     	<div id="lstsecurity"></div>
     	<div apple-text-overflow="ellipsis" id="text4"></div>
     </div>
-
 </body>
 </html>

@@ -161,6 +161,11 @@ function myPost(event)
 	var curr_sec = d.getSeconds();
 	curr_month++; // zero based
 	
+	if (user == null || pass == null) {
+	    document.getElementById('status').innerHTML = "Please set your username and password.";
+	    return;
+	}
+	
 	var websiteURL = "https://www.justjournal.com/updateJournal"
 	 + "?user=" + encodeURIComponent(user) + "&pass=" + encodeURIComponent(pass) +
 	 "&security=" + security +"&mood=12&location=0&client=dash" +
@@ -183,23 +188,35 @@ function myPost(event)
 	xmlRequest.open("GET", websiteURL);
 	xmlRequest.setRequestHeader("Cache-Control", "no-cache");
 	xmlRequest.send(null);
-
-	//widget.openURL(websiteURL);
 }
 
 // Called when an XMLHttpRequest loads a feed; works with the XMLHttpRequest setup snippet
 function xmlLoaded(xmlRequest) 
 {
+    var response = xmlRequest.reponseText;
+    
 	if (xmlRequest.status == 200) {
 		// Parse and interpret results
 		// XML results found in xmlRequest.responseXML
 		// Text results found in xmlRequest.reponseText
+		
+		if (response != null) {		
+		    if (response.indexOf("JJ.LOGIN.FAIL") > -1) {
+		        // We had an error logging in
+		        document.getElementById('status').innerHTML = "Invalid user or password";
+		        return;
+		    }
+		    document.getElementById('status').innerHTML = response;
+		} else {
+		     document.getElementById('status').innerHTML = "";
+		}
 		
 		//clear submitted values
 		txtSubject.value = "";
 		txtBody.value = "";
 	}
 	else {
-		alert("Error fetching data: HTTP status " + xmlRequest.status);
+	    response = "Error " + xmlRequest.status + " : " + response;
+	    document.getElementById('status').innerHTML = response;
 	}
 }

@@ -13,18 +13,18 @@
 	<key>CFBundleName</key>
 	<string>JustJournal</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>CloseBoxInsetX</key>
 	<integer>15</integer>
 	<key>CloseBoxInsetY</key>
 	<integer>15</integer>
 	<key>Height</key>
-	<integer>336</integer>
+	<integer>342</integer>
 	<key>MainHTML</key>
 	<string>JustJournal.html</string>
 	<key>Width</key>
-	<integer>276</integer>
+	<integer>265</integer>
 </dict>
 </plist>
