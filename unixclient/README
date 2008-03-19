@@ -2,10 +2,10 @@ This is a client for JustJournal.com.
 
 To build and install:
 make
-make install
+sudo make install
 
-This software has been tested on MidnightBSD.  It requires xmlrpc-c to 
-operate.
+This software has been tested on MidnightBSD and Mac OS X.  It requires
+xmlrpc-c to operate.
 
 Using the software:
 
