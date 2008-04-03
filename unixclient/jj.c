@@ -22,8 +22,6 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 */
-/* The JustJournal.com command line blogging client.
-   written by Lucas Holt */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,8 +35,10 @@ SUCH DAMAGE.
 #include <xmlrpc-c/client.h>
 
 #define NAME "JustJournal/UNIX"
-#define VERSION "1.0"
+#define VERSION "1.0.1"
 #define ENTRY_MAX 32000
+#define USERLEN 16
+#define PASSLEN 19
 
 void usage( const char *name );
 static void die_if_fault_occurred( xmlrpc_env *env );
@@ -48,8 +48,8 @@ int main( int argc, char *argv[] )
     xmlrpc_env env;
     xmlrpc_value * resultP;
     const char * postResult;
-    char username[16];
-    char password[19];
+    char username[USERLEN];
+    char password[PASSLEN];
     char entry[ENTRY_MAX];
     char c;
     int i;
@@ -61,10 +61,12 @@ int main( int argc, char *argv[] )
         switch( c )
         {
             case 'u':
-                strncpy( username, optarg, 15 );
+                strncpy( username, optarg, USERLEN - 1 );
+		username[USERLEN -1] = '\0';
                 break;
             case 'p':
-                strncpy( password, optarg, 18 );
+                strncpy( password, optarg, PASSLEN - 1 );
+                password[PASSLEN -1] = '\0';
                 break;
             case '?': /* fall through */
             default:
