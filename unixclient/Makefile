@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= -I/usr/local/include -Wall -std=c99
+CFLAGS= -I/usr/local/include -Wall -pedantic -std=c99
 LDFLAGS= -L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse -lxmlrpc_xmltok -lxmlrpc_util -lcurl
 PREFIX=	/usr/local
 
