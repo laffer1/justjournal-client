@@ -25,6 +25,7 @@ SUCH DAMAGE.
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
@@ -35,7 +36,7 @@ SUCH DAMAGE.
 #include <xmlrpc-c/client.h>
 
 #define NAME "JustJournal/UNIX"
-#define VERSION "1.0.1"
+#define VERSION "1.0.2"
 #define ENTRY_MAX 32000
 #define USERLEN 16
 #define PASSLEN 19
@@ -53,11 +54,12 @@ int main( int argc, char *argv[] )
     char entry[ENTRY_MAX];
     char c;
     int i;
+    bool debug = false;
 
     if ( argc < 3 )
         usage( argv[0] );
     
-    while ((c = getopt( argc, argv, "u:p:" )) != -1) {
+    while ((c = getopt( argc, argv, "u:p:d" )) != -1) {
         switch( c )
         {
             case 'u':
@@ -67,6 +69,10 @@ int main( int argc, char *argv[] )
             case 'p':
                 strncpy( password, optarg, PASSLEN - 1 );
                 password[PASSLEN -1] = '\0';
+                break;
+            case 'd':
+                debug = true;
+                fprintf( stderr, "Debug enabled.\n");
                 break;
             case '?': /* fall through */
             default:
@@ -103,11 +109,13 @@ int main( int argc, char *argv[] )
 				entry, /* blog content */
 				true ); /* post now */
     die_if_fault_occurred( &env );
-    
+
     xmlrpc_read_string( &env, resultP, &postResult );
+    if (debug)
+        fprintf( stderr, "Debug: post result is: %s\n", postResult );
     die_if_fault_occurred( &env );
-    if ( strcmp(postResult,"0") != 0 )
-        fprintf( stderr, "Error posting blog entry.\n" );
+/*    if ( strcmp(postResult,"0") != 0 )
+        fprintf( stderr, "Error posting blog entry.\n" );*/
     free((char *)postResult);
 
     xmlrpc_DECREF( resultP );
