@@ -1,4 +1,5 @@
-/*
+/* $Id: gtkjj.c,v 1.2 2008/06/18 03:23:23 laffer1 Exp $ */
+/*-
 Copyright (C) 2008 Lucas Holt. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -29,8 +30,6 @@ SUCH DAMAGE.
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <stdbool.h>
-#include <unistd.h>
 
 #include <xmlrpc-c/base.h>
 #include <xmlrpc-c/client.h>
@@ -97,9 +96,9 @@ int main( int argc, char *argv[] )
 
     /* Setup the final box for layout in the window */
     vbox = gtk_vbox_new( FALSE, 5 );
-    gtk_box_pack_start_defaults( GTK_BOX (vbox), vauthbox );
-    gtk_box_pack_start( GTK_BOX (vbox), scrolled_win );
-    gtk_box_pack_start_defaults( GTK_BOX (vbox), submit );
+    gtk_box_pack_start( GTK_BOX (vbox), vauthbox, FALSE, TRUE, 5 );
+    gtk_box_pack_start( GTK_BOX (vbox), scrolled_win, TRUE, TRUE, 5 );
+    gtk_box_pack_start( GTK_BOX (vbox), submit, FALSE, TRUE, 5 );
 
     gtk_container_add( GTK_CONTAINER (window), vbox );
     gtk_widget_show_all( window );
