@@ -41,7 +41,7 @@ SUCH DAMAGE.
 #define USERLEN 16
 #define PASSLEN 19
 
-void usage( const char *name );
+static void usage( const char *name );
 static void die_if_fault_occurred( xmlrpc_env *env );
 
 int main( int argc, char *argv[] )
@@ -114,8 +114,6 @@ int main( int argc, char *argv[] )
     if (debug)
         fprintf( stderr, "Debug: post result is: %s\n", postResult );
     die_if_fault_occurred( &env );
-/*    if ( strcmp(postResult,"0") != 0 )
-        fprintf( stderr, "Error posting blog entry.\n" );*/
     free((char *)postResult);
 
     xmlrpc_DECREF( resultP );
@@ -125,7 +123,7 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
-void usage( const char *name )
+static void usage( const char *name )
 {
     fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD\n", name );
     exit(0);
@@ -133,6 +131,9 @@ void usage( const char *name )
 
 static void die_if_fault_occurred( xmlrpc_env *env )
 {
+    if ( env == NULL )
+	exit(1);
+
     if ( env->fault_occurred )
     {
         if (env->fault_code == -501)
