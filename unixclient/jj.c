@@ -36,7 +36,7 @@ SUCH DAMAGE.
 #include <xmlrpc-c/client.h>
 
 #define NAME "JustJournal/UNIX"
-#define VERSION "1.0.2"
+#define VERSION "1.0.3"
 #define ENTRY_MAX 32000
 #define USERLEN 16
 #define PASSLEN 19
@@ -52,6 +52,8 @@ int main( int argc, char *argv[] )
     char username[USERLEN];
     char password[PASSLEN];
     char entry[ENTRY_MAX];
+    char * title = NULL;
+    size_t titlelen;
     char c;
     int i;
     bool debug = false;
@@ -59,16 +61,26 @@ int main( int argc, char *argv[] )
     if ( argc < 3 )
         usage( argv[0] );
     
-    while ((c = getopt( argc, argv, "u:p:d" )) != -1) {
+    while ((c = getopt( argc, argv, "u:p:t:d" )) != -1) {
         switch( c )
         {
             case 'u':
                 strncpy( username, optarg, USERLEN - 1 );
-		username[USERLEN -1] = '\0';
+		        username[USERLEN -1] = '\0';
                 break;
             case 'p':
                 strncpy( password, optarg, PASSLEN - 1 );
                 password[PASSLEN -1] = '\0';
+                break;
+            case 't':
+            	titlelen = strlen(optarg);
+            	if ( (title = malloc((titlelen * sizeof(char)) + 1)) == NULL )
+            	{
+                    fprintf( stderr, "Unable to allocate memory." );
+                    exit(1);
+                }    
+                strncpy( title, optarg, titlelen );
+                title[titlelen] = '\0';
                 break;
             case 'd':
                 debug = true;
@@ -81,7 +93,13 @@ int main( int argc, char *argv[] )
     }
     argc -= optind;
 
-    for ( i = 0; i < ENTRY_MAX -1; i++ )
+    /* Copy the title into the top of entry if it's requested */
+    entry[0] = '\0';
+    if ( title != NULL ) 
+        sprintf( entry, "<title>%s</title>", title );
+        
+    /* Start from title or the beginning and copy the entry from stdin */        
+    for ( i = strlen(entry); i < ENTRY_MAX -1; i++ )
     {
         c = getchar();
         if ( c == EOF )
@@ -125,7 +143,7 @@ int main( int argc, char *argv[] )
 
 static void usage( const char *name )
 {
-    fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD\n", name );
+    fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD [-t title] [-d]\n", name );
     exit(0);
 }
 
