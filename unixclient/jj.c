@@ -40,6 +40,8 @@ SUCH DAMAGE.
 #define ENTRY_MAX 32000
 #define USERLEN 16
 #define PASSLEN 19
+#define HOSTLEN 512
+#define HOST "www.justjournal.com"
 
 static void usage( const char *name );
 static void die_if_fault_occurred( xmlrpc_env *env );
@@ -52,27 +54,45 @@ int main( int argc, char *argv[] )
     char username[USERLEN];
     char password[PASSLEN];
     char entry[ENTRY_MAX];
+    char host[HOSTLEN];
     char * title = NULL;
     size_t titlelen;
     char c;
     int i;
     bool debug = false;
+    bool hflag = false;
+    bool uflag = false;
+    bool pflag = false;
 
     if ( argc < 3 )
         usage( argv[0] );
     
-    while ((c = getopt( argc, argv, "u:p:t:d" )) != -1) {
+    while ((c = getopt( argc, argv, "h:u:p:s:d" )) != -1) {
         switch( c )
         {
-            case 'u':
+            case 'h': /* host */	
+            	if ( strlen(optarg) > HOSTLEN - 16)
+            	{
+            	    fprintf( stderr, "host name is too long" );
+            	    exit(1);   
+            	}
+            	snprintf(host, HOSTLEN, "http://%s/xml-rpc", optarg);
+            	hflag = true;
+            	break;
+         
+            case 'u': /* username */
                 strncpy( username, optarg, USERLEN - 1 );
 		        username[USERLEN -1] = '\0';
+		        uflag = true;
                 break;
+         
             case 'p':
                 strncpy( password, optarg, PASSLEN - 1 );
                 password[PASSLEN -1] = '\0';
+                pflag = true;
                 break;
-            case 't':
+                
+            case 's':
             	titlelen = strlen(optarg);
             	if ( (title = malloc((titlelen * sizeof(char)) + 1)) == NULL )
             	{
@@ -82,16 +102,31 @@ int main( int argc, char *argv[] )
                 strncpy( title, optarg, titlelen );
                 title[titlelen] = '\0';
                 break;
+                
             case 'd':
                 debug = true;
                 fprintf( stderr, "Debug enabled.\n");
                 break;
+                
             case '?': /* fall through */
             default:
                 usage( argv[0] );
         }
     }
     argc -= optind;
+    
+    if ( !uflag || !pflag )
+    {
+        fprintf( stderr, "Username and password are required.\n" );
+        usage( argv[0] );
+    }
+    
+    /* set host if it's not defined */
+    if ( !hflag )
+        snprintf(host, HOSTLEN, "http://%s/xml-rpc", HOST);
+        
+    if (debug)
+        fprintf( stderr, "host is set to: %s\n", host );
 
     /* Copy the title into the top of entry if it's requested */
     entry[0] = '\0';
@@ -117,7 +152,7 @@ int main( int argc, char *argv[] )
     xmlrpc_client_init( XMLRPC_CLIENT_NO_FLAGS, NAME, VERSION );
     xmlrpc_env_init( &env );
 
-    resultP = xmlrpc_client_call( &env, "http://www.justjournal.com/xml-rpc",
+    resultP = xmlrpc_client_call( &env, host,
                                 "blogger.newPost",
                                 "(sssssb)", 
 				"", /* key, not used */
@@ -143,8 +178,8 @@ int main( int argc, char *argv[] )
 
 static void usage( const char *name )
 {
-    fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD [-t title] [-d]\n", name );
-    exit(0);
+    fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD [-h host] [-s subject] [-d]\n", name );
+    exit(1);
 }
 
 static void die_if_fault_occurred( xmlrpc_env *env )
