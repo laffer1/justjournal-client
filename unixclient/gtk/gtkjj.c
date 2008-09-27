@@ -1,4 +1,4 @@
-/* $Id: gtkjj.c,v 1.3 2008/06/19 23:39:48 laffer1 Exp $ */
+/* $Id: gtkjj.c,v 1.4 2008/09/27 02:06:02 laffer1 Exp $ */
 /*-
 Copyright (C) 2008 Lucas Holt. All rights reserved.
 
@@ -51,7 +51,7 @@ int main( int argc, char *argv[] )
     GtkWidget *window, *vbox, *authbox, *authbox2, *vauthbox, *hboxccp;
     GtkWidget *lbluser, *lblpass; /* labels */
     GtkWidget *submit, *cut, *copy, *paste; /* buttons */
-    GtkWidget *scrolled_win, *textview;
+    GtkWidget *scrolled_win, *textview = NULL;
 
     gtk_init( &argc, &argv );
 
