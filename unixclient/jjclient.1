@@ -1,0 +1,69 @@
+.\" Copyright (c) 2008 Lucas Holt  All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\" $Id: jjclient.1,v 1.1 2008/09/27 00:30:40 laffer1 Exp $
+.\"
+.Dd September 25, 2008
+.Dt JJCLIENT 1
+.Os
+.Sh NAME
+.Nm jjclient
+.Nd create blog entries
+.Sh SYNOPSIS
+.Nm
+.Op Fl d
+.Op Fl h Ar hostname
+.Op Fl u Ar username
+.Op Fl p Ar password
+.Op Fl s Ar subject
+.Sh DESCRIPTION
+The
+.Nm
+utility creates blog entries on Just Journal based websites.
+.Pp
+Username and password must be set.  If the hostname is not specified,
+.Nm
+will use the www.justjournal.com site.
+.Pp
+The following options are available:
+.Bl -tag -width indent
+.It Fl d
+Debug login and posting problems.
+.It Fl h
+Specify the host to connect to.
+.It Fl u
+Specify the username to use while connecting.
+.It Fl p
+Define the password used while authenticating.
+.It Fl s
+Set the subject (title) of the blog entry.
+.Sh AUTHORS
+The
+.Nm 
+utility was written by Lucas Holt <luke@foolishgames.com>
+for JustJournal.com.
+.Sh HISTORY
+The
+.Nm
+utility was written for MidnightBSD and later ported to FreeBSD,
+Linux, and Mac OS X.

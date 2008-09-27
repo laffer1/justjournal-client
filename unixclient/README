@@ -4,8 +4,8 @@ To build and install:
 make
 sudo make install
 
-This software has been tested on MidnightBSD and Mac OS X.  It requires
-xmlrpc-c to operate.
+This software has been tested on MidnightBSD, FreeBSD and Mac OS X.  
+It requires xmlrpc-c to operate.
 
 Using the software:
 
@@ -16,3 +16,5 @@ type your blog entry and use control + D and then return to end. (EOF)
 
 Alternatively, you may use a text file like this:
 jjclient -u username -p password < myfile.txt
+
+$Id: README,v 1.3 2008/09/27 00:30:40 laffer1 Exp $
