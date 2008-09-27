@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$Id: jj.c,v 1.7 2008/09/27 00:30:40 laffer1 Exp $
+$Id: jj.c,v 1.8 2008/09/27 01:15:48 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -51,16 +51,16 @@ static void die_if_fault_occurred( xmlrpc_env *env );
 int main( int argc, char *argv[] )
 {
     xmlrpc_env env;
-    xmlrpc_value * resultP;
-    const char * postResult;
+    xmlrpc_value * resultP = NULL;
+    const char * postResult = NULL;
     char username[USERLEN];
     char password[PASSLEN];
     char entry[ENTRY_MAX];
     char host[HOSTLEN];
     char * title = NULL;
     size_t titlelen;
-    char c;
-    int i;
+    int c;
+    size_t i;
     bool debug = false;
     bool hflag = false;
     bool uflag = false;
@@ -76,9 +76,9 @@ int main( int argc, char *argv[] )
             	if ( strlen(optarg) > HOSTLEN - 16)
             	{
             	    fprintf( stderr, "host name is too long" );
-            	    exit(1);   
+            	    exit(EXIT_FAILURE);   
             	}
-            	snprintf(host, HOSTLEN, "http://%s/xml-rpc", optarg);
+            	(void) snprintf(host, HOSTLEN, "http://%s/xml-rpc", optarg);
             	hflag = true;
             	break;
          
@@ -99,7 +99,7 @@ int main( int argc, char *argv[] )
             	if ( (title = malloc((titlelen * sizeof(char)) + 1)) == NULL )
             	{
                     fprintf( stderr, "Unable to allocate memory." );
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }    
                 strncpy( title, optarg, titlelen );
                 title[titlelen] = '\0';
@@ -125,15 +125,15 @@ int main( int argc, char *argv[] )
     
     /* set host if it's not defined */
     if ( !hflag )
-        snprintf(host, HOSTLEN, "http://%s/xml-rpc", HOST);
+        (void) snprintf(host, HOSTLEN, "http://%s/xml-rpc", HOST);
         
-    if (debug)
+    if ( debug && hflag )
         fprintf( stderr, "host is set to: %s\n", host );
 
     /* Copy the title into the top of entry if it's requested */
     entry[0] = '\0';
     if ( title != NULL ) 
-        sprintf( entry, "<title>%s</title>", title );
+        (void) snprintf( entry, ENTRY_MAX, "<title>%s</title>", title );
         
     /* Start from title or the beginning and copy the entry from stdin */        
     for ( i = strlen(entry); i < ENTRY_MAX -1; i++ )
@@ -141,14 +141,14 @@ int main( int argc, char *argv[] )
         c = getchar();
         if ( c == EOF )
             break;
-        entry[i] = c;
+        entry[i] = (char) c;
     }
     entry[i] = '\0';
 
     if ( i == 0 )
     {
         fprintf( stderr, "No entry specified." );
-        exit(1);
+        exit(EXIT_FAILURE);
     }
         
     xmlrpc_client_init( XMLRPC_CLIENT_NO_FLAGS, NAME, VERSION );
@@ -166,7 +166,7 @@ int main( int argc, char *argv[] )
     die_if_fault_occurred( &env );
 
     xmlrpc_read_string( &env, resultP, &postResult );
-    if (debug)
+    if ( debug && postResult != NULL )
         fprintf( stderr, "Debug: post result is: %s\n", postResult );
     die_if_fault_occurred( &env );
     free((char *)postResult);
@@ -181,13 +181,13 @@ int main( int argc, char *argv[] )
 static void usage( const char *name )
 {
     fprintf( stderr, "usage: %s -u USERNAME -p PASSWORD [-h host] [-s subject] [-d]\n", name );
-    exit(1);
+    exit(EXIT_FAILURE);
 }
 
 static void die_if_fault_occurred( xmlrpc_env *env )
 {
     if ( env == NULL )
-	exit(1);
+	exit(EXIT_FAILURE);
 
     if ( env->fault_occurred )
     {
@@ -197,7 +197,7 @@ static void die_if_fault_occurred( xmlrpc_env *env )
         else
             fprintf( stderr, "XML-RPC Fault: %s (%d)\n",
                 env->fault_string, env->fault_code );
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
