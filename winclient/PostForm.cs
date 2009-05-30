@@ -107,6 +107,8 @@ namespace JustJournal
         private ToolStripButton toolStripButton15;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripButton tsbAbout;
+        private TextBox txtTags;
+        private Label lblTags;
 		private System.ComponentModel.IContainer components;
 
 		public PostForm()
@@ -143,6 +145,7 @@ namespace JustJournal
                 txtMusic.Text = detectMusic();
             else
             {
+                txtMusic.Text = "";
                 txtMusic.Enabled = false;
                 btnMusicSense.Enabled = false;
             }
@@ -258,9 +261,11 @@ namespace JustJournal
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAbout = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.txtTags = new System.Windows.Forms.TextBox();
+            this.lblTags = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -537,10 +542,10 @@ namespace JustJournal
             this.btnPost.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnPost.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPost.ForeColor = System.Drawing.Color.White;
-            this.btnPost.Location = new System.Drawing.Point(440, 362);
+            this.btnPost.Location = new System.Drawing.Point(554, 450);
             this.btnPost.Name = "btnPost";
             this.btnPost.Size = new System.Drawing.Size(80, 24);
-            this.btnPost.TabIndex = 7;
+            this.btnPost.TabIndex = 8;
             this.btnPost.Text = "Post";
             this.btnPost.UseVisualStyleBackColor = false;
             this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
@@ -553,10 +558,10 @@ namespace JustJournal
             "public",
             "friends",
             "private"});
-            this.cboSecurity.Location = new System.Drawing.Point(264, 362);
+            this.cboSecurity.Location = new System.Drawing.Point(378, 450);
             this.cboSecurity.Name = "cboSecurity";
             this.cboSecurity.Size = new System.Drawing.Size(144, 21);
-            this.cboSecurity.TabIndex = 6;
+            this.cboSecurity.TabIndex = 7;
             // 
             // cboLocation
             // 
@@ -568,7 +573,7 @@ namespace JustJournal
             "Other",
             "School",
             "Work"});
-            this.cboLocation.Location = new System.Drawing.Point(377, 57);
+            this.cboLocation.Location = new System.Drawing.Point(491, 57);
             this.cboLocation.Name = "cboLocation";
             this.cboLocation.Size = new System.Drawing.Size(144, 21);
             this.cboLocation.TabIndex = 1;
@@ -587,14 +592,14 @@ namespace JustJournal
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubject.Location = new System.Drawing.Point(57, 57);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(256, 20);
+            this.txtSubject.Size = new System.Drawing.Size(370, 20);
             this.txtSubject.TabIndex = 0;
             this.txtSubject.TextChanged += new System.EventHandler(this.txtSubject_TextChanged);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(321, 60);
+            this.label2.Location = new System.Drawing.Point(435, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 18);
             this.label2.TabIndex = 7;
@@ -626,7 +631,7 @@ namespace JustJournal
             this.rtbBody.Location = new System.Drawing.Point(0, 117);
             this.rtbBody.Name = "rtbBody";
             this.rtbBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbBody.Size = new System.Drawing.Size(528, 237);
+            this.rtbBody.Size = new System.Drawing.Size(642, 296);
             this.rtbBody.TabIndex = 5;
             this.rtbBody.Text = "";
             // 
@@ -669,7 +674,7 @@ namespace JustJournal
             this.txtMusic.Location = new System.Drawing.Point(217, 88);
             this.txtMusic.MaxLength = 100;
             this.txtMusic.Name = "txtMusic";
-            this.txtMusic.Size = new System.Drawing.Size(232, 20);
+            this.txtMusic.Size = new System.Drawing.Size(346, 20);
             this.txtMusic.TabIndex = 3;
             // 
             // btnMusicSense
@@ -677,9 +682,9 @@ namespace JustJournal
             this.btnMusicSense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMusicSense.BackColor = System.Drawing.SystemColors.Control;
             this.btnMusicSense.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMusicSense.Location = new System.Drawing.Point(457, 88);
+            this.btnMusicSense.Location = new System.Drawing.Point(571, 88);
             this.btnMusicSense.Name = "btnMusicSense";
-            this.btnMusicSense.Size = new System.Drawing.Size(64, 23);
+            this.btnMusicSense.Size = new System.Drawing.Size(64, 19);
             this.btnMusicSense.TabIndex = 4;
             this.btnMusicSense.Text = "Music";
             this.btnMusicSense.UseVisualStyleBackColor = false;
@@ -689,7 +694,7 @@ namespace JustJournal
             // 
             this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.Location = new System.Drawing.Point(39, 373);
+            this.lblCurrentUser.Location = new System.Drawing.Point(39, 461);
             this.lblCurrentUser.Name = "lblCurrentUser";
             this.lblCurrentUser.Size = new System.Drawing.Size(66, 13);
             this.lblCurrentUser.TabIndex = 16;
@@ -723,7 +728,7 @@ namespace JustJournal
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 23);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(526, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(640, 23);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
@@ -791,7 +796,7 @@ namespace JustJournal
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(52, 20);
+            this.toolStripButton6.Size = new System.Drawing.Size(56, 20);
             this.toolStripButton6.Text = "Color";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -800,7 +805,7 @@ namespace JustJournal
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(83, 20);
+            this.toolStripButton7.Size = new System.Drawing.Size(91, 20);
             this.toolStripButton7.Text = "Background";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
@@ -808,7 +813,7 @@ namespace JustJournal
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(14, 361);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 449);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(27, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -820,20 +825,20 @@ namespace JustJournal
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(526, 0);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(640, 4);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.MaximumSize = new System.Drawing.Size(0, 50);
             this.toolStripContainer1.MinimumSize = new System.Drawing.Size(0, 25);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(526, 50);
+            this.toolStripContainer1.Size = new System.Drawing.Size(640, 50);
             this.toolStripContainer1.TabIndex = 19;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             // 
             // toolStrip3
@@ -854,7 +859,7 @@ namespace JustJournal
             this.toolStrip3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(525, 23);
+            this.toolStrip3.Size = new System.Drawing.Size(640, 23);
             this.toolStrip3.Stretch = true;
             this.toolStrip3.TabIndex = 19;
             // 
@@ -938,15 +943,6 @@ namespace JustJournal
             this.toolStripButton15.Text = "Redo";
             this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
             // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip2.Location = new System.Drawing.Point(525, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1, 0);
-            this.toolStrip2.TabIndex = 18;
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -962,11 +958,42 @@ namespace JustJournal
             this.tsbAbout.Text = "About";
             this.tsbAbout.Click += new System.EventHandler(this.tsbAbout_Click);
             // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip2.Location = new System.Drawing.Point(149, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1, 0);
+            this.toolStrip2.TabIndex = 18;
+            // 
+            // txtTags
+            // 
+            this.txtTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTags.Location = new System.Drawing.Point(49, 419);
+            this.txtTags.Name = "txtTags";
+            this.txtTags.Size = new System.Drawing.Size(586, 20);
+            this.txtTags.TabIndex = 6;
+            // 
+            // lblTags
+            // 
+            this.lblTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTags.AutoSize = true;
+            this.lblTags.Location = new System.Drawing.Point(9, 421);
+            this.lblTags.Name = "lblTags";
+            this.lblTags.Size = new System.Drawing.Size(34, 13);
+            this.lblTags.TabIndex = 21;
+            this.lblTags.Text = "Tags:";
+            // 
             // PostForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(526, 393);
+            this.ClientSize = new System.Drawing.Size(640, 481);
+            this.Controls.Add(this.lblTags);
+            this.Controls.Add(this.txtTags);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblCurrentUser);
@@ -1124,7 +1151,8 @@ namespace JustJournal
 			}
 
 			myNameValueCollection.Add("mood", cboMood.SelectedValue.ToString());
-			myNameValueCollection.Add("music", txtMusic.Text );
+			myNameValueCollection.Add("music", txtMusic.Text);
+            myNameValueCollection.Add("tags", txtTags.Text);
 
 			myNameValueCollection.Add("aformat", string.Empty);
 
@@ -1868,6 +1896,5 @@ namespace JustJournal
         {
             new AboutForm().Show();
         }
-       
 	}
 }

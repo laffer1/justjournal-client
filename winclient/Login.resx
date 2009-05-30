@@ -3,7 +3,7 @@
   <!-- 
     Microsoft ResX Schema 
     
-    Version 1.3
+    Version 2.0
     
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
@@ -14,16 +14,17 @@
     
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">1.3</resheader>
+    <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1">this is my long string</data>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        [base64 mime encoded serialized .NET Framework object]
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
                 
     There are any number of "resheader" rows that contain simple 
@@ -35,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used forserialized objects, and tells the 
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -45,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -59,18 +60,37 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -89,887 +109,370 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="txtPassword.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="txtPassword.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Family</value>
-  </data>
-  <data name="txtPassword.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtPassword.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtPassword.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="txtPassword.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtPassword.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtPassword.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="txtPassword.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtPassword.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 64</value>
   </data>
-  <data name="txtPassword.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtPassword.MaxLength" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="txtPassword.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="txtPassword.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="txtPassword.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
-  <data name="txtPassword.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="txtPassword.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 21</value>
   </data>
-  <data name="txtPassword.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="txtPassword.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="txtPassword.Text">
-    <value />
-  </data>
-  <data name="txtPassword.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Left</value>
-  </data>
-  <data name="txtPassword.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtPassword.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtPassword.Name">
+  <data name="&gt;&gt;txtPassword.Name" xml:space="preserve">
     <value>txtPassword</value>
   </data>
-  <data name="&gt;&gt;txtPassword.Type">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtPassword.Parent">
+  <data name="&gt;&gt;txtPassword.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;txtPassword.ZOrder">
+  <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="txtUserName.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="txtUserName.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="txtUserName.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="txtUserName.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Public</value>
-  </data>
-  <data name="txtUserName.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtUserName.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtUserName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="txtUserName.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtUserName.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtUserName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="txtUserName.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtUserName.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtUserName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="txtUserName.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </metadata>
+  <data name="txtUserName.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 24</value>
   </data>
-  <data name="txtUserName.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="txtUserName.MaxLength" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <data name="txtUserName.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="txtUserName.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="txtUserName.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="txtUserName.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="txtUserName.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="txtUserName.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 21</value>
   </data>
-  <data name="txtUserName.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="txtUserName.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="txtUserName.Text">
-    <value />
-  </data>
-  <data name="txtUserName.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Left</value>
-  </data>
-  <data name="txtUserName.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="txtUserName.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtUserName.Name">
+  <data name="&gt;&gt;txtUserName.Name" xml:space="preserve">
     <value>txtUserName</value>
   </data>
-  <data name="&gt;&gt;txtUserName.Type">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtUserName.Parent">
+  <data name="&gt;&gt;txtUserName.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;txtUserName.ZOrder">
+  <data name="&gt;&gt;txtUserName.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="label1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="label1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="label1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="label1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label1.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="label1.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 24</value>
   </data>
-  <data name="label1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 23</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="label1.Text">
+  <data name="label1.Text" xml:space="preserve">
     <value>username</value>
   </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>TopLeft</value>
-  </data>
-  <data name="label1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;label1.Name">
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
-  <data name="&gt;&gt;label1.Type">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent">
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder">
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="label2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="label2.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="label2.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label2.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="label2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="label2.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="label2.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label2.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="label2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="label2.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 64</value>
   </data>
-  <data name="label2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 23</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="label2.Text">
+  <data name="label2.Text" xml:space="preserve">
     <value>password</value>
   </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>TopLeft</value>
-  </data>
-  <data name="label2.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;label2.Name">
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
-  <data name="&gt;&gt;label2.Type">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Parent">
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder">
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 102</value>
   </data>
-  <data name="groupBox1.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
-  </data>
-  <data name="groupBox1.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="groupBox1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="groupBox1.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="groupBox1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="groupBox1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="groupBox1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="groupBox1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="groupBox1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="groupBox1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="groupBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>48, 80</value>
-  </data>
-  <data name="groupBox1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 104</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="groupBox1.Text">
+  <data name="groupBox1.Text" xml:space="preserve">
     <value>Account Information</value>
   </data>
-  <data name="groupBox1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name">
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Parent">
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder">
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="btnLogin.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="btnLogin.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="btnLogin.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="btnLogin.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="btnLogin.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="btnLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="btnLogin.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="btnLogin.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="btnLogin.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="btnLogin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="btnLogin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnLogin.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="btnLogin.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="btnLogin.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="btnLogin.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>-1</value>
-  </data>
-  <data name="btnLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="btnLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>160, 200</value>
+  <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 215</value>
   </data>
-  <data name="btnLogin.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="btnLogin.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="btnLogin.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="btnLogin.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="btnLogin.Text">
+  <data name="btnLogin.Text" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="btnLogin.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="btnLogin.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnLogin.Name">
+  <data name="&gt;&gt;btnLogin.Name" xml:space="preserve">
     <value>btnLogin</value>
   </data>
-  <data name="&gt;&gt;btnLogin.Type">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnLogin.Parent">
+  <data name="&gt;&gt;btnLogin.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLogin.ZOrder">
+  <data name="&gt;&gt;btnLogin.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="pictureBox1.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="pictureBox1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="pictureBox1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="pictureBox1.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="pictureBox1.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Top, Left</value>
-  </data>
-  <data name="pictureBox1.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="pictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="pictureBox1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="pictureBox1.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhMQJQAPcAAOn3+sXp8kK41IHP4mrH3WfF3czs8zi00pbY55TW55fX6HzO4mPE27Li7t7z+O/5
-        +3zO4avf7Eq71s7t9InS5XTK313C2pnY6Lfk71vB2nHK35bX583s9IfS5De00nPK3+L0+XLK39Lu9eb2
-        +tvx98Lo8srr85PX5+v3+/f8/ZrZ6JLW5tbw9vr9/vv+/qfd69rx96ne6y6w0DSy0Lrl8K7g7cbp8jKy
-        0fP6/Mjq8imuzqTc62bG3Lzl8Krf7EW51Smuz1O/2GjG3azf7EG31Dy200+91yquzqbc6zOy0a/h7WvI
-        3bTj7iatzlW/2Lbj77jk7yyvz7Pi7mvI3kW51C+wz1jA2WXF3DGx0LHh7jKx0PH6/CiuznjN4S2wzyet
-        ztnx9mHE2yuvz8Ho8cXq8sDn8YrT5c/t9DOy0Of2+snr8+P0+GnG3e34+/H5+0281+z4+/X7/fb7/UC3
-        1K3g7DCx0Lrl767h7XHJ34HQ45za6bzm8KXd63bL4N3y+NTv9T220lnA2S6wz1G919bv9Ui61kG305/b
-        6U281jm00YHQ4o7U5eT1+W3I3o/V5qbd67Dh7YTQ42HD27Hi7Um61YvT5fP7/KXd6nTL306914nT5FS/
-        2JjY6JvZ6JPW5lC915DV5ju10qPc6jy10lrA2lzC2ub2+ane7Kfe687s9G7J3o3U5cjq88Lo8aTd6onT
-        5ZfY6OL0+HnM4T2206je67bj7p3a6WDD24zU5W7I3lnB2b3m8H7O4WTF3FO+2Kzg7JLW55/b6pnX6MHn
-        8T+31IzT5X/Q4pHV5qTc6jKy0KDb6VfA2bXj78nq84TR4+X1+Y7V5WzH3dXv9pnZ6NPu9cvs81/C2pjZ
-        6G/J3kS41Lnk79Dt9anf63fM4bvm71G92FG+2N7y+Dez0bTi7ku71rXi7rXj7q3f7FS+2N/z97nk8IbS
-        5Njw9tfw9mTE3Jza6K7g7I/V5Z7a6X3O4oXR447V5o/U5qHc6nDJ36Lb6jWz0XXL4L3m8SWtznDK3///
-        /ywAAAAAMQJQAAAI/wD/CRxIsKDBgwgTKhzo4sEIBygeuFhIsaLFixgzatzIsaPHjyBDihxJsqTJkyhT
-        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
-        OsY8ie/iiZIWTBElRJzYwuBgAjLEjpgNWGmc7sRK5LSAbnlywQhEoFFfmedavOQhDBVSPZnZawcTQMET
-        NxIc4yBTBLJU1dMymi/ClW1d5FRn2WYzoRLccYwjeMAuJgEJcww1q2zEEXeaqQSwqpMGKQwraEowOuTA
-        lJ7GkU5xTgKCP4AAn/pE7GC9iJw/nAGl/1vIqT7jEL/IJjYlYERkChjmJ8EOcyJ1UokfeHqcP9T0OG6i
-        asO0OD/VivayKLAgVqOZELx6K6+gUZoSuAPNRyHjFKxgGMJKKiccgOCqYeIh44KVEALedkMiGEYb22Cc
-        /JkgYC5AAQu0IaOtOte75mFBO5HjJuCx5J2R/UMDDGpZy8LhsOxV7U5AC1/6/sMP5WVJGrBY3+MoZ7Ry
-        ei98GfqAcMBAjKFMWcpk+11cwa0aDcAvdcHgB5S27gFkXPBtT3UrBk8gbrlzrBJxAAMTMNjE68QB67bQ
-        2Za0tHb8hXGM9dkC98rYxjfGcY5b1yzhhRIGCVbnBGDwQxrrmCXFvb+qd0fIYBOAQLP1teqJnWuCHxrZ
-        ylfGcpa1vGUuKxGzsB1jymAwghR32Tg4SObKpFxAG8CgzDfOrprXXDa4mdnOd8ZznvW8Zz6zF7sWnLN5
-        SuDmLCNZzoHmxwSq3GdGN9rRj4Z0pOv7ABAo08TLiqqdB3xgFqSsxM71oaRFPWpSl9rUjf7zBcMqgkyL
-        enihLOMFyypkB6B10afGda51vWteWxaZP97QrD3qABA84Mm9Rnaylb1sZjcbB8dudqkDAgA7
+        R0lGODlhXQKXAPcAANLt85+02Mzm8Mbg7XiIw5mt1ajD32qEwcHa6n2OxrvT57bR5WR+vn+Zy4OUyYia
+        zJu12L7Z6bXO5JSu1qrA3svm742n0ZSn0rDH4a/K4nGLxaW/3nmSyomj0aW626G8236XzHWGwo6hz7vW
+        6GmAv4agzsTf7GuBv7DK426DwHOFwXiSx3iPyJ+523aHwoCZzMzMzGmCvszh5sHV4bfK3Wd/vniNxmmD
+        wXuVxnqOvquxwLy+wJKixnONx5Cev7O3wKKrwoSSwnCEwX+Uv3SKvomWwniQyXyLwpWhwLe6wJupxX+O
+        wX2UyXiJw4WayGaAv4WWvm2EwG6IxHiLxXWOx2eBwGV/vneQyX6LuGV+vm2Gw6CbhW2Ds5OUmXaKxK6h
+        cZyXd8KqUZmZkKKlh9WyMeS5HXOHtrilW4aWtIySpJSUgd21J8itRr6oUIWOrqejfszLkLi9k4mesI2Q
+        i36KoM6uPLSkZuvCM6adeuW7IqezhP///5Cip/jQVui+K+7FO5ObnrzCZbG4X4qbjqedafvUX/bOUvHJ
+        RaewaoOUl42ZqbO8cZqllHeKp/TMTM+xPYyfobK2bc7NO5SigvnSWp6pdoSMlbu9YYCOtoiVqszMSqqw
+        eYGYvZiy1avF4Y+o0oSdz52xtsTe4wAAAKrAxTQ7PGl2ebfP1E5YWxocHUFKS3aFiFtnag0ODicrLHSN
+        xqvG3154tzhSpIWfy2iCvFRvssjj7ktlrXGMwUFbqOn2+f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        ACH5BAEAALsALAAAAABdApcAAAj/AAEIHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOK
+        HEmypMmTKFOqXMmypcuXMGPKnEmzps2bOHPq3Mmzp8+fQIMKHUq0qNGjSJMqXcq0qdOnUKNKnUq1qtWr
+        WLNq3cq1q9evYMOKHUu2rNmzaNOqXcu2rdu3cOPKnUu3rt27ePPq3cu3r9+/gAMLHky4sOHDiBMrXsy4
+        sePHkCNLnky5suXLTAMIgDhgM+bPoPkOIFAAoYEDBggiSBAgtOvXdBUQIKDA4AIGDBoQdEDgAUIIBxbA
+        Hk4crOzeBhvgZhBBoITZBAYYnIBbePHr2K0eJ0CBYIXlDCwI/7wAHUPBDMutZ1/Pnun2BJ4BoF9+oAKA
+        BNBbD6ygIX37/wDmtAAECm1HgH4AQAAeAwYY6NtACi7XnEEKKCBdgBhmWNIGHHQQX0GjQRedQMqB14AH
+        IhKw3wHgFSSAB/gdqOGMNHbEYYcIIJRiaQCUCN4DKdYGwAcLqsYbdDnWqOSSE93IAQhJFgSkiNL1t2AI
+        KXYHgJXLDbSaiA4wKeaYDDn5ZJQDibAjAAvilqKM8y2ngUBfiqglmXjmCcAIHPTZJ5QFoZjiAG2S8KYI
+        AJSwoG51UlkQmgOZkIGelLIngJ9+AjrQczu2ecKbDny3YAkCHCniBQOh0IGfI0SqqHqVxv9K3ASY/hll
+        iCm2mcKbBBC5IATkvSkBAAismqlAFViAm26yNjuZCaklhEKttg4Uo4htqsDrCm2ywGuY09bawpAsVufs
+        uZDd1gCsBAkAArVnCqRmrgtq+2abDLjAKwUtwKuAj7mhK3Bjt+FmgX0GQQBvh5sJiu2CvKaQLa8E0Ert
+        C+X6N/DGZ8Hg8ccghyzyyCLHQN8HMqSs8gwLdygDDW+SAPGbNSz4Ka82LHzDgjiQ7PPPQAct9NBEF230
+        0UgnrfTSTDft9NNQRy311FRXTfWCOeiww9Zb89AyDzvEDJ6h9y6oL68L99Cm1Wy37fbbcMct99x01233
+        3U6bvKAPXO//8EPLHAARRIoyL0e2iEIsKATFLe8M3hB4Ry755JRXbvnlmGceNb5EaN014EUQDt7NIp4w
+        85tGpL22z7MdofnrsMcu++y01343EfgygMTWf7dsQ4oSL7crvcvZm2LqOi9Icoq2N+/889BHL/3dBJCs
+        d5s5JLGDEoADD97w0CVuOM4tqw1eDCEv8eb07Lfv/vvwuw+d6yHnzkAMQCTBRMtNiBg8bsabjemWg6U3
+        Ac5xywHZ4N60hPg58IEQjKAE4bY+kNmPAT4Agu9EpALwBJAANcMN6USEPHhxCTdE+BjF6DfBFrrwhTCM
+        ocd4ZUH75cAJLeMgeAoInR2+iQWAe4Ly/2BwBIpVT4ZITKISl0g7IzYQCheMQg4f5ibELWeEs8lZy6Sw
+        oCUskGJMDKMYx0hGuRmRAEcIYe6ksLApUJEBKRogA3gInRJSiwoLAh/FglDGPvrxj4As2hlBeEEqwOt3
+        0CkcHEVUg0bW4IcH9OEZGxjISlrykn0cpBrbVIWFiahwh5sNAQ24xSuezYgsxKQqV8nKFmrSfmykVv9m
+        E7xQii+Us7FjrahghV4ubpBHbKUwh0nM1/XJCUB7Ze4MWSs30hI3oRzgB7WYvDkCM5jFzKY2t0k3aiFT
+        ZIOUY5uuUCtEEqCDDBihI0m5MC6e4JRn5KY850nPqe2vZSALZ+4OQP+th+kRN7+EDhBVp8d41vOgCE0o
+        0QDnJyeYimLiBI8GmtlDBoBPfOy8Yw0COkiFevSjIPUYQzE1S4r9b0HM7JM5Gwk+0xVUl5i6AR0NGtKa
+        2lSe9xypMykmvgV1ElPQcSkWsADCGsCTmtSSAjzP6ACPOaEBC/vmTadK1T7icKQcMCevVJCFNmmBpE1o
+        wha4IIQubMEF6TzewrzgBWDa4K1YxVRV50pXJcaVAzvl1SZxM1EODAGRXwCDCroQhg6G4LBiIABSMaVV
+        nC32rn6qq2QnK8GrjrSxKdorAww5hi3M5gtkUMEXymCGRxLgDF9owsIwCx24QhZwlI2tbN0HVaz/5jWO
+        PmUBGsqQBgKMdgujVcPiRiuGgZaTYsZ97cJmy9zmRq+2DGXtM8HDTzKsAQujZQMbytAGAmyhDGVwQ5/e
+        gAY/3Vaxj1VuQ53L3vZODQ7wja9850vf+s43DnKwLU8ZMAc68DUMZaiDHe5whzWAFw9lyEMZWDAE7Zo3
+        RelVb5/0EAf7WvjCGM6whjfM4Q57+MMgDrGIR0ziEpv4xChOsYpXzOIO7+HFMI6xjGdM4xrzAaslTREd
+        ysCGOTAAwWVYQx/64IcE/6EPd2ADIAwMCA5QIcfJlbCf5BCIGlv5yljOspa3zOUue/nLYA6zmMdM5jKb
+        +cxoTrOa18zmNnNZ/xBwFsQg5jxnM/QVcNK1A3jJQAjw3qEQhTDEIQBdiEOQAbxs4IAGRBRlKXNAD26O
+        tKQnTelKW/rSmM60pjfN6T0IAhFzvuAaU9rGN2Hh0H5ItR/6QOhW9wG8ZQBEFFzgAjeU19F+4kOnd83r
+        Xvv618AOtrCH/eJEiPrY1L3zwpqABTtswQ0EEIMfWk3tVit4DYQIw3bXoAhcy2ERxA63uMdN7nKb+9yR
+        5oIVkM1uBmiB1OX8bpDDsIZq2zvQfyhykLst4W+j+98AD7jAB05wThu73eyughTg7Sd5g9cQ9763H7it
+        XkYU/OIYz7jGN87xFzdi3QhHdhU0QM5a6Rm8jv+IeLX78Ah+j7QHMIdEJCTR8Zrb/OY4z/mlJxHydt9g
+        4Zg6Qxn8QAmVU/sPsC7DI75wA5D3nAGNoDOcdU71qlv96jmvhLqfLmqFUwEQZyC60amtYERbguvsHgQi
+        sM72trv97cQGNRfQviAugAHVRR97qw3hhzqcne4hb8Ta4U74whv+8Gm+BCNUoIIUpIAEkA/5HOoA60Hr
+        vdp3qAMbCEGIRgAe4YNAvOhHT/rRK/6ajGe841fveMi7HvKNmMMa7sDqywP6ELBug48/H/JKlP73wA++
+        zceAiWsa39RfMHAZ/mx73JMBD9Cejeofr0je527wws++9rcf7kgA4vjgFxH/dpWPcts7IsjRP+P0Ncv1
+        qAuC+/CPv/wzHYlMhP/+0MFCF/bfBTvkwfaFgHQBRlTgx3gnEFH2wwWDMAnvN38O+IAQqGbFh38UmEVv
+        NQSP8AcAiHvgVQdm8EHgJwQHGHVq14AReIIomIJhxggVCH5vhVQYCF5+cAgQN3bnB2tnAFBLBX6YMAaa
+        oIJAGIRCeGX214Jv8oItE4Ns8AUAtnwRZwgpVwhsgAaMYAebJzwzdX+ZEAlD2IVeqIKXMAbfB0yYwAiM
+        sAmbgIR39QViQICHlmARV3bg9QZ+QgVVMDpZeH+YsAlf2Id++IV6IGE71QVJV4OGcAc1yIFsQHlrMASY
+        /6IFC0ICIIh/mfCHlniJDxgInKBejSV0awAGZXAIjqBveTBod9CBBIAHaxAGtdIDTrccHFWBmHAJmFiL
+        tlh6mihhOUYAWBBgdLBjiJZ0d5B84AVtzdZktYJA4BGLFIgJt/iM0Oh2+aVe5+VdZzB3agBezxaMsUYH
+        h4YHsyEEDMcBXIQvzIh/FheN6riOHccIEiZdBDB3uNFnZzAblAcIjxBrVmAGdRAG0PEE4+iKuXOO4VeJ
+        7HiQCGlpGiEACqOLRrRJbHAGw4NggDAGsWZRWOCP4WgFPbAwd4gvGtAJEuABASACInAtxvcgHLOSaeEJ
+        70KNZxRRhJAF0OEGC8YCjf+YVqKjbI9oP+tiEANQIRUykh5QlEZZlBjwISy5lGCBAJ8giPrUJhxVB33y
+        BXiES+fEVwujAa84KibAlGA5FwJgJpAFj0GVOymSBn0yBGqDlQQwQDxZh135KwgTlnapFiMACpx4TQgI
+        UBDmJ21JMXLSMh+ZOxowKXeZmGQhAP2iXGZZOvZzhH5SjhA1mAuTMblTAnWpmJy5FXn5Wp/QAigZk/bD
+        jCVEmRTTVbgxjn1SjvZzAIjZmbJZFYwJWSDQAgPQKFGJlhmFmhEDHqypaMemmbNZnFExAMbCUCAAAdYh
+        AKNpRH0Ji2jjJ45zRqq5mi3DS6KmARNinN7JFChgMbX/AgoT4AloIgBTAkzRCU3kQ51VZFIolZ04IGqo
+        8Z32yRQDMAL6CSkEESzAxH4exCt29AQEOkjXiZ0L0wEooCgXFC33+aBSUQDGB6DjM51+MkpGdFK4UXLw
+        AiUmMAGYuSAOCqEkuhQYMKHHNokEUCvFY6A+xaHUoikGADDgMaIleqNEgQDGd6C5g0WthSnmwwAqCh0a
+        ygBVAKO1AgIXAgAfGqLMgaNQKhTOeU08mjt5SAB2FKRDCh1Vyk8t4yHnoSzLwSxLEgpmeqaiEKVlMS9n
+        1FOi5qPQUStcsqXTtSBemqBKCQAVYAAMyi4zMgqAGqihoKZjEQDAVKT2s4Nxiimu/0mns1GlDBCXmEIg
+        CLGnfsoQpHCmZkoKM5GpmsqpXxGogkqoYWEglcluBSUiiwWJAMSXuQMBLwkvntARpSCqo1AKM1Grooqr
+        oWqrg0qqXjGlZ0Sh+HJGuoRAAfScFdUmwSGe1MKfFqGrgcqrMSGtgEqtXWGro/CrwMoVbMorDwCp9rOl
+        1IKsYPKtkIkvK1ABCxCrmNIBHGGtt1oSoWAK9mqviXAQ8oqtXKGt3NqtWUEBZ0QBDMpucCoi1BKgIsIp
+        vOKkBgMADCmrG7GvJWEKtsqvAkGxvSqq/wqwVqGjFOMACFAw7XalWZSwLSoiCoCu0KEA3IIvHyAQn4kp
+        oDCxF/9bsTdrEBrrFf7qsVmRnimiGT2CcKmqVkCqsNBBAaYKHQVQAS/bJt25Ae56qROxsyJhsbuqrznL
+        s77qs1fhMGAiJHHCbsBELUEqpGvCsrMhAAIgpguyAgQxAOK5ARpBsadwr/d6EImAt6bArfWKCqUQuKWA
+        Cngrr6mQtwNhtQAgCnxgCoAruKpgCnyQpgNRr3ibrwbBt6ZwCpZ7r5hLCqvACqUQuXgrEKcQuoJbCpJr
+        EKf7uIObCKcAAJ2LrwDQswvBuKagCqnLCps7EKBrCqlbCqywCqA6EJobu6KQCKIruKvru6vgusK7CrHr
+        tQsBsiKSAB5AECd0bCZ7srXimmj/KyKIYr1ZIhBuCx6UOhAjsCp0mxEUGwraqrWiurmo0Araer/4OwoE
+        sbOngAr5G6iqAKpYO60H4a8DfK2h4Ar/GwryKqqp8KuioAr5iwqscLO2ixD9+7+mAACJkAr/OwqHOxDa
+        ygf+i78PzMD/WwqUS70HAbSk8SEGgHAHS0LUwqqtmiICIaGgMhAxDLUGgQIoULc3C7+2Kr8AbL+i6gq8
+        awqi2wqqa7iIm7E5mwhIDMD2Wr+2mq8HPK8GYcC2WsUgrMDa6gr3Ksai2gqLa8bTaq8NPK8XbBCkAMbX
+        Wsaia6upsMRqPAqukKb3mwqE67gerK2tQLqsEMiiigosfBAO/+MAHpCn2ytqipoi8KKMICgdwpoiUbIA
+        IUqmH/G+8auzH8wHB5GmW4yxAECxpKCtxbu4hgyo9bq1BOHFdgy7AkHE81sQqyDLgdoKqxzHFty1oyzH
+        rjC9iWurqoDLvyyqx0wQotDKgLrKAODMpky9AnABF+AB0AoAPcxu3buotSJEy8ErQiKwb8IjAmECT4sb
+        sekRnlzEoLzACVHKRnytACDBh2wQiXCx8tzFvrrFo0DMsqutKywQouCvzoy5BCHPb5zQ2grQAJDKturQ
+        0eyrI5y5sCwQ+5zIEPHIB+CwRSuZKLsc/gkd2SsQLkwACVAQFVCwAQMS7Syq8zwKqiDHqP/QsRh90VKc
+        tdqK0ANxCtqa0bHczxdty4FawFnc0HCczKMa08vM0A58ECUcqP5s00B901mr0Q+xzcuxAmNbocCUnHW4
+        IOQsIgiytAQwLAXhK7jRnbQ6xJ9cEPJKv9p6x6tc1Tk9rUTtyka9qzhdu0J91ZX71kE9v4I92PS80CJs
+        qxsM131dyoht13aN1QmxvQ1QAdTRJpGcItZsthKFK9CBKANhqEF7EJqMG+nb1lmb1/r7zlJN0KuQx3qM
+        uZG9r6pt037N14Bt2K5c1aq911Jd2IlNwIgtED/N2vRs0bjNschNwAUR2ZJtEFrNABMgEI+chQlw0hjw
+        lN9rIgDgwmH/MhClkiLfbRAVoBycHK9u7c6MfcsEcbrO7AqkMNsXC9HKzc/JfdwFocv4XcvAfdu/rd75
+        rdPAbN+BygoGYc/M3dwX+9g47dzPTRBPGxwCEQFt0lbCctICoN2Ygpm6MdbQURBLu6QJc942m9r9HdcI
+        EQpgrLp9TbFyvApJrdh9rd9cHNgAHtyCith5javDfcp2bBC5fMYHgeCAOtXLvd9WneAPTtrLcTADcdnL
+        YQDPiSpvgioNiSmFyQAE4tmzASmiXR4qIQpyfMz0HagSncc8reCEndsEPeYAENVIDgBbjApBHqipYBAF
+        HdG83d/+mseLTRBw7sYDXhD5bKui3N4L/y3mEc3gbC7nfb3kJJIb7HJCBnCiKQIfAvAm5kGWHLAgMQsA
+        I00bLvJQCPIRexsK03sKiQDbmOvMqDDQfNDQZmoQodDKLO7AqG66q77Ti/viBKHiZywKPm2rME4QFfzU
+        e37jxO2rsU7sBFHnwt21fLC8qpAIaZrHrVDsAxHowzwQohDoG8zoSp7kcQ7pTNoANgoAFI4bEh7qBJAj
+        pprSAECWeAQe1mHpYA7i4nu1HwyoiCwQvnyxgSvHo2DgWJsKgivMouDP/f7vD43tgfveoFroZyy49yvK
+        yQ7TBK7XgQ6orqCreczjvnrsSZzG92vx9jrGgVvc/q3Xaj7ujt7o5v+eEOihARBgH5meIuYBAKbKI+Hi
+        J9sL3ihZ0oECHfIOEgyvzB3bvwT/xTVN7mMs2/2u9PgM20mc5qFA5CbMCtOb8UW98dsqEB3cx68s4BxL
+        8YHq8LuOvxvM9PnbCqhAzOIe5w4+8wuB77NB9B7+7jJbK68AHnA7EDqc9wjBpiORqavAt6EAzawbComP
+        t6uw+HgeCnvruUuvqWf6+Pcq+QohCpR/uaEw0HA8u/ia6+2N+dDs+Zh/EJgf+gRBCpVvCokAqpz7qbKL
+        +WmavPZKvJOv+X0LzZmq+Izf+qIPALV/pox//Jtq9xMx0ncCAGAL2ntSK50AHtPtJft+EMLK/Nz/bxM5
+        j9JoPRBgu/MCgSkgYALgwdYAYCrSTyGz0f3wLxMDIAIXkJQGMfjjXf5+Mt1WEvgEge8AIQLAQIIFKQgs
+        mFDhQoYNHT6EGFHiRIoVLV7EmFHjRo4dPX4EGVLkSJIlFYogkBJDwk8cXHoCYIEBgwUKBSRIibAhApM9
+        ff4EGlToUKJFjR5FShQlAZ0EJ7jkMABABgYGGBbImVTrVq5dvX4FG1bs2IEoE0hNuMHlp4EVTDQckJXs
+        XLp17d7Fm1fvRBEJJCxE4RKFRJRN9x5GDDQCLFh/fUpgHCHxZMqJMaBVOIJDh4kKCASoHLpiLFmxGMqS
+        NWsvLVm1ZnXiCAs1/6yFtm7JojWLtmjevfNCEEDxgQLfxReSNr0QtWqStnDFYg5yuUfZsmhLoBXrw8Dq
+        u41/B48Yc/jiyE+nNtlJt8jpHbsDsPVplmQA78nfx59f/1bSt1jLuiW69iTAJZdaYsmFFsecy+UWXGaJ
+        JRbYAMCutQcjdAyHWHAYqJMIO8Hltlocq7CWC2NxrCAJSANwQ/hwuOUWBLUbaMVYPmHNO4Ls+xCATmpB
+        7UDYsMsFtQBt2S9JJZdkUiLScpHsA9QmnM6WImkZ6BNZckESBwCRrI45ILEEYJbZBjKvTNSQtKW9MQcy
+        07rzousPSQnODBPJhexrzz4r0bNNFlyaJLRQQ//zSxOA9qYLk7szE10UvfrOBCDNOAmKlDn7FGpP0dIw
+        RW9ThfiU1L7qDozlNlkOZbVVVycjrZaB2pSFSvQiQI1DAKSURTJcvgQAV0lvI7MTSi1FDVTmiO2QUk4l
+        BUDEWaecVE6GSNWUUmG38/G1V78FN9ywnnwQyFj0bK+T23CYpcEJJbhNRiAl7aTIA1XdDdlVB0rX3lSd
+        TahTCcacpZZcdBU1IWwdtdbHXHKZxctbUhS3YosvfqwxWyIriGOCIGtMIcj+6rQ+WBajdOSBFvPOY+5O
+        TnjHkxNiWceNYdGzNsb09PjmnGt0GWOhhyZaKy9z+QAWLa0FshbGfuXSoqbHn97y56KvxjprJiWQb5ZZ
+        PqCPO6+9xhkjWMbWzWqt12a7bbffhtsnXeamu26778Y7b7335rtvv/8GPHDBBye8cMMPRzxxxRdnvHHH
+        H4c8cskn33sXyy/HPHPNN+e8c88/Bz100UcnvXTTT0c9ddVXZ71111+HPXbZZ6e9dttvxz133XfnvXff
+        fwc+eOGHJ754449HPnnll2e+eeefhz566aenvnrrr8c+e+235757778HP3zxxye/fPPPRz999ddnv333
+        3y8+IAA7
 </value>
   </data>
-  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-2, -3</value>
   </data>
-  <data name="pictureBox1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>371, 96</value>
   </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>368, 64</value>
-  </data>
-  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="pictureBox1.Text">
-    <value />
-  </data>
-  <data name="pictureBox1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name">
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
     <value>pictureBox1</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Type">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Parent">
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder">
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="mainMenu1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="mainMenu1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mainMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
-  <data name="mainMenu1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="mainMenu1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="menuItem1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem1.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem1.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem1.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem1.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem1.Text">
+  </metadata>
+  <data name="menuItem1.Text" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="menuItem1.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem2.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem2.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem2.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem2.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem2.Text">
+  <data name="menuItem2.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="menuItem2.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem3.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem3.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem3.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem3.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem3.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem3.Text">
+  <data name="menuItem3.Text" xml:space="preserve">
     <value>Login Options</value>
   </data>
-  <data name="menuItem3.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem5.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem5.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem5.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem5.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem5.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem5.Text">
+  <data name="menuItem5.Text" xml:space="preserve">
     <value>Auto Login</value>
   </data>
-  <data name="menuItem5.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem4.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem4.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem4.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem4.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem4.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem4.Text">
+  <data name="menuItem4.Text" xml:space="preserve">
     <value>Save Password</value>
   </data>
-  <data name="menuItem4.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="mnuUseSSL.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="mnuUseSSL.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="mnuUseSSL.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="mnuUseSSL.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="mnuUseSSL.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="mnuUseSSL.Text">
+  <data name="mnuUseSSL.Text" xml:space="preserve">
     <value>Use Secure Connection (SSL)</value>
   </data>
-  <data name="mnuUseSSL.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem6.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem6.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem6.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem6.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem6.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem6.Text">
+  <data name="menuItem6.Text" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="menuItem6.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem7.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem7.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem7.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem7.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem7.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem7.Text">
+  <data name="menuItem7.Text" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="menuItem7.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="autoLoginTimer.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="autoLoginTimer.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="autoLoginTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 17</value>
-  </data>
-  <data name="autoLoginTimer.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="notify.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="notify.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </metadata>
+  <metadata name="notify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>255, 17</value>
-  </data>
-  <data name="notify.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Family</value>
-  </data>
-  <data name="notify.Icon" type="System.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  </metadata>
+  <metadata name="notifyMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>334, 17</value>
+  </metadata>
+  <data name="notify.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAAAACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1028,337 +531,58 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="notify.Text">
+  <data name="notify.Text" xml:space="preserve">
     <value>Just Journal</value>
   </data>
-  <data name="notify.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="notifyMenu.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="notifyMenu.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>334, 17</value>
-  </data>
-  <data name="notifyMenu.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="notifyMenu.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>No</value>
-  </data>
-  <data name="menuItem8.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem8.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem8.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem8.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem8.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem8.Text">
+  <data name="menuItem8.Text" xml:space="preserve">
     <value>&amp;New Post</value>
   </data>
-  <data name="menuItem8.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem9.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem9.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem9.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem9.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem9.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem9.Text">
+  <data name="menuItem9.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="menuItem9.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem10.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem10.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem10.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem10.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem10.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem10.Text">
+  <data name="menuItem10.Text" xml:space="preserve">
     <value>&amp;About JustJournal</value>
   </data>
-  <data name="menuItem10.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem13.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem13.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem13.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem13.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem13.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem13.Text">
+  <data name="menuItem13.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
-  <data name="menuItem13.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem18.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem18.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem18.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem18.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem18.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem18.Text">
+  <data name="menuItem18.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="menuItem18.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem15.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem15.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem15.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem15.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem15.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem15.Text">
+  <data name="menuItem15.Text" xml:space="preserve">
     <value>My &amp;Journal</value>
   </data>
-  <data name="menuItem15.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem16.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem16.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem16.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem16.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem16.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem16.Text">
+  <data name="menuItem16.Text" xml:space="preserve">
     <value>My &amp;Friends</value>
   </data>
-  <data name="menuItem16.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem17.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem17.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem17.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem17.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem17.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem17.Text">
+  <data name="menuItem17.Text" xml:space="preserve">
     <value>My &amp;Calendar</value>
   </data>
-  <data name="menuItem17.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem14.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem14.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem14.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem14.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem14.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem14.Text">
-    <value>&amp;JustJournal.com</value>
-  </data>
-  <data name="menuItem14.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem12.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem12.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem12.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem12.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem12.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem12.Text">
-    <value>-</value>
-  </data>
-  <data name="menuItem12.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem11.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem11.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem11.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem11.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem11.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem11.Text">
-    <value>E&amp;xit</value>
-  </data>
-  <data name="menuItem11.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem19.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem19.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="menuItem19.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem19.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>None</value>
-  </data>
-  <data name="menuItem19.ShowShortcut" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="menuItem19.Text">
+  <data name="menuItem19.Text" xml:space="preserve">
     <value>My Profile</value>
   </data>
-  <data name="menuItem19.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="menuItem14.Text" xml:space="preserve">
+    <value>&amp;JustJournal.com</value>
+  </data>
+  <data name="menuItem12.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItem11.Text" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>(Default)</value>
-  </data>
-  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="$this.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
-  </data>
-  <data name="$this.Name">
-    <value>Login</value>
-  </data>
-  <data name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>80</value>
-  </data>
-  <data name="$this.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="$this.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </metadata>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
     <value>6, 14</value>
   </data>
-  <data name="$this.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>366, 252</value>
   </data>
-  <data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>366, 239</value>
-  </data>
-  <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAAAAAABEXAAARFwAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1434,175 +658,160 @@
         //////////////////////////////////8=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
-  </data>
-  <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </data>
-  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
-  <data name="$this.Text">
+  <data name="$this.Text" xml:space="preserve">
     <value>Just Journal Login</value>
   </data>
-  <data name="&gt;&gt;mainMenu1.Name">
+  <data name="&gt;&gt;mainMenu1.Name" xml:space="preserve">
     <value>mainMenu1</value>
   </data>
-  <data name="&gt;&gt;mainMenu1.Type">
-    <value>System.Windows.Forms.MainMenu, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mainMenu1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MainMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem1.Name">
+  <data name="&gt;&gt;menuItem1.Name" xml:space="preserve">
     <value>menuItem1</value>
   </data>
-  <data name="&gt;&gt;menuItem1.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem2.Name">
+  <data name="&gt;&gt;menuItem2.Name" xml:space="preserve">
     <value>menuItem2</value>
   </data>
-  <data name="&gt;&gt;menuItem2.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem3.Name">
+  <data name="&gt;&gt;menuItem3.Name" xml:space="preserve">
     <value>menuItem3</value>
   </data>
-  <data name="&gt;&gt;menuItem3.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem5.Name">
+  <data name="&gt;&gt;menuItem5.Name" xml:space="preserve">
     <value>menuItem5</value>
   </data>
-  <data name="&gt;&gt;menuItem5.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem4.Name">
+  <data name="&gt;&gt;menuItem4.Name" xml:space="preserve">
     <value>menuItem4</value>
   </data>
-  <data name="&gt;&gt;menuItem4.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuUseSSL.Name">
+  <data name="&gt;&gt;mnuUseSSL.Name" xml:space="preserve">
     <value>mnuUseSSL</value>
   </data>
-  <data name="&gt;&gt;mnuUseSSL.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuUseSSL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem6.Name">
+  <data name="&gt;&gt;menuItem6.Name" xml:space="preserve">
     <value>menuItem6</value>
   </data>
-  <data name="&gt;&gt;menuItem6.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem7.Name">
+  <data name="&gt;&gt;menuItem7.Name" xml:space="preserve">
     <value>menuItem7</value>
   </data>
-  <data name="&gt;&gt;menuItem7.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;autoLoginTimer.Name">
+  <data name="&gt;&gt;autoLoginTimer.Name" xml:space="preserve">
     <value>autoLoginTimer</value>
   </data>
-  <data name="&gt;&gt;autoLoginTimer.Type">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;autoLoginTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;notify.Name">
+  <data name="&gt;&gt;notify.Name" xml:space="preserve">
     <value>notify</value>
   </data>
-  <data name="&gt;&gt;notify.Type">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;notify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;notifyMenu.Name">
+  <data name="&gt;&gt;notifyMenu.Name" xml:space="preserve">
     <value>notifyMenu</value>
   </data>
-  <data name="&gt;&gt;notifyMenu.Type">
-    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;notifyMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem8.Name">
+  <data name="&gt;&gt;menuItem8.Name" xml:space="preserve">
     <value>menuItem8</value>
   </data>
-  <data name="&gt;&gt;menuItem8.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem9.Name">
+  <data name="&gt;&gt;menuItem9.Name" xml:space="preserve">
     <value>menuItem9</value>
   </data>
-  <data name="&gt;&gt;menuItem9.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem10.Name">
+  <data name="&gt;&gt;menuItem10.Name" xml:space="preserve">
     <value>menuItem10</value>
   </data>
-  <data name="&gt;&gt;menuItem10.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem13.Name">
+  <data name="&gt;&gt;menuItem13.Name" xml:space="preserve">
     <value>menuItem13</value>
   </data>
-  <data name="&gt;&gt;menuItem13.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem18.Name">
+  <data name="&gt;&gt;menuItem18.Name" xml:space="preserve">
     <value>menuItem18</value>
   </data>
-  <data name="&gt;&gt;menuItem18.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem15.Name">
+  <data name="&gt;&gt;menuItem15.Name" xml:space="preserve">
     <value>menuItem15</value>
   </data>
-  <data name="&gt;&gt;menuItem15.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem16.Name">
+  <data name="&gt;&gt;menuItem16.Name" xml:space="preserve">
     <value>menuItem16</value>
   </data>
-  <data name="&gt;&gt;menuItem16.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem17.Name">
+  <data name="&gt;&gt;menuItem17.Name" xml:space="preserve">
     <value>menuItem17</value>
   </data>
-  <data name="&gt;&gt;menuItem17.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItem14.Name">
-    <value>menuItem14</value>
-  </data>
-  <data name="&gt;&gt;menuItem14.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuItem12.Name">
-    <value>menuItem12</value>
-  </data>
-  <data name="&gt;&gt;menuItem12.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuItem11.Name">
-    <value>menuItem11</value>
-  </data>
-  <data name="&gt;&gt;menuItem11.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuItem19.Name">
+  <data name="&gt;&gt;menuItem19.Name" xml:space="preserve">
     <value>menuItem19</value>
   </data>
-  <data name="&gt;&gt;menuItem19.Type">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;menuItem19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
+  <data name="&gt;&gt;menuItem14.Name" xml:space="preserve">
+    <value>menuItem14</value>
+  </data>
+  <data name="&gt;&gt;menuItem14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem12.Name" xml:space="preserve">
+    <value>menuItem12</value>
+  </data>
+  <data name="&gt;&gt;menuItem12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem11.Name" xml:space="preserve">
+    <value>menuItem11</value>
+  </data>
+  <data name="&gt;&gt;menuItem11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

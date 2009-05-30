@@ -11,8 +11,7 @@
     <CopyProjectOption>0</CopyProjectOption>
     <ProjectView>ShowAllFiles</ProjectView>
     <ProjectTrust>0</ProjectTrust>
-    <PublishUrlHistory>
-    </PublishUrlHistory>
+    <PublishUrlHistory>http://localhost/JustJournal/</PublishUrlHistory>
     <InstallUrlHistory>
     </InstallUrlHistory>
     <SupportUrlHistory>
@@ -21,7 +20,6 @@
     </UpdateUrlHistory>
     <BootstrapperUrlHistory>
     </BootstrapperUrlHistory>
-    <ApplicationRevision>0</ApplicationRevision>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
