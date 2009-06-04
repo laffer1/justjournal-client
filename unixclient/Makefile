@@ -1,5 +1,5 @@
 # Makefile for jjclient
-# $Id: Makefile,v 1.6 2009/06/03 16:39:56 laffer1 Exp $
+# $Id: Makefile,v 1.7 2009/06/04 03:33:55 laffer1 Exp $
 CC?=gcc
 CFLAGS?= -I/usr/local/include -Wall -pedantic -std=c99 -O2
 LDFLAGS?=-L/usr/local/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse -lxmlrpc_xmltok -lxmlrpc_util -lcurl
@@ -7,8 +7,11 @@ PREFIX?= /usr/local
 
 all: clean jjclient
 
-jjclient: jj.c
-	${CC} ${CFLAGS} ${LDFLAGS} -o jjclient jj.c
+jjclient: jj.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o jjclient jj.o
+
+jj.o: jj.c
+	${CC} ${CFLAGS} -c jj.c
 
 install: install-man
 	install -o root -g wheel -m 555 jjclient ${DESTDIR}${PREFIX}/bin/jjclient
