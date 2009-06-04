@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$Id: jj.c,v 1.10 2009/06/04 05:11:40 laffer1 Exp $
+$Id: jj.c,v 1.11 2009/06/04 05:16:43 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -217,10 +217,10 @@ static void die_if_fault_occurred( xmlrpc_env *env )
 static void getRecentPosts( const char *host, const char *username, const char *password )
 {
     xmlrpc_env env;
-    xmlrpc_value * resultP; // array item 
-    xmlrpc_value * firstElementP;  // first element in array
-    xmlrpc_value * varP;
-    const char * postResult;
+    xmlrpc_value * resultP = NULL; // array item 
+    xmlrpc_value * firstElementP = NULL;  // first element in array
+    xmlrpc_value * varP = NULL;
+    const char * postResult = NULL;
     int arrsize;
     
     xmlrpc_client_init( XMLRPC_CLIENT_NO_FLAGS, NAME, VERSION );
