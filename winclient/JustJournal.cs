@@ -240,16 +240,14 @@ namespace JustJournal
                         {
                             var node = xmlNode.ChildNodes.Item(2);
                             if (node != null)
-                                moods.Add(value: new Mood(item.InnerText, node.InnerText));
+                                moods.Add(new Mood(item.InnerText, node.InnerText));
                         }
                     }
                 }
             }
             catch (System.IO.IOException)
             {
-// ReSharper disable ObjectCreationAsStatement
                new Alert("Error loading Moods from JJ Server. Please restart just journal and try again later.", "");
-// ReSharper restore ObjectCreationAsStatement
             }
 		}
 
