@@ -1,12 +1,5 @@
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
 using Microsoft.Win32;
-using System.Threading;
-using System.Globalization;
-using System.Resources;
 
 namespace JustJournal
 {
@@ -36,7 +29,7 @@ namespace JustJournal
 		private System.Windows.Forms.CheckBox chkPaused;
 		private System.Windows.Forms.CheckBox chkStopped;
 		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.CheckBox chkOutlook;
+
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -52,35 +45,38 @@ namespace JustJournal
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
-			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-			RegistryKey mk = rk.CreateSubKey( "Preferences" );
+			var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
+		    if (rk != null)
+		    {
+		        RegistryKey mk = rk.CreateSubKey( "Preferences" );
 
-			chkAutoLogin.Checked = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
-			chkUseSSL.Checked = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
-			string pwd = (string)rk.GetValue( "password", "" );
-			string Format = (string)mk.GetValue( "Formatting", "Formatted" );
+		        chkAutoLogin.Checked = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
+		        chkUseSSL.Checked = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
+		        string pwd = (string)rk.GetValue( "password", "" );
+		        string Format = (string)mk.GetValue( "Formatting", "Formatted" );
 
-            chkUseWord.Checked = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-			chkAutoSpell.Checked = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
-			chkMusicDetect.Checked = ((string)rk.GetValue( "music", "no" )).Equals("yes");
-			chkItunes.Checked = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
-			chkPaused.Checked = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
-			chkStopped.Checked = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
-			chkOutlook.Checked = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
-			mk.Close();
-			rk.Close();
+		        chkUseWord.Checked = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+		        chkAutoSpell.Checked = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+		        chkMusicDetect.Checked = ((string)rk.GetValue( "music", "no" )).Equals("yes");
+		        chkItunes.Checked = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
+		        chkPaused.Checked = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
+		        chkStopped.Checked = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
+		
+		        mk.Close();
+		        rk.Close();
 
-			if( pwd.Equals("@") || String.IsNullOrEmpty(pwd) ) 
-				chkSavePassword.Checked = false;
-			else
-				chkSavePassword.Checked = true;
+		        if( pwd.Equals("@") || String.IsNullOrEmpty(pwd) ) 
+		            chkSavePassword.Checked = false;
+		        else
+		            chkSavePassword.Checked = true;
 
-			if (Format.Equals("Formatted"))
-				postFormatted.Checked = true;
-			else
-				postRaw.Checked = true;
+		        if (Format.Equals("Formatted"))
+		            postFormatted.Checked = true;
+		        else
+		            postRaw.Checked = true;
+		    }
 
-            if (!chkMusicDetect.Checked)
+		    if (!chkMusicDetect.Checked)
             {
                 chkItunes.Enabled = false;
                 chkPaused.Enabled = false;
@@ -96,7 +92,7 @@ namespace JustJournal
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
-			this.SaveSettings();
+			SaveSettings();
 
 			if( disposing )
 			{
@@ -134,7 +130,7 @@ namespace JustJournal
             this.chkMusicDetect = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chkOutlook = new System.Windows.Forms.CheckBox();
+      
             this.chkAutoSpell = new System.Windows.Forms.CheckBox();
             this.chkUseWord = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -314,7 +310,7 @@ namespace JustJournal
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.chkOutlook);
+
             this.groupBox3.Controls.Add(this.chkAutoSpell);
             this.groupBox3.Controls.Add(this.chkUseWord);
             this.groupBox3.Location = new System.Drawing.Point(8, 16);
@@ -323,14 +319,7 @@ namespace JustJournal
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Microsoft Office";
-            // 
-            // chkOutlook
-            // 
-            this.chkOutlook.Location = new System.Drawing.Point(24, 88);
-            this.chkOutlook.Name = "chkOutlook";
-            this.chkOutlook.Size = new System.Drawing.Size(256, 24);
-            this.chkOutlook.TabIndex = 2;
-            this.chkOutlook.Text = "Copy entries to the outlook journal";
+
             // 
             // chkAutoSpell
             // 
@@ -383,18 +372,20 @@ namespace JustJournal
 		}
 		#endregion
 
-		private void btnClose_Click(object sender, System.EventArgs e)
+		private void btnClose_Click(object sender, EventArgs e)
 		{
-			this.SaveSettings();
-			this.Close();
+			SaveSettings();
+			Close();
 		}
 
 		public void SaveSettings()
 		{
-			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-			RegistryKey mk = rk.CreateSubKey( "Preferences" );
+			var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
+		    if (rk != null)
+		    {
+		        var mk = rk.CreateSubKey( "Preferences" );
 
-			/*mk.SetValue( "ServerUrl", ServerURL );
+		        /*mk.SetValue( "ServerUrl", ServerURL );
 			mk.SetValue( "FontFace", FontSetting.Name );
 			mk.SetValue( "FontSize", FontSetting.Size );
 
@@ -410,58 +401,50 @@ namespace JustJournal
 			mk.SetValue( "QueueSpeed", QueueSpeed.ToString() );
 			
 			*/
-            // TODO finish this
-			mk.SetValue( "outlook", (chkOutlook.Checked ? "yes" : "no") );
-			mk.SetValue( "Formatting", (postFormatted.Checked ? "Formatted" : "Raw") );
-			rk.SetValue( "iTunes", (chkItunes.Checked ? "yes" : "no"));
-			rk.SetValue( "music", (chkMusicDetect.Checked ? "yes" : "no"));
-			mk.SetValue( "winampPaused", (chkPaused.Checked ? "yes" : "no"));
-            mk.SetValue( "winampStopped", (chkStopped.Checked ? "yes" : "no"));
-			
-			JustJournalCore.DetectItunes = chkItunes.Checked;
-			JustJournalCore.EnableMusicDetection = chkMusicDetect.Checked;
-			JustJournalCore.WinampPaused = chkPaused.Checked;
-			JustJournalCore.WinampStopped = chkStopped.Checked;
-			JustJournalCore.Outlook = chkOutlook.Checked;
+		        // TODO finish this
+		        if (mk != null) mk.SetValue( "Formatting", (postFormatted.Checked ? "Formatted" : "Raw") );
+		        rk.SetValue( "iTunes", (chkItunes.Checked ? "yes" : "no"));
+		        rk.SetValue( "music", (chkMusicDetect.Checked ? "yes" : "no"));
+		        if (mk != null)
+		        {
+		            mk.SetValue( "winampPaused", (chkPaused.Checked ? "yes" : "no"));
+		            mk.SetValue( "winampStopped", (chkStopped.Checked ? "yes" : "no"));
+		        }
 
-			if (chkUseSSL.Checked)
-			    rk.SetValue( "usessl", "yes" );
-			else
-				rk.SetValue( "usessl", "no" );
+		        JustJournalCore.DetectItunes = chkItunes.Checked;
+		        JustJournalCore.EnableMusicDetection = chkMusicDetect.Checked;
+		        JustJournalCore.WinampPaused = chkPaused.Checked;
+		        JustJournalCore.WinampStopped = chkStopped.Checked;
 
-			if ( chkSavePassword.Checked )
-                rk.SetValue( "password", JustJournalCore.Password );
-			else
-			    rk.SetValue( "password", "@" );
+		        rk.SetValue("usessl", chkUseSSL.Checked ? "yes" : "no");
 
-			if ( chkAutoLogin.Checked )
-			    rk.SetValue( "autologin", "yes" );
-			else
-				rk.SetValue( "autologin", "no" );
+		        rk.SetValue("password", chkSavePassword.Checked ? JustJournalCore.Password : "@");
 
-			if (chkUseWord.Checked)
-			{
-				JustJournalCore.EnableSpellCheck = true;
-				rk.SetValue( "useword", "yes" );
-			}
-			else
-			{
-				JustJournalCore.EnableSpellCheck = false;
-				rk.SetValue( "useword", "no" );
-			}
+		        rk.SetValue("autologin", chkAutoLogin.Checked ? "yes" : "no");
 
-			if (chkUseWord.Checked && chkAutoSpell.Checked)
-			{
-				JustJournalCore.AutoSpellCheck = true;
-				rk.SetValue( "autospell", "yes" );
-			}
-			else
-			{
-				JustJournalCore.AutoSpellCheck = false;
-				rk.SetValue( "autospell", "no" );
-			}
+		        if (chkUseWord.Checked)
+		        {
+		            JustJournalCore.EnableSpellCheck = true;
+		            rk.SetValue( "useword", "yes" );
+		        }
+		        else
+		        {
+		            JustJournalCore.EnableSpellCheck = false;
+		            rk.SetValue( "useword", "no" );
+		        }
 
-			/*string old_lang = mk.GetValue( "Language", string.Empty ).ToString();
+		        if (chkUseWord.Checked && chkAutoSpell.Checked)
+		        {
+		            JustJournalCore.AutoSpellCheck = true;
+		            rk.SetValue( "autospell", "yes" );
+		        }
+		        else
+		        {
+		            JustJournalCore.AutoSpellCheck = false;
+		            rk.SetValue( "autospell", "no" );
+		        }
+
+		        /*string old_lang = mk.GetValue( "Language", string.Empty ).ToString();
 			string lang = cbLanguage.SelectedItem.ToString();
 			foreach( object key in Languages.Keys )
 				if( Languages[key].ToString().Equals( lang ) )
@@ -470,8 +453,9 @@ namespace JustJournal
 			if( !old_lang.Equals( mk.GetValue( "Language", string.Empty ).ToString() ) )
 				MessageBox.Show( rm.GetString( "message_change_lang" ) );*/
 
-			mk.Close();
-			rk.Close();
+		        if (mk != null) mk.Close();
+		    }
+		    if (rk != null) rk.Close();
 		}
 
         private void chkMusicDetect_CheckedChanged(object sender, EventArgs e)

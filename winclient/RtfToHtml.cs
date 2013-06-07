@@ -1,26 +1,16 @@
 using System;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography;
-using System.Net;
 using System.Collections;
 using System.Windows.Forms;
-using System.IO;
-using System.Web;
 
 namespace JustJournal
 {
 	/// <summary>
 	/// Summary description for RtfToHtml.
 	/// </summary>
-	public sealed class RtfToHtml
+	public static class RtfToHtml
 	{
-		/// <summary>
-		/// This is a static class.
-		/// </summary>
-		private RtfToHtml() {}
-
-		public static string ToCssFontSize( int size )
+	    public static string ToCssFontSize( int size )
 		{
 			switch( size )
 			{
@@ -56,8 +46,6 @@ namespace JustJournal
 
 		public static string ToHtmlFontSize( int size )
 		{
-			try
-			{
 				switch( size )
 				{
 					case 1:
@@ -93,11 +81,6 @@ namespace JustJournal
 					default:
 						return "7";
 				}
-			}
-			catch( Exception )
-			{
-			}
-			return "2";
 		}
 
 		public static string ToHexColor( int red, int green, int blue )
@@ -325,8 +308,6 @@ namespace JustJournal
 									case "rdblquote":
 										result += "&rdquo;";
 										break;
-									default:
-										break;
 								}
 							}
 							if( rtf[cur].Equals( '\\' ) ) // start another tag
@@ -414,7 +395,7 @@ namespace JustJournal
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( ex.Message + "\n" + ex.StackTrace, "Exception in " + ex.Source );
+				MessageBox.Show( ex.Message + "\n" + ex.StackTrace, @"Exception in " + ex.Source );
 			}
 			throw new Exception( "Error converting post to HTML." );
 		}
@@ -423,8 +404,8 @@ namespace JustJournal
 
 	internal class TagCounts
 	{
-		private static uint _font = 0;
-		private static uint _span = 0;
+		private static uint _font;
+		private static uint _span;
 
 		// static class
 		private TagCounts(){}

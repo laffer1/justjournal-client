@@ -1,9 +1,7 @@
 using System;
 using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
-using System.Data;
 using System.Net;
 using System.IO;
 using System.Text;
@@ -1029,25 +1027,25 @@ namespace JustJournal
 		#endregion
 
 
-		private void txtSubject_TextChanged(object sender, System.EventArgs e)
+		private void txtSubject_TextChanged(object sender, EventArgs e)
 		{
 			if( txtSubject.Text.Length > 0 ) 
 			{
-				this.Text = txtSubject.Text + " - " + "JustJournal";
+				Text = string.Format("{0} - " + "JustJournal", txtSubject.Text);
 			}
 			else
 			{
-				this.Text = "<" + "no subject" + "> - " + "JustJournal";
+				Text = "<no subject" + "> - " + "JustJournal";
 			}
 		}
 
-		private void menuItem4_Click(object sender, System.EventArgs e)
+		private void menuItem4_Click(object sender, EventArgs e)
 		{
 			// Close JJ
 			Application.Exit();
 		}
 
-		private void btnPost_Click(object sender, System.EventArgs e)
+		private void btnPost_Click(object sender, EventArgs e)
 		{
 			if (JustJournalCore.AutoSpellCheck)
 			{
@@ -1064,25 +1062,7 @@ namespace JustJournal
 			this.Enabled = false;
 			this.Cursor = Cursors.WaitCursor;
 			
-			if (JustJournalCore.Outlook)
-			{
-				try 
-				{
-                    Microsoft.Office.Interop.Outlook.Application ol = new Microsoft.Office.Interop.Outlook.ApplicationClass();
-                    Microsoft.Office.Interop.Outlook.JournalItem ja = (Microsoft.Office.Interop.Outlook.JournalItem)ol.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olJournalItem);
-					ja.Subject = txtSubject.Text;
-					ja.Body = rtbBody.Text;
-					ja.Type = "Note";
-					ja.Categories = "Personal";
-					ja.Save();
-
-				} 
-				catch (Exception e1) 
-				{
-				}
-			}
-
-			WebClient client = new WebClient();
+	     	WebClient client = new WebClient();
 			string uriString;
             if (JustJournalCore.EnableSsl)
                 uriString = "https://";
@@ -1188,7 +1168,7 @@ namespace JustJournal
 			new AboutForm().Show();
 		}
 
-		private void mEntryAllowComments_Click(object sender, System.EventArgs e)
+		private void mEntryAllowComments_Click(object sender, EventArgs e)
 		{
 		    if (mEntryAllowComments.Checked)
 				mEntryAllowComments.Checked = false;
@@ -1196,7 +1176,7 @@ namespace JustJournal
 				mEntryAllowComments.Checked = true;
 		}
 
-		private void mEntryEmailComments_Click(object sender, System.EventArgs e)
+		private void mEntryEmailComments_Click(object sender, EventArgs e)
 		{
 			if (mEntryEmailComments.Checked)
 				mEntryEmailComments.Checked = false;
@@ -1204,12 +1184,12 @@ namespace JustJournal
 				mEntryEmailComments.Checked = true;
 		}
 
-		private void menuItem7_Click(object sender, System.EventArgs e)
+		private void menuItem7_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
-		private void menuItem9_Click(object sender, System.EventArgs e)
+		private void menuItem9_Click(object sender, EventArgs e)
 		{
 			if (txtSubject.Focused)
 				txtSubject.Cut();
@@ -1229,7 +1209,7 @@ namespace JustJournal
 				rtbBody.Copy();
 		}
 
-		private void menuItem11_Click(object sender, System.EventArgs e)
+		private void menuItem11_Click(object sender, EventArgs e)
 		{
 			if (txtSubject.Focused)
 				txtSubject.Paste();
@@ -1239,7 +1219,7 @@ namespace JustJournal
 				rtbBody.Paste();
 		}
 
-		private void btnMusicSense_Click(object sender, System.EventArgs e)
+		private void btnMusicSense_Click(object sender, EventArgs e)
 		{
 		    try
 		    {
@@ -1251,7 +1231,7 @@ namespace JustJournal
 		    } 
 		}
 
-		private void mnuFont_Click(object sender, System.EventArgs e)
+		private void mnuFont_Click(object sender, EventArgs e)
 		{
 			fontDlg.Font = rtbBody.SelectionFont;
 			if( fontDlg.ShowDialog() == DialogResult.OK ) 
@@ -1397,7 +1377,7 @@ namespace JustJournal
 			}
 		}
 
-		private void menuItem4_Click_1(object sender, System.EventArgs e)
+		private void menuItem4_Click_1(object sender, EventArgs e)
 		{
 			if (colorDlg.ShowDialog( this ).Equals( DialogResult.OK))
 			{
@@ -1405,37 +1385,37 @@ namespace JustJournal
 			}
 		}
 
-		private void menuItem19_Click(object sender, System.EventArgs e)
+		private void menuItem19_Click(object sender, EventArgs e)
 		{
 			rtbBody.SelectAll();
 		}
 
-		private void menuItem20_Click(object sender, System.EventArgs e)
+		private void menuItem20_Click(object sender, EventArgs e)
 		{
 			rtbBody.Undo();
 		}
 
-		private void menuItem21_Click(object sender, System.EventArgs e)
+		private void menuItem21_Click(object sender, EventArgs e)
 		{
 			rtbBody.Redo();
 		}
 
-		private void menuItem24_Click(object sender, System.EventArgs e)
+		private void menuItem24_Click(object sender, EventArgs e)
 		{
 			rtbBody.Cut();
 		}
 
-		private void menuItem25_Click(object sender, System.EventArgs e)
+		private void menuItem25_Click(object sender, EventArgs e)
 		{
 			rtbBody.Copy();
 		}
 
-		private void menuItem26_Click(object sender, System.EventArgs e)
+		private void menuItem26_Click(object sender, EventArgs e)
 		{
 			rtbBody.Paste();
 		}
 
-		private void menuItem27_Click(object sender, System.EventArgs e)
+		private void menuItem27_Click(object sender, EventArgs e)
 		{
 		    rtbBody.SelectedRtf = string.Empty;
 		}
@@ -1548,8 +1528,8 @@ namespace JustJournal
 					if( name.Length > 0 )
 					{
 						name = name.TrimStart( "0123456789 ".ToCharArray() );
-						name = name.Substring( 0, name.LastIndexOf( " - (" ) );
-						name = name.Substring( 0, name.LastIndexOf( " - " ) );
+						name = name.Substring( 0, name.LastIndexOf(" - (", StringComparison.Ordinal) );
+						name = name.Substring( 0, name.LastIndexOf(" - ", StringComparison.Ordinal) );
 					}
 					break;
 				case 3: //Winamp 2/5
@@ -1558,7 +1538,7 @@ namespace JustJournal
 					name = sb.ToString();
 					if( name.Length > 0 )
 					{
-						int start = name.IndexOf( "." ) + 2;
+						int start = name.IndexOf(".", StringComparison.Ordinal) + 2;
 						size = name.Length - start - 9;
 						if( name.EndsWith( "[Paused]" ) )
 						{
@@ -1590,7 +1570,7 @@ namespace JustJournal
 						}
 						if( player.Equals( 2 ) )
 						{
-							size = name.LastIndexOf( "(" ) - 1;
+							size = name.LastIndexOf("(", StringComparison.Ordinal) - 1;
 							if( size > 0 )
 							{
 								name = name.Substring( 0, size );
@@ -1604,10 +1584,10 @@ namespace JustJournal
 					name = sb.ToString();
 					if( name.Length > 0 )
 					{
-						size = name.IndexOf( "MUSICMATCH" );
+						size = name.IndexOf("MUSICMATCH", StringComparison.Ordinal);
 						if( size < 0 )
 						{
-							size = name.IndexOf( "Musicmatch" );
+							size = name.IndexOf("Musicmatch", StringComparison.Ordinal);
 						}
 						if( size > 0 )
 						{
@@ -1620,7 +1600,7 @@ namespace JustJournal
 					name = sb.ToString();
 					if( name.Length > 0 )
 					{
-						size = name.IndexOf( ".mp3" ) + 7;
+						size = name.IndexOf(".mp3", StringComparison.Ordinal) + 7;
 						name = name.Substring( 0, size);
 					}
 					break;
@@ -1637,7 +1617,7 @@ namespace JustJournal
 					name = sb.ToString();
 					if( name.Length > 0 )
 					{
-						size = name.IndexOf( "[foobar" );
+						size = name.IndexOf("[foobar", StringComparison.Ordinal);
 						if( size > 0 )
 						{
 							name = name.Substring( 0, size );
@@ -1653,10 +1633,10 @@ namespace JustJournal
 					if( name.Length > 0 )
 					{
 						if (rk.GetValue("Album", string.Empty).ToString().Length > 0 )
-							name += " - " + rk.GetValue("Album", string.Empty).ToString(); 
+							name += " - " + rk.GetValue("Album", string.Empty); 
 
 						if( rk.GetValue( "Author", string.Empty ).ToString().Length > 0 )
-							name += " - " + rk.GetValue( "Author", string.Empty ).ToString();
+							name += " - " + rk.GetValue( "Author", string.Empty );
 					}
 					else
 					{
@@ -1670,7 +1650,7 @@ namespace JustJournal
 						name = sb.ToString();
 						if( name.Length > 0 )
 						{
-							size = name.LastIndexOf( "." );
+							size = name.LastIndexOf(".", StringComparison.Ordinal);
 							name = name.Substring( 0, size );
 						}
 					}

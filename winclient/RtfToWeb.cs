@@ -1,12 +1,7 @@
 using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Security.Cryptography;
-using System.Net;
 using System.Collections;
 using System.Windows.Forms;
 using System.IO;
-using System.Web;
 
 namespace JustJournal
 {
@@ -15,16 +10,9 @@ namespace JustJournal
 	/// </summary>
 	public sealed class RtfToWeb
 	{
-		private bool css = true;
-		private bool xhtml = true;
-		private string bgcolor = "transparent";
+	    private string _bgcolor = "transparent";
 
-		public RtfToWeb()
-		{
-			
-		}
-
-		private string ToCssFontSize( int size )
+	    private static string ToCssFontSize( int size )
 		{
 			switch( size )
 			{
@@ -110,7 +98,6 @@ namespace JustJournal
 				int ftlevel = 0;
 				string deffont = string.Empty;
 				bool rdcolor = false;
-				ArrayList al = new ArrayList();
 
 				int cur = 0;
 
@@ -374,15 +361,15 @@ namespace JustJournal
 
 				if( result.Length > 0 )
 				{
-					if (bgcolor == "#ffffff")
-						bgcolor="transparent";
-					result = "<p style=\"background-color:" + bgcolor + "\">" + result + "</p>";
+					if (_bgcolor == "#ffffff")
+						_bgcolor="transparent";
+					result = "<p style=\"background-color:" + _bgcolor + "\">" + result + "</p>";
 					return result;
 				}
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( ex.Message + "\n" + ex.StackTrace, "Exception in " + ex.Source );
+				MessageBox.Show( ex.Message + "\n" + ex.StackTrace, @"Exception in " + ex.Source );
 			}
 			throw new Exception( "Error converting post to HTML." );
 		}

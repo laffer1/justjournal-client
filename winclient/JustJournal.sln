@@ -1,8 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustJournal", "JustJournal.csproj", "{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JustJournalSetup32", "..\JustJournalSetup32\JustJournalSetup32.vdproj", "{3378C57A-FEA2-4A49-8248-224476AC44C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,8 +12,6 @@ Global
 		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C642EF59-C802-4C0A-A9A2-9A63A3F5D155}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3378C57A-FEA2-4A49-8248-224476AC44C8}.Debug|Any CPU.ActiveCfg = Debug
-		{3378C57A-FEA2-4A49-8248-224476AC44C8}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

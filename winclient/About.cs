@@ -1,8 +1,4 @@
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace JustJournal
 {
@@ -99,7 +95,7 @@ namespace JustJournal
             this.label1.Size = new System.Drawing.Size(312, 40);
             this.label1.TabIndex = 9;
             this.label1.Text = "This software allows you to post journal entries using the just journal website. " +
-                " Copyright 2005, 2006, 2009 Lucas Holt";
+    " Copyright 2005, 2006, 2009, 2012 Lucas Holt";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // linkLabel1

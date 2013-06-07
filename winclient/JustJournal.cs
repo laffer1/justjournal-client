@@ -1,14 +1,8 @@
 using System;
-using System.Web;
-using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
-using System.Windows.Forms;
 using System.Net;
-using Microsoft.Win32;
-using System.Text.RegularExpressions;
 using System.Text;
-using System.Security.Cryptography;
 using System.Reflection;
 
 namespace JustJournal
@@ -16,37 +10,27 @@ namespace JustJournal
 	/// <summary>
 	/// Summary description for JustJournal.
 	/// </summary>
-	sealed public class JustJournalCore
+	public static class JustJournalCore
 	{
-        private const string server = "www.justjournal.com";
+        private const string Server = "www.justjournal.com";
 
-        private static bool loggedIn;
-		private static string userName;
-		private static string password;
+        private static bool _loggedIn;
+		private static string _userName;
+		private static string _password;
 		
-        private static bool enableSpellCheck;
-		private static bool autoSpellCheck;
-		private static bool enableItunes;
-		private static bool detectMusic;
-		private static bool useSsl = true;
-		private static string debug;
-		private static ArrayList moods = new ArrayList(125);
-		private static bool winampPaused;
-		private static bool winampStopped;
-		private static bool outlook;
+        private static bool _enableSpellCheck;
+		private static bool _autoSpellCheck;
+		private static bool _enableItunes;
+		private static bool _detectMusic;
+		private static bool _useSsl = true;
+		private static string _debug;
+// ReSharper disable InconsistentNaming
+		private static readonly ArrayList moods = new ArrayList(125);
+// ReSharper restore InconsistentNaming
+		private static bool _winampPaused;
+		private static bool _winampStopped;
 
 		/* Properties */
-		public static bool Outlook
-		{
-			get
-			{ 
-				return outlook;
-			}
-			set
-			{
-				outlook = value;
-			}
-		}
 
 		public static ArrayList Moods
 		{
@@ -60,11 +44,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return useSsl;
+				return _useSsl;
 			}
 			set
 			{
-				useSsl = value;
+				_useSsl = value;
 			}
 		}
 
@@ -72,11 +56,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return debug;
+				return _debug;
 			}
 			set
 			{
-				debug = value;
+				_debug = value;
 			}
 		}
 
@@ -84,11 +68,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return enableSpellCheck;
+				return _enableSpellCheck;
 			}
 			set
 			{
-				enableSpellCheck = value;
+				_enableSpellCheck = value;
 			}
 		}
 
@@ -96,11 +80,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return autoSpellCheck;
+				return _autoSpellCheck;
 			}
 			set
 			{
-				autoSpellCheck = value;
+				_autoSpellCheck = value;
 			}
 		}
 
@@ -108,11 +92,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return enableItunes;
+				return _enableItunes;
 			}
 			set
 			{
-				enableItunes = value;
+				_enableItunes = value;
 			}
 		}
 
@@ -120,11 +104,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return detectMusic;
+				return _detectMusic;
 			}
 			set
 			{
-				detectMusic = value;
+				_detectMusic = value;
 			}
 		}
 
@@ -140,11 +124,11 @@ namespace JustJournal
 		{   
 			get
 			{
-				return loggedIn;
+				return _loggedIn;
 			}
 			set
 			{
-				loggedIn = value;
+				_loggedIn = value;
 			}
 		}
 
@@ -152,12 +136,12 @@ namespace JustJournal
 		{
 			get
 			{
-				return userName;
+				return _userName;
 			}
 
 			set
 			{
-				userName = value;
+				_userName = value;
 			}
 		}
 
@@ -165,12 +149,12 @@ namespace JustJournal
 		{
 			get
 			{
-				return password;
+				return _password;
 			}
 
 			set
 			{
-				password = value;
+				_password = value;
 			}
 		}
 
@@ -178,11 +162,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return winampPaused;
+				return _winampPaused;
 			}
 			set
 			{
-				winampPaused = value;
+				_winampPaused = value;
 			}
 		}
 		
@@ -190,11 +174,11 @@ namespace JustJournal
 		{
 			get
 			{
-				return winampStopped;
+				return _winampStopped;
 			}
 			set
 			{
-				winampStopped = value;
+				_winampStopped = value;
 			}
 		}
 
@@ -203,12 +187,12 @@ namespace JustJournal
 		{
 			string uriString;
 			WebClient client = new WebClient();	
-			if (useSsl)
+			if (_useSsl)
                 uriString = "https://";
 			else
 			    uriString = "http://";
 			 
-			uriString += server + "/loginAccount";
+			uriString += Server + "/loginAccount";
 			
 			// Create a new NameValueCollection instance to hold some custom parameters to be posted to the URL.
 			NameValueCollection myNameValueCollection = new NameValueCollection();
@@ -217,64 +201,61 @@ namespace JustJournal
 			// requested URI contains a query.
 			client.Headers.Add("User-Agent", Version);
 
-			myNameValueCollection.Add("username", userName);            
-			myNameValueCollection.Add("password", password);
+			myNameValueCollection.Add("username", _userName);            
+			myNameValueCollection.Add("password", _password);
 			myNameValueCollection.Add("password_hash", "");
 
 			byte[] responseArray = client.UploadValues(uriString,"POST",myNameValueCollection);
 			//Encoding.ASCII.GetString(responseArray)
 
 			string resp = Encoding.ASCII.GetString(responseArray);
-			debug = resp.ToString();
-			if ( resp.Length > 0 && resp.IndexOf("JJ.LOGIN.OK") == -1 ) 
-				return false;
-			else
-				return true;
+			_debug = resp;
+			return resp.Length <= 0 || resp.IndexOf("JJ.LOGIN.OK", StringComparison.Ordinal) != -1;
 		}
 
 		public static void RetrieveMoods()
 		{
             try
             {
-                WebClient client = new WebClient();
-                string uriString = "http://" + server + "/moodlist.h";
+                var client = new WebClient();
+                var uriString = "http://" + Server + "/moodlist.h";
 
                 client.Headers.Add("User-Agent", Version);
                 byte[] responseArray = client.DownloadData(uriString);
-                string resp = Encoding.UTF8.GetString(responseArray);
-                System.Xml.XmlDocument xdoc = new System.Xml.XmlDocument();
+                var resp = Encoding.UTF8.GetString(responseArray);
+                var xdoc = new System.Xml.XmlDocument();
                 xdoc.LoadXml(resp);
 
-                System.Xml.XmlNodeList nl = xdoc.SelectNodes("model/moods/*");
+                var nl = xdoc.SelectNodes("model/moods/*");
 
                 moods.Clear();  // clear the list
-                for (int n = 0; n < nl.Count; n++)
+                System.Diagnostics.Debug.Assert(nl != null, "nl != null");
+                for (var n = 0; n < nl.Count; n++)
                 {
-                    moods.Add(new Mood(nl.Item(n).ChildNodes.Item(0).InnerText, nl.Item(n).ChildNodes.Item(2).InnerText));
+                    var xmlNode = nl.Item(n);
+                    if (xmlNode != null)
+                    {
+                        var item = xmlNode.ChildNodes.Item(0);
+                        if (item != null)
+                        {
+                            var node = xmlNode.ChildNodes.Item(2);
+                            if (node != null)
+                                moods.Add(new Mood(item.InnerText, node.InnerText));
+                        }
+                    }
                 }
             }
-            catch (System.IO.IOException e)
+            catch (System.IO.IOException)
             {
-                new Alert("Error loading Moods from JJ Server. Please restart just journal and try again later.", "");
+               new Alert("Error loading Moods from JJ Server. Please restart just journal and try again later.", "");
             }
 		}
 
 		// static class
-		private JustJournalCore()
-		{
-        }
 
-        private static String AssemblyVersion()
+	    private static String AssemblyVersion()
         {
             Assembly assembly = Assembly.GetCallingAssembly();
-            // name, description and more
-            //object[] attributes = assembly.GetCustomAttributes(true); 
-            //foreach (object attribute in attributes)
-            //{
-            //    if (attribute is AssemblyTitleAttribute)
-            //        labelTitle.Text = ((AssemblyTitleAttribute)attribute).Title;
-            //}
-            // version
             AssemblyName assemblyname = assembly.GetName();
             Version assemblyver = assemblyname.Version;
             return assemblyver.ToString();

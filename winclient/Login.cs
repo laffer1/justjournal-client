@@ -1,13 +1,9 @@
 using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Threading;
 using System.Globalization;
 using System.Resources;
-using System.Security.Permissions;
 
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: CLSCompliant(true)]
@@ -57,71 +53,78 @@ namespace JustJournal
 		public Login()
 		{
 			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-			RegistryKey mk = rk.CreateSubKey( "Preferences" );
-			string lang = (string)mk.GetValue("Language");
-			if (lang != null) 
-			{
-				Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
-				Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-			}
+		    if (rk == null) return;
+		    var mk = rk.CreateSubKey( "Preferences" );
+		    if (mk != null)
+		    {
+		        var lang = (string)mk.GetValue("Language");
+		        if (lang != null) 
+		        {
+		            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
+		            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+		        }
+		    }
 
-			rm = new ResourceManager(typeof(Login));
+		    rm = new ResourceManager(typeof(Login));
 
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+		    //
+		    // Required for Windows Form Designer support
+		    //
+		    InitializeComponent();
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
+		    //
+		    // TODO: Add any constructor code after InitializeComponent call
+		    //
 
-			rk.Close();
-			mk.Close();
+		    rk.Close();
+		    if (mk != null) mk.Close();
 		}
 
-		private void Login_Load(object sender, System.EventArgs e)
+		private void Login_Load(object sender, EventArgs e)
 		{
-			RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-			RegistryKey mk = rk.CreateSubKey( "Preferences" );
-			string uname = (string)rk.GetValue( "username", "" );
-			string pwd = (string)rk.GetValue( "password", "" );
-			bool autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
-			bool ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
-			JustJournalCore.EnableSpellCheck = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-			JustJournalCore.AutoSpellCheck = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
-			JustJournalCore.EnableMusicDetection = ((string)rk.GetValue( "music", "no" )).Equals("yes");
-			JustJournalCore.DetectItunes = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
-			JustJournalCore.WinampPaused = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
-			JustJournalCore.WinampStopped = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
-			JustJournalCore.Outlook = ((string)mk.GetValue( "outlook", "no")).Equals("yes");
-			mk.Close();
-			rk.Close();
+			var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
+		    if (rk == null) return;
+		    var mk = rk.CreateSubKey( "Preferences" );
+		    var uname = (string)rk.GetValue( "username", "" );
+		    var pwd = (string)rk.GetValue( "password", "" );
+		    var autoLog = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
+		    var ssl = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
+		    JustJournalCore.EnableSpellCheck = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
+		    JustJournalCore.AutoSpellCheck = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
+		    JustJournalCore.EnableMusicDetection = ((string)rk.GetValue( "music", "no" )).Equals("yes");
+		    JustJournalCore.DetectItunes = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
+		    if (mk != null)
+		    {
+		        JustJournalCore.WinampPaused = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
+		        JustJournalCore.WinampStopped = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
+		        mk.Close();
+		    }
+		    rk.Close();
 
-			txtUserName.Text = uname;
-			if( pwd.Equals("@") ) 
-			{
-				menuItem4.Checked = false;
-				txtPassword.Text = "";
-			}
-			else
-			{
-				txtPassword.Text = pwd;
-				menuItem4.Checked = true;
-			}
+		    txtUserName.Text = uname;
+		    if( pwd.Equals("@") ) 
+		    {
+		        menuItem4.Checked = false;
+		        txtPassword.Text = "";
+		    }
+		    else
+		    {
+		        txtPassword.Text = pwd;
+		        menuItem4.Checked = true;
+		    }
 
-			mnuUseSSL.Checked = ssl;
-			JustJournalCore.EnableSsl = ssl;
+		    mnuUseSSL.Checked = ssl;
+		    JustJournalCore.EnableSsl = ssl;
 
-			if( autoLog ) 
-			{
-				menuItem5.Checked = true;
-				this.Enabled = false;
-				autoLoginTimer.Start();
-			}
+		    if( autoLog ) 
+		    {
+		        menuItem5.Checked = true;
+		        Enabled = false;
+		        autoLoginTimer.Start();
+		    }
 		}
 
-		private void autologinTimer_Tick(object sender, System.EventArgs e)
+		private void autologinTimer_Tick(object sender, EventArgs e)
 		{
 			autoLoginTimer.Stop();
 			if( menuItem5.Checked )
@@ -426,10 +429,10 @@ namespace JustJournal
 		}
 		#endregion
 
-		private void btnLogin_Click(object sender, System.EventArgs e)
+		private void btnLogin_Click(object sender, EventArgs e)
 		{	
-			this.Enabled = false;
-			this.Cursor = Cursors.WaitCursor;
+			Enabled = false;
+			Cursor = Cursors.WaitCursor;
 			JustJournalCore.UserName = txtUserName.Text.Trim();
 			JustJournalCore.Password = txtPassword.Text.Trim();
 
@@ -437,90 +440,85 @@ namespace JustJournal
 			{
 				JustJournalCore.EnableSsl = true;
 				RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-				rk.SetValue( "usessl", "yes" );
+			    if (rk != null) rk.SetValue( "usessl", "yes" );
 			}
 			else 
 			{
 				JustJournalCore.EnableSsl = false;
 			    RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-			    rk.SetValue( "usessl", "no" );
-		    }
+			    if (rk != null) rk.SetValue( "usessl", "no" );
+			}
 
 			try 
 			{
 				if ( JustJournalCore.Login() )
 				{
-					this.Enabled = true;
-					this.Cursor = Cursors.Default;
-					this.Hide();
-					RegistryKey rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-					rk.SetValue( "username", txtUserName.Text );
+					Enabled = true;
+					Cursor = Cursors.Default;
+					Hide();
+					var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
+				    if (rk != null)
+				    {
+				        rk.SetValue( "username", txtUserName.Text );
 
-					// save password
-					if(!menuItem4.Checked)
-					{
-						rk.SetValue( "password", "@" );
-					}
-					else
-					{
-						if ((string)rk.GetValue( "password", "" ) == "@")
-						{
-							DialogResult x = MessageBox.Show("Password will be saved in the registry in clear text for your windows login.  This could be a security issue.  Are you sure?", "Save Password",
-								MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+				        // save password
+				        if(!menuItem4.Checked)
+				        {
+				            rk.SetValue( "password", "@" );
+				        }
+				        else
+				        {
+				            if ((string)rk.GetValue( "password", "" ) == "@")
+				            {
+				                var x = MessageBox.Show("Password will be saved in the registry in clear text for your windows login.  This could be a security issue.  Are you sure?", "Save Password",
+				                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-							if (x.Equals(DialogResult.Yes))
-							{
-								rk.SetValue( "password", txtPassword.Text );
-							} 
-							else 
-							{
-								rk.SetValue( "password", "@" );
-							}
-						}  
-					
-					}
+				                rk.SetValue("password", x.Equals(DialogResult.Yes) ? txtPassword.Text : "@");
+				            }
+				        }
 
-					// auto login
-					if (menuItem5.Checked)
-					{
-						rk.SetValue( "autologin", "yes" );				
-					}
-					else
-					{
-						rk.SetValue( "autologin", "no" );
-					}
+				        // auto login
+				        if (menuItem5.Checked)
+				        {
+				            rk.SetValue( "autologin", "yes" );				
+				        }
+				        else
+				        {
+				            rk.SetValue( "autologin", "no" );
+				        }
 
-					rk.Close();
-					notify.Visible = true;
+				        rk.Close();
+				    }
+				    notify.Visible = true;
 				}
 				else 
 				{
 					MessageBox.Show("Unable to login.  Make sure your username and password are correct.", "Authentication Error",
 						MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-					this.Enabled = true;
-					this.Cursor = Cursors.Default;
+					Enabled = true;
+					Cursor = Cursors.Default;
 				}
 			} 
 			catch ( Exception ex ) 
 			{
-				MessageBox.Show( this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );		
-				this.Enabled = true;
-				this.Cursor = Cursors.Default;
+				MessageBox.Show( this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );		
+				Enabled = true;
+				Cursor = Cursors.Default;
 			}
 		}
 
-		private void menuItem2_Click(object sender, System.EventArgs e)
+		private void menuItem2_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
 		}
 
-		private void menuItem7_Click(object sender, System.EventArgs e)
+		private void menuItem7_Click(object sender, EventArgs e)
 		{
 		    new AboutForm().Show();
 		}
 
-		private void menuItem5_Click(object sender, System.EventArgs e)
+		private void menuItem5_Click(object sender, EventArgs e)
 		{					
 			if (menuItem5.Checked)
 			{
@@ -532,7 +530,7 @@ namespace JustJournal
 			}
 	    }
 
-		private void menuItem4_Click(object sender, System.EventArgs e)
+		private void menuItem4_Click(object sender, EventArgs e)
 		{					
 			if( menuItem4.Checked )
 			{
@@ -544,52 +542,52 @@ namespace JustJournal
 			}
 		}
 
-		private void menuItem8_Click(object sender, System.EventArgs e)
+		private void menuItem8_Click(object sender, EventArgs e)
 		{
 			new PostForm().Show();
 		}
 
-		private void menuItem11_Click(object sender, System.EventArgs e)
+		private void menuItem11_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
 		}
 
-		private void menuItem10_Click(object sender, System.EventArgs e)
+		private void menuItem10_Click(object sender, EventArgs e)
 		{
 		     new AboutForm().Show();
 		}
 
-		private void notify_DoubleClick(object sender, System.EventArgs e)
+		private void notify_DoubleClick(object sender, EventArgs e)
 		{
 			new PostForm().Show();
 		}
 
-		private void menuItem13_Click(object sender, System.EventArgs e)
+		private void menuItem13_Click(object sender, EventArgs e)
 		{
 			new Options().Show();
 		}
 
-		private void menuItem15_Click(object sender, System.EventArgs e)
+		private void menuItem15_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName);
 		}
 
-		private void menuItem16_Click(object sender, System.EventArgs e)
+		private void menuItem16_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName + "/friends");
 		}
 
-		private void menuItem17_Click(object sender, System.EventArgs e)
+		private void menuItem17_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/users/" + JustJournalCore.UserName + "/calendar");
 		}
 
-		private void menuItem14_Click(object sender, System.EventArgs e)
+		private void menuItem14_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/");
 		}
 
-		private void menuItem19_Click(object sender, System.EventArgs e)
+		private void menuItem19_Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.justjournal.com/profile.jsp?user=" + JustJournalCore.UserName);
 		}

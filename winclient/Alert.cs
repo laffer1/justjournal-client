@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -9,12 +8,14 @@ namespace JustJournal
 {
     partial class Alert 
     {
-        [DllImport("User32.dll")]
-        public extern static int ShowWindow(IntPtr hWnd, Int32 cmdShow);
+        [DllImport(dllName: "User32.dll")]
+        public extern static int ShowWindow(IntPtr hWnd, int cmdShow);
 
+// ReSharper disable InconsistentNaming
         const Int32 SW_SHOWNOACTIVATE = 4;
+// ReSharper restore InconsistentNaming
 
-        [DllImport("User32.dll")]
+        [DllImport(dllName: "User32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public extern static bool SetWindowPos(
             IntPtr hWnd,             // handle to window
@@ -26,20 +27,22 @@ namespace JustJournal
             Int32 uFlags            // window-positioning options
             );
 
+        // ReSharper disable InconsistentNaming
         const Int32 SWP_NOACTIVATE = 0x0010;
         const Int32 HWND_TOPMOST = -1;
+        // ReSharper restore InconsistentNaming
 
-        [DllImport("winmm.dll")]
+        [DllImport(dllName: "winmm.dll", CharSet = CharSet.Unicode)]
         private static extern Int32 PlaySound(String lpszName, Int32 hModule, Int32 dwFlags);
         private static int SND_ALIAS = 0x00010000;
 
-        private string linked;
+        private string _linked;
 
         public Alert(string Message, string link)
         {
             InitializeComponent();
             msg.Text = Message;
-            linked = link;
+            _linked = link;
             int h = 128;
             int w = 168;
             int cx = Screen.PrimaryScreen.WorkingArea.Width - (w + 25);
@@ -50,14 +53,14 @@ namespace JustJournal
             timer1.Start();
         }
 
-        private void Alert_Load(object sender, System.EventArgs e)
+        private void Alert_Load(object sender, EventArgs e)
         {
             PlaySound("SystemNotification", 0, SND_ALIAS);
         }
 
-        private void msg_MouseEnter(object sender, System.EventArgs e)
+        private void msg_MouseEnter(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(linked))
+            if (!String.IsNullOrEmpty(_linked))
             {
                 Font ft = msg.Font;
                 msg.ForeColor = Color.Blue;
@@ -74,15 +77,15 @@ namespace JustJournal
             msg.Cursor = Cursors.Default;
         }
 
-        private void msg_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void msg_MouseUp(object sender, MouseEventArgs e)
         {
             try
             {
-                if (!String.IsNullOrEmpty(linked))
+                if (!String.IsNullOrEmpty(_linked))
                 {
-                    System.Diagnostics.Process.Start(linked);
+                    System.Diagnostics.Process.Start(_linked);
                     timer1.Stop();
-                    this.Close();
+                    Close();
                 }
             }
             catch (Win32Exception xc)
@@ -94,12 +97,12 @@ namespace JustJournal
         private void btnOK_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            this.Close();
+            Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
    }
