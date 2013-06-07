@@ -1,42 +1,25 @@
-using System;
-
 namespace JustJournal
 {
 	/// <summary>
-	/// Summary description for Mood.
+	/// Users's Mood
 	/// </summary>
 	public class Mood
 	{
-		private string id;
-		private string name;
-    
-		public Mood(string name, string id)
-		{
-	 	    this.id = id;
-			this.name = name;
-		}
+        public Mood() {}
 
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-		}
+        public Mood(string id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-		public string Id
-		{
+		public string Name { get; set; }
+		
+		public string Id { get; set; }
         
-			get
-			{
-				return id ;
-			}
-		}
-
 		public override string ToString()
 		{
-			return this.id+ " - " + this.name;
+			return Id+ " - " + Name;
 		}
-
 	}
 }

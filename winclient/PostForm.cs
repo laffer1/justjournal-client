@@ -8,19 +8,22 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using iTunesLib;
 
 namespace JustJournal
 {
 	/// <summary>
 	/// Post Journal entries on JustJournal.com
 	/// </summary>
-	public class PostForm : System.Windows.Forms.Form
+	public class PostForm : Form
 	{
 
 		[DllImport("user32.dll",EntryPoint="FindWindow")]
+// ReSharper disable InconsistentNaming
 		private static extern uint FindWindow(string _ClassName, string _WindowName);
+// ReSharper restore InconsistentNaming
 
-		[DllImport("user32.dll")]
+		[DllImport(dllName: "user32.dll", CharSet = CharSet.Auto)]
         private static extern uint GetWindowText(System.UInt64 hWnd, StringBuilder lpString, uint nMaxCount);
 		private System.Windows.Forms.MainMenu mainMenu1;
 		private System.Windows.Forms.MenuItem menuItem1;
@@ -124,11 +127,14 @@ namespace JustJournal
 				this.menuItem31.Enabled = false; // turn off spell check
 
 			RegistryKey reg = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal\\Post" );
-            cboSecurity.SelectedIndex = (int)reg.GetValue("security",0);
-            cboLocation.SelectedIndex = (int)reg.GetValue("location",0);
-			reg.Close();
+		    if (reg != null)
+		    {
+		        cboSecurity.SelectedIndex = (int)reg.GetValue("security",0);
+		        cboLocation.SelectedIndex = (int)reg.GetValue("location",0);
+		        reg.Close();
+		    }
 
-			lblCurrentUser.Text = JustJournalCore.UserName;
+		    lblCurrentUser.Text = JustJournalCore.UserName;
 
 			// If we need the moods, go get them.
 			if ( JustJournalCore.Moods.Count == 0)
@@ -140,7 +146,7 @@ namespace JustJournal
 			cboMood.SelectedIndex = cboMood.FindStringExact("Not Specified",0);
 
             if (JustJournalCore.EnableMusicDetection)
-                txtMusic.Text = detectMusic();
+                txtMusic.Text = DetectMusic();
             else
             {
                 txtMusic.Text = "";
@@ -156,11 +162,14 @@ namespace JustJournal
 		protected override void Dispose( bool disposing )
 		{
 			RegistryKey reg = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal\\Post" );
-			reg.SetValue("security", cboSecurity.SelectedIndex);
-			reg.SetValue("location",cboLocation.SelectedIndex);
-			reg.Close();
+		    if (reg != null)
+		    {
+		        reg.SetValue("security", cboSecurity.SelectedIndex);
+		        reg.SetValue("location",cboLocation.SelectedIndex);
+		        reg.Close();
+		    }
 
-			if( disposing )
+		    if( disposing )
 			{
 				if (components != null) 
 				{
@@ -1035,24 +1044,18 @@ namespace JustJournal
 			}
 			else
 			{
-				Text = "<no subject" + "> - " + "JustJournal";
+				Text = @"<no subject> - JustJournal";
 			}
 		}
 
-		private void menuItem4_Click(object sender, EventArgs e)
-		{
-			// Close JJ
-			Application.Exit();
-		}
-
-		private void btnPost_Click(object sender, EventArgs e)
+	    private void btnPost_Click(object sender, EventArgs e)
 		{
 			if (JustJournalCore.AutoSpellCheck)
 			{
-				if( spellingCheck() )
+				if( SpellingCheck() )
 				{
 					if( MessageBox.Show( this,  
-						"A spelling error was found.  Do you wish to post anyway?", "Spelling Error",MessageBoxButtons.YesNo ) == DialogResult.No )
+						@"A spelling error was found.  Do you wish to post anyway?", @"Spelling Error",MessageBoxButtons.YesNo ) == DialogResult.No )
 					{
 						return;
 					}
@@ -1143,27 +1146,29 @@ namespace JustJournal
 				myNameValueCollection.Add("email_comment", "checked");
 
 			// Upload the NameValueCollection.
-			byte[] responseArray = client.UploadValues(uriString,"POST",myNameValueCollection);
+			var responseArray = client.UploadValues(uriString,"POST",myNameValueCollection);
 
 			// Decode and display the response.
 			//Console.WriteLine("\nResponse received was :\n{0}",Encoding.ASCII.GetString(responseArray));
-			this.Cursor = Cursors.Default;
-			this.Enabled = true;
+			Cursor = Cursors.Default;
+			Enabled = true;
 
-			string resp = Encoding.ASCII.GetString(responseArray);
-            if (resp.Length > 0 && resp.IndexOf("JJ.LOGIN.OK") == -1)
+			var resp = Encoding.ASCII.GetString(responseArray);
+            if (resp.Length > 0 && resp.IndexOf("JJ.LOGIN.OK", StringComparison.Ordinal) == -1)
             {
-                new Alert("Message \"" + txtSubject.Text + "\" Posted.", "");
-                this.Close();  // OK
+// ReSharper disable ObjectCreationAsStatement
+                new Alert(string.Format("Message \"{0}\" Posted.", txtSubject.Text), "");
+// ReSharper restore ObjectCreationAsStatement
+                Close();  // OK
             }
             else
             {
-                MessageBox.Show(Encoding.ASCII.GetString(responseArray), "Just Journal",
+                MessageBox.Show(Encoding.ASCII.GetString(responseArray), @"Just Journal",
                     MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
 		}
 
-		private void menuItem5_Click(object sender, System.EventArgs e)
+		private void menuItem5_Click(object sender, EventArgs e)
 		{
 			new AboutForm().Show();
 		}
@@ -1186,7 +1191,7 @@ namespace JustJournal
 
 		private void menuItem7_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 		private void menuItem9_Click(object sender, EventArgs e)
@@ -1199,7 +1204,7 @@ namespace JustJournal
 				rtbBody.Cut();
 		}
 
-		private void menuItem10_Click(object sender, System.EventArgs e)
+		private void menuItem10_Click(object sender, EventArgs e)
 		{
 			if (txtSubject.Focused)
 				txtSubject.Copy();
@@ -1223,7 +1228,7 @@ namespace JustJournal
 		{
 		    try
 		    {
-		        txtMusic.Text = detectMusic();
+		        txtMusic.Text = DetectMusic();
 		    }
 		    catch( Exception ) //ignore any errors in here
 		    {
@@ -1240,9 +1245,9 @@ namespace JustJournal
 			}
 		}
 
-		private void mnuNormal_Click(object sender, System.EventArgs e)
+		private void mnuNormal_Click(object sender, EventArgs e)
 		{
-			Font ft = rtbBody.SelectionFont;
+			var ft = rtbBody.SelectionFont;
 			rtbBody.SelectionFont = new Font( ft.FontFamily, ft.Size, FontStyle.Regular );
             // bold, italic, underline off
             toolStripButton3.Checked = false;
@@ -1250,15 +1255,15 @@ namespace JustJournal
             toolStripButton5.Checked = false;
 		}
 
-		private void mnuBold_Click(object sender, System.EventArgs e)
+		private void mnuBold_Click(object sender, EventArgs e)
 		{
 			if( mnuRawText.Checked ) 
 			{
 				int start = rtbBody.SelectionStart;
 				int length = rtbBody.SelectionLength;
 				rtbBody.Text = rtbBody.Text.Substring(0,start) +
-					"<strong>" +	rtbBody.Text.Substring(start, length)
-					+ "</strong>" + rtbBody.Text.Substring( start + length);
+					@"<strong>" +	rtbBody.Text.Substring(start, length)
+					+ @"</strong>" + rtbBody.Text.Substring( start + length);
 				rtbBody.SelectionStart = start + 3;
 				rtbBody.SelectionLength = length;				
 			}
@@ -1271,15 +1276,15 @@ namespace JustJournal
 			}
 		}
 
-		private void mnuItalic_Click(object sender, System.EventArgs e)
+		private void mnuItalic_Click(object sender, EventArgs e)
 		{
 			if( mnuRawText.Checked ) 
 			{
 				int start = rtbBody.SelectionStart;
 				int length = rtbBody.SelectionLength;
 				rtbBody.Text = rtbBody.Text.Substring(0,start) +
-					"<em>" +	rtbBody.Text.Substring(start, length)
-					+ "</em>" + rtbBody.Text.Substring( start + length);
+					@"<em>" +	rtbBody.Text.Substring(start, length)
+					+ @"</em>" + rtbBody.Text.Substring( start + length);
 				rtbBody.SelectionStart = start + 3;
 				rtbBody.SelectionLength = length;				
 			}
@@ -1292,15 +1297,15 @@ namespace JustJournal
 			}
 		}
 
-		private void mnuUnderline_Click(object sender, System.EventArgs e)
+		private void mnuUnderline_Click(object sender, EventArgs e)
 		{
 			if( mnuRawText.Checked ) 
 			{
 				int start = rtbBody.SelectionStart;
 				int length = rtbBody.SelectionLength;
 				rtbBody.Text = rtbBody.Text.Substring(0,start) +
-					"<u>" +	rtbBody.Text.Substring(start, length)
-					+ "</u>" + rtbBody.Text.Substring( start + length);
+					@"<u>" +	rtbBody.Text.Substring(start, length)
+					+ @"</u>" + rtbBody.Text.Substring( start + length);
 				rtbBody.SelectionStart = start + 3;
 				rtbBody.SelectionLength = length;				
 			}
@@ -1313,66 +1318,57 @@ namespace JustJournal
 			}
 		}
 
-		private void mnuFormattedText_Click(object sender, System.EventArgs e)
+		private void mnuFormattedText_Click(object sender, EventArgs e)
 		{
 			mnuFormattedText.Checked = true;
 			mnuRawText.Checked = false;
 		}
 
-		private void mnuRawText_Click(object sender, System.EventArgs e)
+		private void mnuRawText_Click(object sender, EventArgs e)
 		{
 			mnuRawText.Checked = true;
 			mnuFormattedText.Checked = false;
 		}
 
-		private void menuItem14_Click(object sender, System.EventArgs e)
+		private void menuItem14_Click(object sender, EventArgs e)
 		{
 			btnPost_Click( sender, e );
 		}
 
-		private void menuItem16_Click(object sender, System.EventArgs e)
+		private void menuItem16_Click(object sender, EventArgs e)
 		{
 			try
 			{
 				if( openDlg.ShowDialog( this ).Equals( DialogResult.OK ) )
 				{
-
-                    if (String.Compare(Path.GetExtension(openDlg.FileName), ".rtf",true) == 0)
-					{
-						rtbBody.LoadFile( openDlg.FileName, RichTextBoxStreamType.RichText );
-					} 
-					else
-					{
-						rtbBody.LoadFile( openDlg.FileName, RichTextBoxStreamType.PlainText );
-					}
+				    rtbBody.LoadFile(openDlg.FileName,
+				                     String.Compare(Path.GetExtension(openDlg.FileName), ".rtf",
+				                                    StringComparison.OrdinalIgnoreCase) == 0
+				                         ? RichTextBoxStreamType.RichText
+				                         : RichTextBoxStreamType.PlainText);
 				}
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( this, ex.Message, "Could not open file", MessageBoxButtons.OK,
+				MessageBox.Show( this, ex.Message, @"Could not open file", MessageBoxButtons.OK,
 					MessageBoxIcon.Exclamation );
 			}
 		}
 
-		private void menuItem17_Click(object sender, System.EventArgs e)
+		private void menuItem17_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				if( saveDlg.ShowDialog( this ).Equals( DialogResult.OK ) )
-				{
-					if( Path.GetExtension( saveDlg.FileName ).ToLower().Equals( ".rtf" ) )
-					{
-						rtbBody.SaveFile( saveDlg.FileName, RichTextBoxStreamType.RichText );
-					}
-					else
-					{
-						rtbBody.SaveFile( saveDlg.FileName, RichTextBoxStreamType.PlainText );
-					}
-				}
+			    if (!saveDlg.ShowDialog(this).Equals(DialogResult.OK)) return;
+			    var extension = Path.GetExtension(saveDlg.FileName);
+			    rtbBody.SaveFile(saveDlg.FileName,
+			                     extension != null && extension.ToLower().Equals(".rtf")
+			                         ? RichTextBoxStreamType.RichText
+			                         : RichTextBoxStreamType.PlainText);
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( this, ex.Message, "Could not save file", MessageBoxButtons.OK,
+				MessageBox.Show( this, ex.Message, @"Could not save file", MessageBoxButtons.OK,
 					MessageBoxIcon.Exclamation );
 			}
 		}
@@ -1420,7 +1416,7 @@ namespace JustJournal
 		    rtbBody.SelectedRtf = string.Empty;
 		}
 
-		private static string detectMusic()
+		private static string DetectMusic()
 		{
 			// skip if we have it disabled.
             if (!JustJournalCore.EnableMusicDetection)
@@ -1432,8 +1428,7 @@ namespace JustJournal
 				try 
 				{
 					string name = string.Empty;
-					iTunesLib.IiTunes iTunesApp;
-					iTunesApp = new iTunesLib.iTunesAppClass();
+				    IiTunes iTunesApp = new iTunesAppClass();
 
 					if (iTunesApp.CurrentTrack.Name != null )
 					{
@@ -1454,251 +1449,247 @@ namespace JustJournal
 					}
 					return name;
 				} 
-				catch (Exception e) 
+				catch
 				{
-					//MessageBox.Show("iTunes Error",e.Message,
-					//	MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				    //MessageBox.Show("iTunes Error",e.Message,
+				    //	MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
 			}
 
 			// other clients
-			try
-			{
-			uint player = 0;
-			uint whandle = 0;
-			int size = 0;
-			string name = string.Empty;
-			StringBuilder sb = new StringBuilder( 1024, 1024 );
+		    {
+		        uint player = 0;
+		        uint whandle = 0;
+		        int size;
+		        var name = string.Empty;
+		        var sb = new StringBuilder( 1024, 1024 );
 
-			Hashtable mediaPlayers = new Hashtable();
-			// Quintessential Player
-			// MUST be first to prevent an exception
-			mediaPlayers.Add( "PlayerCanvas", 1 );
-			// Apollo
-			mediaPlayers.Add( "Apollo - Main Window", 2 );
-			// Winamp 2 and 5, and clones (e.g. foobar2000 with foo_winamp_spam)
-			mediaPlayers.Add( "Winamp v1.x", 3 );
-			// Winamp 3
-			mediaPlayers.Add( "STUDIO", 4 );
-			// Musicmatch Jukebox
-			mediaPlayers.Add( "MMJB:MAINWND", 5 );
-			// Sonique
-			mediaPlayers.Add( "Sonique Window Class", 6 );
-			// FreeAmp
-			mediaPlayers.Add( "FreeAmp", 7 );
-			// foobar2000
-			mediaPlayers.Add( "FOOBAR2000_CLASS", 8 );
-			mediaPlayers.Add( "{DA7CD0DE-1602-45e6-89A1-C2CA151E008E}", 8 );
-			// Windows Media Player 6
-			mediaPlayers.Add( "Media Player 2", 9 );
-			// Windows Media Player 7 with blogging skin
-			mediaPlayers.Add( "WMP Skin Host", 10 );
-			// Windows CD Player
-			mediaPlayers.Add( "MMFRAME_MAIN", 11 );
-			// SysTrayPlayer (?)
-			mediaPlayers.Add( "STPAppClass", 12 );
+		        var mediaPlayers = new Hashtable
+		            {
+		                {"PlayerCanvas", 1},
+		                {"Apollo - Main Window", 2},
+		                {"Winamp v1.x", 3},
+		                {"STUDIO", 4},
+		                {"MMJB:MAINWND", 5},
+		                {"Sonique Window Class", 6},
+		                {"FreeAmp", 7},
+		                {"FOOBAR2000_CLASS", 8},
+		                {"{DA7CD0DE-1602-45e6-89A1-C2CA151E008E}", 8},
+		                {"Media Player 2", 9},
+		                {"WMP Skin Host", 10},
+		                {"MMFRAME_MAIN", 11},
+		                {"STPAppClass", 12}
+		            };
+		        // Quintessential Player
+		        // MUST be first to prevent an exception
+		        // Apollo
+		        // Winamp 2 and 5, and clones (e.g. foobar2000 with foo_winamp_spam)
+		        // Winamp 3
+		        // Musicmatch Jukebox
+		        // Sonique
+		        // FreeAmp
+		        // foobar2000
+		        // Windows Media Player 6
+		        // Windows Media Player 7 with blogging skin
+		        // Windows CD Player
+		        // SysTrayPlayer (?)
 
-			foreach( string key in mediaPlayers.Keys )
-			{
-				whandle = FindWindow( key, null );
-				if( whandle > 0 )
-				{
-					player = Convert.ToUInt32( mediaPlayers[key] );
-					break;
-				}
-			}
+		        foreach( string key in mediaPlayers.Keys )
+		        {
+		            whandle = FindWindow( key, null );
+		            if (whandle <= 0) continue;
+		            player = Convert.ToUInt32( mediaPlayers[key] );
+		            break;
+		        }
 
-			switch( player )
-			{
-				case 1: //QCD
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						size = name.IndexOf( "]" ) + 2;
-						if( size > 0 )
-						{
-							name = name.Substring( size, name.Length - size );
-						}
-					}
-					break;
-				case 2: //Apollo
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						name = name.TrimStart( "0123456789 ".ToCharArray() );
-						name = name.Substring( 0, name.LastIndexOf(" - (", StringComparison.Ordinal) );
-						name = name.Substring( 0, name.LastIndexOf(" - ", StringComparison.Ordinal) );
-					}
-					break;
-				case 3: //Winamp 2/5
-				case 4: //Winamp 3
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						int start = name.IndexOf(".", StringComparison.Ordinal) + 2;
-						size = name.Length - start - 9;
-						if( name.EndsWith( "[Paused]" ) )
-						{
-							if( JustJournalCore.WinampPaused )
-							{
-								size -= 9;
-								name = name.Substring( start, size );
-							}
-							else
-							{
-								name = string.Empty;
-							}
-						}
-						else if( name.EndsWith( "[Stopped]" ) )
-						{
-							if( JustJournalCore.WinampStopped )
-							{
-								size -= 10;
-								name = name.Substring( start, size );
-							}
-							else
-							{
-								name = string.Empty;
-							}
-						}
-						else
-						{
-							name = name.Substring( start, size );
-						}
-						if( player.Equals( 2 ) )
-						{
-							size = name.LastIndexOf("(", StringComparison.Ordinal) - 1;
-							if( size > 0 )
-							{
-								name = name.Substring( 0, size );
-							}
-						}
-						name = name.Trim( ' ' );
-					}
-					break;
-				case 5: //Musicmatch Jukebox
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						size = name.IndexOf("MUSICMATCH", StringComparison.Ordinal);
-						if( size < 0 )
-						{
-							size = name.IndexOf("Musicmatch", StringComparison.Ordinal);
-						}
-						if( size > 0 )
-						{
-							name = name.Substring( 0, size - 3 );
-						}
-					}
-					break;
-				case 6: //Sonique
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						size = name.IndexOf(".mp3", StringComparison.Ordinal) + 7;
-						name = name.Substring( 0, size);
-					}
-					break;
-				case 7: //FreeAmp
-					GetWindowText( whandle, sb, 1024 );
-					if( name.Length > 0 )
-					{
-						name = sb.ToString();
-						name = name.Substring( 9, name.Length );
-					}
-					break;
-				case 8: //foobar2000
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						size = name.IndexOf("[foobar", StringComparison.Ordinal);
-						if( size > 0 )
-						{
-							name = name.Substring( 0, size );
-						}
-						name = name.Trim( ' ' );
-					}
-					break;
-				case 9: //Windows Media Player 6 (9 and 10 with blog plugin)
-					RegistryKey rk = Registry.CurrentUser;
-					rk = rk.CreateSubKey( "Software\\Microsoft\\MediaPlayer\\CurrentMetadata" );
-					name = rk.GetValue( "Title", string.Empty ).ToString();
+		        switch( player )
+		        {
+		            case 1: //QCD
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    size = name.IndexOf("]", StringComparison.Ordinal) + 2;
+		                    if( size > 0 )
+		                    {
+		                        name = name.Substring( size, name.Length - size );
+		                    }
+		                }
+		                break;
+		            case 2: //Apollo
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    name = name.TrimStart( "0123456789 ".ToCharArray() );
+		                    name = name.Substring( 0, name.LastIndexOf(" - (", StringComparison.Ordinal) );
+		                    name = name.Substring( 0, name.LastIndexOf(" - ", StringComparison.Ordinal) );
+		                }
+		                break;
+		            case 3: //Winamp 2/5
+		            case 4: //Winamp 3
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    int start = name.IndexOf(".", StringComparison.Ordinal) + 2;
+		                    size = name.Length - start - 9;
+		                    if( name.EndsWith( "[Paused]" ) )
+		                    {
+		                        if( JustJournalCore.WinampPaused )
+		                        {
+		                            size -= 9;
+		                            name = name.Substring( start, size );
+		                        }
+		                        else
+		                        {
+		                            name = string.Empty;
+		                        }
+		                    }
+		                    else if( name.EndsWith( "[Stopped]" ) )
+		                    {
+		                        if( JustJournalCore.WinampStopped )
+		                        {
+		                            size -= 10;
+		                            name = name.Substring( start, size );
+		                        }
+		                        else
+		                        {
+		                            name = string.Empty;
+		                        }
+		                    }
+		                    else
+		                    {
+		                        name = name.Substring( start, size );
+		                    }
+		                    if( player.Equals( 2 ) )
+		                    {
+		                        size = name.LastIndexOf("(", StringComparison.Ordinal) - 1;
+		                        if( size > 0 )
+		                        {
+		                            name = name.Substring( 0, size );
+		                        }
+		                    }
+		                    name = name.Trim( ' ' );
+		                }
+		                break;
+		            case 5: //Musicmatch Jukebox
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    size = name.IndexOf("MUSICMATCH", StringComparison.Ordinal);
+		                    if( size < 0 )
+		                    {
+		                        size = name.IndexOf("Musicmatch", StringComparison.Ordinal);
+		                    }
+		                    if( size > 0 )
+		                    {
+		                        name = name.Substring( 0, size - 3 );
+		                    }
+		                }
+		                break;
+		            case 6: //Sonique
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    size = name.IndexOf(".mp3", StringComparison.Ordinal) + 7;
+		                    name = name.Substring( 0, size);
+		                }
+		                break;
+		            case 7: //FreeAmp
+		                GetWindowText( whandle, sb, 1024 );
+		                if( name.Length > 0 )
+		                {
+		                    name = sb.ToString();
+		                    name = name.Substring( 9, name.Length );
+		                }
+		                break;
+		            case 8: //foobar2000
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    size = name.IndexOf("[foobar", StringComparison.Ordinal);
+		                    if( size > 0 )
+		                    {
+		                        name = name.Substring( 0, size );
+		                    }
+		                    name = name.Trim( ' ' );
+		                }
+		                break;
+		            case 9: //Windows Media Player 6 (9 and 10 with blog plugin)
+		                var rk = Registry.CurrentUser;
+		                rk = rk.CreateSubKey( "Software\\Microsoft\\MediaPlayer\\CurrentMetadata" );
+		                if (rk != null)
+		                {
+		                    name = rk.GetValue( "Title", string.Empty ).ToString();
 					
-					if( name.Length > 0 )
-					{
-						if (rk.GetValue("Album", string.Empty).ToString().Length > 0 )
-							name += " - " + rk.GetValue("Album", string.Empty); 
+		                    if( name.Length > 0 )
+		                    {
+		                        if (rk.GetValue("Album", string.Empty).ToString().Length > 0 )
+		                            name += " - " + rk.GetValue("Album", string.Empty); 
 
-						if( rk.GetValue( "Author", string.Empty ).ToString().Length > 0 )
-							name += " - " + rk.GetValue( "Author", string.Empty );
-					}
-					else
-					{
-						name = rk.GetValue( "Author", string.Empty ).ToString();
-					}
-					rk.Close();
-					name = name.Trim( ' ' );
-					if( name.Equals( "-" ) )
-					{
-						GetWindowText( whandle, sb, 1024 );
-						name = sb.ToString();
-						if( name.Length > 0 )
-						{
-							size = name.LastIndexOf(".", StringComparison.Ordinal);
-							name = name.Substring( 0, size );
-						}
-					}
-					break;
-				case 10: //Windows Media Player 7 with skin
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					break;
-				case 11: //Windows CD Player
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 )
-					{
-						if( name.Equals( "Please insert an audio compact disc" ) )
-						{
-							name = string.Empty;
-						}
-						else
-						{
-							size = name.IndexOf( " - CD Player " );
-							name = name.Substring( 0, size );
-						}
-					}
-					break;
-				case 12: //SysTrayPlayer (?)
-					GetWindowText( whandle, sb, 1024 );
-					name = sb.ToString();
-					if( name.Length > 0 && name.StartsWith( "STP: " ) )
-					{
-						name = name.Substring( 5, name.Length - 5 );
-					}
-					break;
-				case 0:
-				default:
-					name = string.Empty;
-					break;
-			}
+		                        if( rk.GetValue( "Author", string.Empty ).ToString().Length > 0 )
+		                            name += " - " + rk.GetValue( "Author", string.Empty );
+		                    }
+		                    else
+		                    {
+		                        name = rk.GetValue( "Author", string.Empty ).ToString();
+		                    }
+		                    rk.Close();
+		                }
+		                name = name.Trim( ' ' );
+		                if( name.Equals( "-" ) )
+		                {
+		                    GetWindowText( whandle, sb, 1024 );
+		                    name = sb.ToString();
+		                    if( name.Length > 0 )
+		                    {
+		                        size = name.LastIndexOf(".", StringComparison.Ordinal);
+		                        name = name.Substring( 0, size );
+		                    }
+		                }
+		                break;
+		            case 10: //Windows Media Player 7 with skin
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                break;
+		            case 11: //Windows CD Player
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 )
+		                {
+		                    if( name.Equals( "Please insert an audio compact disc" ) )
+		                    {
+		                        name = string.Empty;
+		                    }
+		                    else
+		                    {
+		                        size = name.IndexOf(" - CD Player ", StringComparison.Ordinal);
+		                        name = name.Substring( 0, size );
+		                    }
+		                }
+		                break;
+		            case 12: //SysTrayPlayer (?)
+		                GetWindowText( whandle, sb, 1024 );
+		                name = sb.ToString();
+		                if( name.Length > 0 && name.StartsWith( "STP: " ) )
+		                {
+		                    name = name.Substring( 5, name.Length - 5 );
+		                }
+		                break;
+		            default:
+		                name = string.Empty;
+		                break;
+		        }
 
-			return name;
-		}
-		catch
-	    {
-		    throw;
-     	}				
-			
+		        return name;
+		    }
 		}
 
-		private void menuItem28_Click(object sender, System.EventArgs e)
+		private void menuItem28_Click(object sender, EventArgs e)
 		{
 			if (colorDlgBg.ShowDialog( this ).Equals( DialogResult.OK))
 			{
@@ -1706,16 +1697,16 @@ namespace JustJournal
 			}
 		}
 
-		private bool spellingCheck()
+		private bool SpellingCheck()
 		{
-			bool errors = false;			
+			var errors = false;			
 			Object nul = null;
 			
 			try
 			{
                 Microsoft.Office.Interop.Word.Application chk = new Microsoft.Office.Interop.Word.ApplicationClass();
-				int cur = 0;
-                StringBuilder word = new StringBuilder();
+				var cur = 0;
+                var word = new StringBuilder();
 				while( cur < rtbBody.Text.Length ) 
 				{
 					if( char.IsLetter( rtbBody.Text[cur] ) || rtbBody.Text[cur].Equals( '\'' ) )
@@ -1730,7 +1721,7 @@ namespace JustJournal
 								ref nul, ref nul, ref nul, ref nul, ref nul, ref nul, ref nul ) )
 							{
 								rtbBody.Select( cur - word.Length, word.Length );
-								Font ft = new Font( rtbBody.SelectionFont.Name, rtbBody.SelectionFont.Size, FontStyle.Strikeout );
+								var ft = new Font( rtbBody.SelectionFont.Name, rtbBody.SelectionFont.Size, FontStyle.Strikeout );
 								rtbBody.SelectionFont = ft;
 								errors = true;
 							}
@@ -1750,9 +1741,9 @@ namespace JustJournal
 			return errors;
 		}
 
-		private void menuItem31_Click(object sender, System.EventArgs e)
+		private void menuItem31_Click(object sender, EventArgs e)
 		{
-			spellingCheck();
+			SpellingCheck();
 		}
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -1796,11 +1787,6 @@ namespace JustJournal
             }
         }
 
-        private void toolStripButton8_Click(object sender, EventArgs e)
-        {
-            new AboutForm().Show();
-        }
-
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
             rtbBody.Cut();
@@ -1832,7 +1818,8 @@ namespace JustJournal
             {
                 if (saveDlg.ShowDialog(this).Equals(DialogResult.OK))
                 {
-                    if (Path.GetExtension(saveDlg.FileName).ToLower().Equals(".rtf"))
+                    var extension = Path.GetExtension(saveDlg.FileName);
+                    if (extension != null && extension.ToLower().Equals(".rtf"))
                     {
                         rtbBody.SaveFile(saveDlg.FileName, RichTextBoxStreamType.RichText);
                     }
@@ -1855,19 +1842,15 @@ namespace JustJournal
             {
                 if (openDlg.ShowDialog(this).Equals(DialogResult.OK))
                 {
-                    if (String.Compare(Path.GetExtension(openDlg.FileName), ".rtf", false) ==0)
-                    {
-                        rtbBody.LoadFile(openDlg.FileName, RichTextBoxStreamType.RichText);
-                    }
-                    else
-                    {
-                        rtbBody.LoadFile(openDlg.FileName, RichTextBoxStreamType.PlainText);
-                    }
+                    rtbBody.LoadFile(openDlg.FileName,
+                                     String.CompareOrdinal(Path.GetExtension(openDlg.FileName), ".rtf") == 0
+                                         ? RichTextBoxStreamType.RichText
+                                         : RichTextBoxStreamType.PlainText);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Could not open file", MessageBoxButtons.OK,
+                MessageBox.Show(this, ex.Message, @"Could not open file", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
         }
