@@ -7,7 +7,7 @@ namespace JustJournal
 	{
         public Mood() {}
 
-        public Mood(string id, string name)
+        public Mood(string name, string id)
         {
             Id = id;
             Name = name;
