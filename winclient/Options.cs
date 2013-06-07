@@ -1,117 +1,223 @@
 using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 using Microsoft.Win32;
 
 namespace JustJournal
 {
-	/// <summary>
-	/// Summary description for Options.
-	/// </summary>
-	public class Options : System.Windows.Forms.Form
-	{
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.Button btnClose;
-		private System.Windows.Forms.TabPage tabGeneral;
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.RadioButton postRaw;
-		private System.Windows.Forms.RadioButton postFormatted;
-		private System.Windows.Forms.CheckBox chkUseSSL;
-		private System.Windows.Forms.CheckBox chkSavePassword;
-		private System.Windows.Forms.CheckBox chkAutoLogin;
-		private System.Windows.Forms.TabPage tabIntegration;
-		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.CheckBox chkUseWord;
-		private System.Windows.Forms.CheckBox chkAutoSpell;
-		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.CheckBox chkMusicDetect;
-		private System.Windows.Forms.CheckBox chkItunes;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.CheckBox chkPaused;
-		private System.Windows.Forms.CheckBox chkStopped;
-		private System.Windows.Forms.GroupBox groupBox5;
+    /// <summary>
+    ///     Summary description for Options.
+    /// </summary>
+    public class Options : Form
+    {
+        /// <summary>
+        ///     Required designer variable.
+        /// </summary>
+        private readonly Container components = null;
 
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private Button btnClose;
+        private CheckBox chkAutoLogin;
+        private CheckBox chkAutoSpell;
+        private CheckBox chkItunes;
+        private CheckBox chkMusicDetect;
+        private CheckBox chkPaused;
+        private CheckBox chkSavePassword;
+        private CheckBox chkStopped;
+        private CheckBox chkUseSSL;
+        private CheckBox chkUseWord;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private GroupBox groupBox4;
+        private GroupBox groupBox5;
+        private PictureBox pictureBox1;
+        private RadioButton postFormatted;
+        private RadioButton postRaw;
+        private TabControl tabControl1;
+        private TabPage tabGeneral;
+        private TabPage tabIntegration;
 
-		public Options()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+        public Options()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
-			var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-		    if (rk != null)
-		    {
-		        RegistryKey mk = rk.CreateSubKey( "Preferences" );
+            //
+            // TODO: Add any constructor code after InitializeComponent call
+            //
+            RegistryKey rk = Registry.CurrentUser.CreateSubKey("SOFTWARE\\JustJournal");
+            if (rk != null)
+            {
+                RegistryKey mk = rk.CreateSubKey("Preferences");
 
-		        chkAutoLogin.Checked = ((string)rk.GetValue( "autologin", "no" )).Equals("yes");
-		        chkUseSSL.Checked = ((string)rk.GetValue( "usessl", "yes" )).Equals("yes");
-		        string pwd = (string)rk.GetValue( "password", "" );
-		        string Format = (string)mk.GetValue( "Formatting", "Formatted" );
+                chkAutoLogin.Checked = ((string) rk.GetValue("autologin", "no")).Equals("yes");
+                chkUseSSL.Checked = ((string) rk.GetValue("usessl", "yes")).Equals("yes");
+                var pwd = (string) rk.GetValue("password", "");
+                if (mk != null)
+                {
+                    var format = (string) mk.GetValue("Formatting", "Formatted");
 
-		        chkUseWord.Checked = ((string)rk.GetValue( "useword", "no" )).Equals("yes");
-		        chkAutoSpell.Checked = ((string)rk.GetValue( "autospell", "no" )).Equals("yes");
-		        chkMusicDetect.Checked = ((string)rk.GetValue( "music", "no" )).Equals("yes");
-		        chkItunes.Checked = ((string)rk.GetValue( "iTunes", "no" )).Equals("yes");
-		        chkPaused.Checked = ((string)mk.GetValue( "winampPaused", "no")).Equals("yes");
-		        chkStopped.Checked = ((string)mk.GetValue( "winampStopped", "no")).Equals("yes");
-		
-		        mk.Close();
-		        rk.Close();
+                    chkUseWord.Checked = ((string) rk.GetValue("useword", "no")).Equals("yes");
+                    chkAutoSpell.Checked = ((string) rk.GetValue("autospell", "no")).Equals("yes");
+                    chkMusicDetect.Checked = ((string) rk.GetValue("music", "no")).Equals("yes");
+                    chkItunes.Checked = ((string) rk.GetValue("iTunes", "no")).Equals("yes");
+                    chkPaused.Checked = ((string) mk.GetValue("winampPaused", "no")).Equals("yes");
+                    chkStopped.Checked = ((string) mk.GetValue("winampStopped", "no")).Equals("yes");
 
-		        if( pwd.Equals("@") || String.IsNullOrEmpty(pwd) ) 
-		            chkSavePassword.Checked = false;
-		        else
-		            chkSavePassword.Checked = true;
+                    mk.Close();
+                    rk.Close();
 
-		        if (Format.Equals("Formatted"))
-		            postFormatted.Checked = true;
-		        else
-		            postRaw.Checked = true;
-		    }
+                    if (pwd.Equals("@") || String.IsNullOrEmpty(pwd))
+                        chkSavePassword.Checked = false;
+                    else
+                        chkSavePassword.Checked = true;
 
-		    if (!chkMusicDetect.Checked)
+                    if (format.Equals("Formatted"))
+                        postFormatted.Checked = true;
+                    else
+                        postRaw.Checked = true;
+                }
+            }
+
+            if (!chkMusicDetect.Checked)
             {
                 chkItunes.Enabled = false;
                 chkPaused.Enabled = false;
                 chkStopped.Enabled = false;
             }
-		}
+        }
 
 
+        /// <summary>
+        ///     Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            SaveSettings();
 
-		
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			SaveSettings();
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}	
-			}
-			base.Dispose( disposing );
-		}
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+            Close();
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
+        public void SaveSettings()
+        {
+            RegistryKey rk = Registry.CurrentUser.CreateSubKey("SOFTWARE\\JustJournal");
+            if (rk != null)
+            {
+                RegistryKey mk = rk.CreateSubKey("Preferences");
+
+                /*mk.SetValue( "ServerUrl", ServerURL );
+			mk.SetValue( "FontFace", FontSetting.Name );
+			mk.SetValue( "FontSize", FontSetting.Size );
+
+			mk.SetValue( "ProxyURL", proxyURL.Text );
+			mk.SetValue( "ProxyPort", proxyPort.Text );
+			mk.SetValue( "ProxyPassword", (useLP.Checked ? proxyPassword.Text : string.Empty) );
+			mk.SetValue( "ProxyLogin", (useLP.Checked ? proxyLogin.Text : string.Empty) );
+
+			mk.SetValue( "AutoPlay", (AutoCheckMusic ? "Yes" : "No") );
+			mk.SetValue( "StopCheck", (CheckStopped ? "Yes" : "No") );
+			mk.SetValue( "PauseCheck", (CheckPaused ? "Yes" : "No") );
+			mk.SetValue( "QueuePost", (PostToQueue ? "Yes" : "No") );
+			mk.SetValue( "QueueSpeed", QueueSpeed.ToString() );
+			
+			*/
+                // TODO finish this
+                if (mk != null) mk.SetValue("Formatting", (postFormatted.Checked ? "Formatted" : "Raw"));
+                rk.SetValue("iTunes", (chkItunes.Checked ? "yes" : "no"));
+                rk.SetValue("music", (chkMusicDetect.Checked ? "yes" : "no"));
+                if (mk != null)
+                {
+                    mk.SetValue("winampPaused", (chkPaused.Checked ? "yes" : "no"));
+                    mk.SetValue("winampStopped", (chkStopped.Checked ? "yes" : "no"));
+                }
+
+                JustJournalCore.DetectItunes = chkItunes.Checked;
+                JustJournalCore.EnableMusicDetection = chkMusicDetect.Checked;
+                JustJournalCore.WinampPaused = chkPaused.Checked;
+                JustJournalCore.WinampStopped = chkStopped.Checked;
+
+                rk.SetValue("usessl", chkUseSSL.Checked ? "yes" : "no");
+
+                rk.SetValue("password", chkSavePassword.Checked ? JustJournalCore.Password : "@");
+
+                rk.SetValue("autologin", chkAutoLogin.Checked ? "yes" : "no");
+
+                if (chkUseWord.Checked)
+                {
+                    JustJournalCore.EnableSpellCheck = true;
+                    rk.SetValue("useword", "yes");
+                }
+                else
+                {
+                    JustJournalCore.EnableSpellCheck = false;
+                    rk.SetValue("useword", "no");
+                }
+
+                if (chkUseWord.Checked && chkAutoSpell.Checked)
+                {
+                    JustJournalCore.AutoSpellCheck = true;
+                    rk.SetValue("autospell", "yes");
+                }
+                else
+                {
+                    JustJournalCore.AutoSpellCheck = false;
+                    rk.SetValue("autospell", "no");
+                }
+
+                /*string old_lang = mk.GetValue( "Language", string.Empty ).ToString();
+			string lang = cbLanguage.SelectedItem.ToString();
+			foreach( object key in Languages.Keys )
+				if( Languages[key].ToString().Equals( lang ) )
+					mk.SetValue( "Language", key.ToString() );
+				
+			if( !old_lang.Equals( mk.GetValue( "Language", string.Empty ).ToString() ) )
+				MessageBox.Show( rm.GetString( "message_change_lang" ) );*/
+
+                if (mk != null) mk.Close();
+            }
+            if (rk != null) rk.Close();
+        }
+
+        private void chkMusicDetect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkMusicDetect.Checked)
+            {
+                chkItunes.Enabled = false;
+                chkPaused.Enabled = false;
+                chkStopped.Enabled = false;
+            }
+            else
+            {
+                chkItunes.Enabled = true;
+                chkPaused.Enabled = true;
+                chkStopped.Enabled = true;
+            }
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///     Required method for Designer support - do not modify
+        ///     the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof (Options));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -130,7 +236,7 @@ namespace JustJournal
             this.chkMusicDetect = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-      
+
             this.chkAutoSpell = new System.Windows.Forms.CheckBox();
             this.chkUseWord = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -141,7 +247,7 @@ namespace JustJournal
             this.tabIntegration.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -300,7 +406,7 @@ namespace JustJournal
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(288, 16);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 168);
@@ -365,114 +471,11 @@ namespace JustJournal
             this.tabIntegration.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
-
-		}
-		#endregion
-
-		private void btnClose_Click(object sender, EventArgs e)
-		{
-			SaveSettings();
-			Close();
-		}
-
-		public void SaveSettings()
-		{
-			var rk = Registry.CurrentUser.CreateSubKey( "SOFTWARE\\JustJournal" );
-		    if (rk != null)
-		    {
-		        var mk = rk.CreateSubKey( "Preferences" );
-
-		        /*mk.SetValue( "ServerUrl", ServerURL );
-			mk.SetValue( "FontFace", FontSetting.Name );
-			mk.SetValue( "FontSize", FontSetting.Size );
-
-			mk.SetValue( "ProxyURL", proxyURL.Text );
-			mk.SetValue( "ProxyPort", proxyPort.Text );
-			mk.SetValue( "ProxyPassword", (useLP.Checked ? proxyPassword.Text : string.Empty) );
-			mk.SetValue( "ProxyLogin", (useLP.Checked ? proxyLogin.Text : string.Empty) );
-
-			mk.SetValue( "AutoPlay", (AutoCheckMusic ? "Yes" : "No") );
-			mk.SetValue( "StopCheck", (CheckStopped ? "Yes" : "No") );
-			mk.SetValue( "PauseCheck", (CheckPaused ? "Yes" : "No") );
-			mk.SetValue( "QueuePost", (PostToQueue ? "Yes" : "No") );
-			mk.SetValue( "QueueSpeed", QueueSpeed.ToString() );
-			
-			*/
-		        // TODO finish this
-		        if (mk != null) mk.SetValue( "Formatting", (postFormatted.Checked ? "Formatted" : "Raw") );
-		        rk.SetValue( "iTunes", (chkItunes.Checked ? "yes" : "no"));
-		        rk.SetValue( "music", (chkMusicDetect.Checked ? "yes" : "no"));
-		        if (mk != null)
-		        {
-		            mk.SetValue( "winampPaused", (chkPaused.Checked ? "yes" : "no"));
-		            mk.SetValue( "winampStopped", (chkStopped.Checked ? "yes" : "no"));
-		        }
-
-		        JustJournalCore.DetectItunes = chkItunes.Checked;
-		        JustJournalCore.EnableMusicDetection = chkMusicDetect.Checked;
-		        JustJournalCore.WinampPaused = chkPaused.Checked;
-		        JustJournalCore.WinampStopped = chkStopped.Checked;
-
-		        rk.SetValue("usessl", chkUseSSL.Checked ? "yes" : "no");
-
-		        rk.SetValue("password", chkSavePassword.Checked ? JustJournalCore.Password : "@");
-
-		        rk.SetValue("autologin", chkAutoLogin.Checked ? "yes" : "no");
-
-		        if (chkUseWord.Checked)
-		        {
-		            JustJournalCore.EnableSpellCheck = true;
-		            rk.SetValue( "useword", "yes" );
-		        }
-		        else
-		        {
-		            JustJournalCore.EnableSpellCheck = false;
-		            rk.SetValue( "useword", "no" );
-		        }
-
-		        if (chkUseWord.Checked && chkAutoSpell.Checked)
-		        {
-		            JustJournalCore.AutoSpellCheck = true;
-		            rk.SetValue( "autospell", "yes" );
-		        }
-		        else
-		        {
-		            JustJournalCore.AutoSpellCheck = false;
-		            rk.SetValue( "autospell", "no" );
-		        }
-
-		        /*string old_lang = mk.GetValue( "Language", string.Empty ).ToString();
-			string lang = cbLanguage.SelectedItem.ToString();
-			foreach( object key in Languages.Keys )
-				if( Languages[key].ToString().Equals( lang ) )
-					mk.SetValue( "Language", key.ToString() );
-				
-			if( !old_lang.Equals( mk.GetValue( "Language", string.Empty ).ToString() ) )
-				MessageBox.Show( rm.GetString( "message_change_lang" ) );*/
-
-		        if (mk != null) mk.Close();
-		    }
-		    if (rk != null) rk.Close();
-		}
-
-        private void chkMusicDetect_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!chkMusicDetect.Checked)
-            {
-                chkItunes.Enabled = false;
-                chkPaused.Enabled = false;
-                chkStopped.Enabled = false;
-            }
-            else
-            {
-                chkItunes.Enabled = true;
-                chkPaused.Enabled = true;
-                chkStopped.Enabled = true;
-            }
         }
-	}
 
+        #endregion
+    }
 }

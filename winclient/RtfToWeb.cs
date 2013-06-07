@@ -84,8 +84,8 @@ namespace JustJournal
 			try
 			{
 				writeRtf(rtf);  // debug
-				Hashtable fontTable = new Hashtable();
-				Hashtable colorTable = new Hashtable();
+				var fontTable = new Hashtable();
+				var colorTable = new Hashtable();
 
 				string result = string.Empty;
 				string tg = string.Empty;
@@ -284,8 +284,6 @@ namespace JustJournal
 									case "rdblquote":
 										result += "&rdquo;";
 										break;
-									default:
-										break;
 								}
 							}
 							if( rtf[cur].Equals( '\\' ) ) // start another tag
@@ -369,7 +367,7 @@ namespace JustJournal
 			}
 			catch( Exception ex )
 			{
-				MessageBox.Show( ex.Message + "\n" + ex.StackTrace, @"Exception in " + ex.Source );
+				MessageBox.Show( string.Format("{0}\n{1}", ex.Message, ex.StackTrace), @"Exception in " + ex.Source );
 			}
 			throw new Exception( "Error converting post to HTML." );
 		}
