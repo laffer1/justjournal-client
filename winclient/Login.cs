@@ -204,8 +204,8 @@ namespace JustJournal
                             {
                                 DialogResult x =
                                     MessageBox.Show(
-                                        "Password will be saved in the registry in clear text for your windows login.  This could be a security issue.  Are you sure?",
-                                        "Save Password",
+                                        @"Password will be saved in the registry in clear text for your windows login.  This could be a security issue.  Are you sure?",
+                                        @"Save Password",
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                                 rk.SetValue("password", x.Equals(DialogResult.Yes) ? txtPassword.Text : "@");
@@ -228,8 +228,8 @@ namespace JustJournal
                 }
                 else
                 {
-                    MessageBox.Show("Unable to login.  Make sure your username and password are correct.",
-                                    "Authentication Error",
+                    MessageBox.Show(@"Unable to login.  Make sure your username and password are correct.",
+                                    @"Authentication Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     Enabled = true;
